@@ -26,7 +26,9 @@
         <tr>
           <th>#ID</th>
           <th>Name</th>
+          <th>Slug</th>
           <th>Parent</th>
+          <th>Products Num#</th>
           <th>Status</th>
           <th>Created At</th>
           <th>Actions</th>
@@ -44,7 +46,9 @@
                   <strong> {{ $category->name }}</strong>
                 </div>
               </td>
-              <td>{{ $category->parent_id ?? '-' }}</td>
+              <td>{{ $category->slug }}</td>
+              <td>{{ $category->parent->name }}</td>
+              <td>{{ $category->products_count}}</td>
               <td>
                 @if ($category->status == 'active')
                   <span class="badge bg-label-success me-1">{{ $category->status }}</span>

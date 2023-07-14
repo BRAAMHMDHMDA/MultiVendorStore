@@ -15,8 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
-      $categories = Category::latest()->paginate();
-
+      $categories = Category::with('parent')->withCount('products')->latest()->paginate();
       return view('dashboard.content.category.index', [
         'categories' => $categories
       ]);

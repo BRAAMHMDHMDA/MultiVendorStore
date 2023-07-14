@@ -12,4 +12,20 @@ class Category extends Model
 
   protected $fillable = ['name','slug','description','parent_id','status','image'];
   protected $guarded = ['id'];
+
+  public function products() {
+      return $this->hasMany(Product::class);
+  }
+
+    public function parent() {
+        return $this->belongsTo(Category::class)
+            ->withDefault([
+                'name' => '-'
+            ]);
+    }
+
+    public function children() {
+        return $this->hasMany(Category::class);
+    }
+
 }
