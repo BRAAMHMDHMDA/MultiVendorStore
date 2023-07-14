@@ -57,11 +57,15 @@ $container = ($container ?? 'container-xxl');
           <div class="{{$container}} flex-grow-1 container-p-y">
             @endif
 
+            <div class="d-flex justify-content-between align-items-center pb-4 pt-2 mb-2">
+              <h4 class="fw-bold m-0">@yield('breadcrumb_left')</h4>
+              @yield('breadcrumb_right')
+            </div>
             @yield('content')
 
             <!-- pricingModal -->
             @if ($pricingModal)
-            @include('dashboard/_partials/_modals/modal-pricing')
+            @include('Dashboard/_partials/_modals/modal-pricing')
             @endif
             <!--/ pricingModal -->
 

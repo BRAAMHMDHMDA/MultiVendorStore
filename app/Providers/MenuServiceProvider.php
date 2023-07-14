@@ -23,9 +23,9 @@ class MenuServiceProvider extends ServiceProvider
    */
   public function boot()
   {
-    $verticalMenuJson = file_get_contents(base_path('resources/views/dashboard/menu/verticalMenu.json'));
+    $verticalMenuJson = file_get_contents(base_path('resources/views/Dashboard/menu/verticalMenu.json'));
     $verticalMenuData = json_decode($verticalMenuJson);
-    $horizontalMenuJson = file_get_contents(base_path('resources/views/dashboard/menu/horizontalMenu.json'));
+    $horizontalMenuJson = file_get_contents(base_path('resources/views/Dashboard/menu/horizontalMenu.json'));
     $horizontalMenuData = json_decode($horizontalMenuJson);
 
     // Share all menuData to all the views

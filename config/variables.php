@@ -8,7 +8,7 @@
 //    "templateVersion" => "1.0.0",
 //    "templateFree" => false,
 //    "templateDescription" => "Start your development with a Dashboard for Bootstrap 5",
-//    "templateKeyword" => "dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5",
+//    "templateKeyword" => "Dashboard, bootstrap 5 Dashboard, bootstrap 5 design, bootstrap 5",
 //    "licenseUrl" => "https://themeforest.net/licenses/standard",
 //    "livePreview" => "https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/landing-page/",
 //    "productPage" => "https://1.envato.market/vuexy_admin",

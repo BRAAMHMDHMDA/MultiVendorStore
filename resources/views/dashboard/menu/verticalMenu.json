@@ -7,31 +7,32 @@
       "slug": "pages-home"
     },
     {
-      "url": "/page-2",
-      "icon": "menu-icon tf-icons ti ti-file",
-      "name": "Page 2",
-      "slug": "pages-page-2"
+      "url": "dashboard/categories",
+      "name": "Manage Categories",
+      "icon": "menu-icon tf-icons ti ti-category",
+      "slug": "dashboard-categories",
+      "target": ""
     },
     {
-      "url": "/pages/misc-error",
-      "name": "Error",
-      "icon": "menu-icon tf-icons ti ti-alert-triangle",
-      "slug": "pages-misc-error",
-      "target": "_blank"
+      "url": "dashboard/products",
+      "name": "Manage Products",
+      "icon": "menu-icon tf-icons ti ti-shopping-cart",
+      "slug": "dashboard-products",
+      "target": ""
     },
     {
-      "url": "/auth/login-basic",
-      "name": "Login",
-      "icon": "menu-icon tf-icons ti ti-login",
-      "slug": "auth-login-basic",
-      "target": "_blank"
+      "url": "dashboard/stores",
+      "name": "Manage Stores",
+      "icon": "menu-icon tf-icons ti ti-building-store",
+      "slug": "dashboard-stores",
+      "target": ""
     },
     {
-      "url": "/auth/register-basic",
-      "name": "Register",
-      "icon": "menu-icon tf-icons ti ti-user",
-      "slug": "auth-register-basic",
-      "target": "_blank"
+      "url": "dashboard/tags",
+      "name": "Manage Tags",
+      "icon": "menu-icon tf-icons ti ti-tags ",
+      "slug": "dashboard-tags",
+      "target": ""
     }
   ]
 }

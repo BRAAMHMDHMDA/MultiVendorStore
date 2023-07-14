@@ -6,6 +6,6 @@ $configData = Helper::appClasses();
 @endphp
 
 @isset($configData["layout"])
-@include((( $configData["layout"] === 'horizontal') ? 'dashboard.layouts.horizontalLayout' :
-(( $configData["layout"] === 'blank') ? 'dashboard.layouts.blankLayout' : 'dashboard.layouts.contentNavbarLayout') ))
+@include((( $configData["layout"] === 'horizontal') ? 'Dashboard.layouts.horizontalLayout' :
+(( $configData["layout"] === 'blank') ? 'Dashboard.layouts.blankLayout' : 'Dashboard.layouts.contentNavbarLayout') ))
 @endisset
