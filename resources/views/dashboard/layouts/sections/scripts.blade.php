@@ -20,5 +20,6 @@
 <!-- BEGIN: Page JS-->
 @yield('page-script')
 <!-- END: Page JS-->
+@stack('script')
 
 @include('dashboard.layouts.sections.alerts')

@@ -5,82 +5,50 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class BrandController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('dashboard.content.brands.index')->with([
+            'brands' => brand::latest()->paginate(10),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate(['name' => 'required|unique:brands|min:2|max:20']);
+
+        Brand::create($request->all());
+
+        return redirect()->route('dashboard.brands.index')->with([
+            'success' => "($request->name) brand Created Successfully"
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Brand $brand)
+    public function update(Request $request, brand $brand)
     {
-        //
+        $request->validate(['name' => 'required',Rule::unique('brands','name')->ignore($brand->id)]);
+        $brand->update($request->all());
+
+        return redirect()->route('dashboard.brands.index')->with([
+            'success' => "($request->name) brand Updated Successfully"
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Brand $brand)
+    public function destroy(brand $brand)
     {
-        //
-    }
+        if ($brand->products()->count())
+        {
+            return redirect()->route('dashboard.brands.index')->with([
+                'warning' => "($brand->name) brand Linked with Products, First Must Delete Linked Products"
+            ]);
+        }
+        $brand->delete();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Brand $brand)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Brand $brand)
-    {
-        //
+        return redirect()->route('dashboard.brands.index')->with([
+            'success' => "($brand->name) brand Deleted Sucessfully"
+        ]);
     }
 }

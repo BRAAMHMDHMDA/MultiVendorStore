@@ -178,6 +178,8 @@ return [
     App\Providers\RouteServiceProvider::class,
     App\Providers\MenuServiceProvider::class,
 
+    Yajra\DataTables\DataTablesServiceProvider::class,
+
   ],
 
   /*
@@ -193,7 +195,9 @@ return [
 
   'aliases' => Facade::defaultAliases()->merge([
     // ...
-    'Helper' => App\Helpers\Helpers::class
+    'Helper' => App\Helpers\Helpers::class,
+    'DataTables' => \Yajra\DataTables\DataTablesServiceProvider::class,
+
   ])->toArray(),
 
 ];

@@ -2,23 +2,48 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\DataTables\CategoryDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
 {
 
+    public function dt(CategoryDataTable $dataTable)
+    {
+//        return $dataTable->render('dashboard.content.categories.indexDT');
+        $data = Category::with('parent')->withCount('products')->latest();
+        return  Datatables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) {
+                return $btn = '
+                    <a href="' . Route('dashboard.categories.edit', $row->id) . '"  class="edit btn btn-outline btn-sm" ><i class="fa fa-edit "></i></a>
+                    <a id="deleteBtn" data-id="' . $row->id . '" class="edit btn btn-outline btn-sm"  data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash-can text-danger" ></i></a>';
+            })
+            ->addColumn('parent', function ($row) {
+                return $row->parent->name;
+            })
+            ->addColumn('created_at', function ($row) {
+                return $row->created_at->diffForHumans();
+            })
+
+            ->make(true);
+    }
+
+
     public function index()
     {
+        return view('dashboard.content.categories.indexDT');
         //
-      $categories = Category::with('parent')->withCount('products')->latest()->paginate();
-      return view('dashboard.content.category.index', [
-        'categories' => $categories
-      ]);
+//      $categories = Category::with('parent')->withCount('products')->latest()->paginate();
+//      return view('dashboard.content.categories.index', [
+//        'categories' => $categories
+//      ]);
     }
 
     public function create()
@@ -26,16 +51,16 @@ class CategoryController extends Controller
         //
       $parents = Category::all();
       $category = new Category();
-      return view('dashboard.content.category.create', compact('category', 'parents'));
+      return view('dashboard.content.categories.create', compact('category', 'parents'));
     }
 
 
     public function store(CategoryRequest $request)
     {
-      // Request merge
-      $request->merge([
-        'slug' => \Str::slug($request->post('name'))
-      ]);
+//      // Request merge
+//      $request->merge([
+//        'slug' => \Str::slug($request->post('name'))
+//      ]);
 
       $data = $request->except('image');
 
@@ -62,7 +87,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //try {
-        //            $category = Category::findOrFail($id);
+        //            $categories = Category::findOrFail($id);
         //        } catch (Exception $e) {
         //            return redirect()->route('dashboard.categories.index')
         //                ->with('info', 'Record not found!');
@@ -73,7 +98,7 @@ class CategoryController extends Controller
                     ->orWhere('parent_id', '<>', $category->id);
             })
             ->get();
-        return view('dashboard.content.category.edit', compact('category', 'parents'));
+        return view('dashboard.content.categories.edit', compact('category', 'parents'));
 
     }
 
@@ -105,8 +130,8 @@ class CategoryController extends Controller
         //
         $category->delete();
 
-//        if ($category->image) {
-//            Storage::disk('public')->delete($category->image);
+//        if ($categories->image) {
+//            Storage::disk('public')->delete($categories->image);
 //        }
 
         //Category::where('id', '=', $id)->delete();

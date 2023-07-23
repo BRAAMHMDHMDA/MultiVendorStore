@@ -14,6 +14,20 @@
       "target": ""
     },
     {
+      "url": "dashboard/brands",
+      "name": "Manage Brands",
+      "icon": "menu-icon tf-icons ti ti-award",
+      "slug": "dashboard-brands",
+      "target": ""
+    },
+    {
+      "url": "dashboard/tags",
+      "name": "Manage Tags",
+      "icon": "menu-icon tf-icons ti ti-tags",
+      "slug": "dashboard-tags",
+      "target": ""
+    },
+    {
       "url": "dashboard/products",
       "name": "Manage Products",
       "icon": "menu-icon tf-icons ti ti-shopping-cart",
@@ -25,13 +39,6 @@
       "name": "Manage Stores",
       "icon": "menu-icon tf-icons ti ti-building-store",
       "slug": "dashboard-stores",
-      "target": ""
-    },
-    {
-      "url": "dashboard/tags",
-      "name": "Manage Tags",
-      "icon": "menu-icon tf-icons ti ti-tags ",
-      "slug": "dashboard-tags",
       "target": ""
     }
   ]

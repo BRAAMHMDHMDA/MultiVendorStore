@@ -1,7 +1,7 @@
 <?php
   // Variables
   return [
-    "creatorName" => "Braa",
+    "creatorName" => "BMH",
     "creatorUrl" => "",
     "templateName" => "Multi Vendor",
 //    "templateSuffix" => "Bootstrap Admin Template",
