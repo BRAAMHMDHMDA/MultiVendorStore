@@ -18,7 +18,6 @@ Route::group([
 
     // Routes Categories
     Route::get('categories/dt', [CategoryController::class, 'dt'])->name('category.dt');
-
     Route::resource('categories', CategoryController::class)->except('show');
 
     // Routes Brands
@@ -28,8 +27,12 @@ Route::group([
     Route::resource('tags', TagController::class)->except('show');
 
     // Routes Products
-    Route::get('products/data', [ProductController::class, 'data'])->name('product.data');
-    Route::resource('products', ProductController::class);
+    Route::get('products/datatable', [ProductController::class, 'datatable'])->name('products.datatable');
+    Route::get('products/datatableTrashed', [ProductController::class, 'datatableTrashed'])->name('products.datatableTrashed');
+    Route::get('products/trash',[ProductController::class, 'trash'])->name('products.trash');
+    Route::put('products/trash/{id?}',[ProductController::class, 'restore'])->name('products.restore');
+    Route::delete('products/trash/{id?}',[ProductController::class, 'forceDelete'])->name('products.force-delete');
+    Route::resource('products',ProductController::class);
 
     // Routes Stores
     Route::resource('stores', StoreController::class);

@@ -18,7 +18,6 @@
 @section('content')
 
 
-
   <div class="card">
     <div class="table-responsive text-nowrap">
       <table class="table table-hover ">
@@ -41,7 +40,7 @@
               <td>
                 <div class="d-flex justify-content-start align-items-center gap-3">
 {{--                  @if($categories->image)--}}
-                    <img src="{{ asset('storage/media/' . $category->image) }} " height="40px" width="40px"/>
+                    <img src="{{ $category->image_url }} " height="40px" width="40px" alt=""/>
 {{--                  @endif--}}
                   <strong> {{ $category->name }}</strong>
                 </div>
@@ -66,12 +65,10 @@
                     <a class="dropdown-item" href="{{ route('dashboard.categories.edit', $category->id) }}">
                       <i class="ti ti-pencil me-1"></i> Edit
                     </a>
-                    <form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="post">
+                    <a class="dropdown-item" onclick="confirmDelete({{$category->id}})"><i class="ti ti-trash me-1"></i> Delete</a>
+                    <form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="post" id={{$category->id}}>
                       @csrf
-                      <!-- Form Method Spoofing -->
-                      <input type="hidden" name="_method" value="delete">
                       @method('delete')
-                      <button type="submit" class="dropdown-item"><i class="ti ti-trash me-1"></i> Delete</button>
                     </form>
                   </div>
                 </div>
@@ -88,3 +85,4 @@
 
 
 @endsection
+

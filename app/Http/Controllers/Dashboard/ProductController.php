@@ -3,102 +3,61 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
 {
-
-
-    public function data()
-    {
-        $data = Product::with('category:id,name')->with('store:id,name')->latest();
-        return  DataTables::of($data)
-            ->addIndexColumn()
-            ->addColumn('name', function ($product) {
-                return $img = ' <img src="'.$product->image.'" alt="'.$product->name.' Thumbnail" class="thumbnail me-2" width="40">
-                                <span>'.$product->name.'</span>
-                              ';
-            })
-            ->addColumn('action', function ($row) {
-                return $btn = '
-                    <a href="' . Route('dashboard.products.edit', $row->id) . '"  class="edit btn btn-outline btn-sm" ><i class="fa fa-edit "></i></a>
-                    <a id="deleteBtn" data-id="' . $row->id . '" class="edit btn btn-outline btn-sm"  data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash-can text-danger" ></i></a>';
-            })
-            ->addColumn('created_at', function ($row) {
-                return $row->created_at->diffForHumans();
-            })
-            ->rawColumns(['name', 'action'])
-            ->make(true);
-    }
-
 
     public function index()
     {
         return view('dashboard.content.products.index');
     }
 
+    public function datatable() {
+        $query = Product::with('category:id,name');
+        return Product::get_datatable($query);
+    }
 
     public function create()
     {
         $categories = Category::latest()->select('name', 'id')->get();
         $brands = Brand::latest()->select('name', 'id')->get();
         $tags = Tag::latest()->select('name', 'id')->get();
-        return view('dashboard.products.create')->with([
+        $category = new Category();
+        return view('dashboard.content.products.create')->with([
             'product' => new Product(),
             'categories' => $categories,
             'brands' => $brands,
             'tags' => $tags,
-            'tagIDs' => [],
-            'defualtCurrncy' => Currency::where('is_primary', 1)->first()
+            'category' => $category,
         ]);
     }
 
-
-    public function store(Request $request)
+    /**
+     * @throws \Throwable
+     */
+    public function store(ProductRequest $request)
     {
-        $request->validate([
-            'price' => 'required|min:0|d',
+        $data = $request->except('image');
 
-        ]);
-        $request->validate(Product::validateRules($request->price));
-        $request->merge([
-            'slug' => Str::slug($request->name),
-        ]);
         DB::beginTransaction();
         try {
-
-            if ($request->hasFile('main_image') && $request->file('main_image')->isValid()) {
-                $image = $request->file('main_image');
-                $image = $image->store('/products/main', 'media');
-                $request->merge(['image_path' => $image]);
-            }
-            $product = Product::create($request->all());
-            if ($request->hasFile('gallery')) {
-                $images = $request->file('gallery');
-                foreach ($images as $image) {
-                    if ($image->isValid()) {
-                        $image_path = $image->store('/products', 'media');
-                        ProductImage::create([
-                            'product_id' => $product->id,
-                            'path' => $image_path,
-                        ]);
-                    }
-                }
-            }
-
+            $data['image'] = Product::storeImage($request);
+            $product = Product::create($data);
             $product->tags()->attach($request->tags);
 
             DB::commit();
 
-            return redirect()->route('products.index')
+            return redirect()->route('dashboard.products.index')
                 ->with('success', "Product ($product->name) created.");
 
         } catch (\Throwable $e) {
@@ -107,31 +66,29 @@ class ProductController extends Controller
         }
     }
 
-
     public function show(Product $product)
     {
         //
-    }
 
+    }
 
     public function edit(Product $product)
     {
-        $product->load(['tags:id', 'brand']);
+        $product->load(['tags:id', 'brand', 'category']);
         $tagIDs = array();
         foreach ($product->tags as $tag) {
             $tagIDs[] = $tag->id;
         }
 
-        $categories = Category::withTrashed()->latest()->select('name', 'id')->get();
+        $categories = Category::latest()->select('name', 'id')->get();
         $brands = Brand::latest()->select('name', 'id')->get();
         $tags = Tag::latest()->select('name', 'id')->get();
-        return view('dashboard.products.edit')->with([
+        return view('dashboard.content.products.edit')->with([
             'product' => $product,
             'categories' => $categories,
             'brands' => $brands,
             'tags' => $tags,
             'tagIDs' => $tagIDs,
-            'defualtCurrncy' => Currency::where('is_primary', 1)->first()
         ]);
 
     }
@@ -139,33 +96,47 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        //
-    }
+        $old_image = $product->image;
+        $data = $request->except('image');
+        if (!isset($data['featured'])) $data['featured'] = 0;
 
+        DB::beginTransaction();
+        try {
+            $data['image'] = Category::updateImage($request, $old_image);
+            $product->update($data);
+            $product->tags()->sync($request->tags);
+
+            DB::commit();
+
+            return Redirect::route('dashboard.products.index')
+                ->with('success', "Product ($product->name) Updated.");
+
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+    }
 
     public function destroy(Product $product)
     {
-        if ($product->images()->count() != 0) {
-            $images = $product->images;
-            foreach ($images as $image) {
-                Storage::disk('media')->delete($image->path);
-            }
-        }
-        Storage::disk('media')->delete('image_path');
-        $product->tags()->detach();
         $product->delete();
 
-        return redirect()->route('products.index')->with([
-            'success' => "($product->name) Product Deleted Successfully"
+        return redirect()->route('dashboard.products.index')->with([
+            'success' => "( $product->name ) Product Deleted Successfully"
         ]);
 
     }
 
-
     public function trash()
     {
-        $products = Product::onlyTrashed()->paginate();
-        return view('dashboard.products.trash')->with(['products' => $products]);
+        return view('dashboard.content.products.trash');
+    }
+
+    public function datatableTrashed() {
+        $query = Product::onlyTrashed()->with('category:id,name');
+
+        return Product::get_datatable($query, true);
     }
 
     public function restore(Request $request, $id = null)
@@ -174,12 +145,12 @@ class ProductController extends Controller
             $product = Product::onlyTrashed()->findOrFail($id);
             $product->restore();
 
-            return redirect()->route('products.index')->with([
+            return redirect()->route('dashboard.products.index')->with([
                 'success' => "Product ($product->name) Restored",
             ]);
         }
         Product::onlyTrashed()->restore();
-        return redirect()->route('products.index')->with([
+        return redirect()->route('dashboard.products.index')->with([
             'success' => "All Products Restored",
         ]);
     }
@@ -188,13 +159,19 @@ class ProductController extends Controller
     {
         if ($id) {
             $product = Product::onlyTrashed()->findOrFail($id);
+            Product::deleteImage($product->image);
             $product->forceDelete();
-            return redirect()->route('products.trash')->with([
+            return redirect()->route('dashboard.products.trash')->with([
                 'success' => "Product ($product->name) Deleted For Ever"
             ]);
         }
-        Product::onlyTrashed()->forceDelete();
-        return redirect()->route('products.trash')->with([
+
+        $productsTrashed = Product::onlyTrashed();
+        foreach ($productsTrashed as $productTrashed){
+            Product::deleteImage($productTrashed->image);
+        }
+        $productsTrashed->forceDelete();
+        return redirect()->route('dashboard.products.trash')->with([
             'success' => "All Products Deleted For Ever"
         ]);
     }

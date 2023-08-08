@@ -1,26 +1,38 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Website\{
+    HomeController,
+    ProductController,
+    StoreController,
+};
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// Dashboard Routes
+
 require __DIR__.'/dashboard.php';
 
 
 
+// Website Routes
+
+Route::get('/', HomeController::class)->name('home');
+
+Route::get('/products', [ProductController::class, 'index'])->name('all-products');
+Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product-details');
+
+Route::get('/stores', [StoreController::class, 'index'])->name('all-stores');
+Route::get('/store/{store:slug}', [StoreController::class, 'show'])->name('store-details');
+
 
 
 $controller_path = 'App\Http\Controllers';
-// Main Page Route
-Route::get('/', $controller_path . '\pages\HomePage@index')->name('pages-home');
+
+Route::get('/login', function (){
+    return view('website.content.auth.login');
+});
+Route::get('/register', function (){
+    return view('website.content.auth.register');
+});
 Route::get('/page-2', $controller_path . '\pages\Page2@index')->name('pages-page-2');
 
 // pages

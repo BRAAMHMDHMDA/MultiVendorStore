@@ -26,7 +26,7 @@ class CategoryRequest extends FormRequest
                 Rule::unique('categories', 'name')->ignore($id),
             ],
             'parent_id' => [
-                'required', 'int', 'exists:categories,id'
+                'nullable', 'int', 'exists:categories,id'
             ],
             'description' => [
                 'required', 'min:10' , 'max:200'

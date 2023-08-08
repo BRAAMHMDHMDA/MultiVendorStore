@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 /**
  * @method static create(array $all)
+ * @method static latest()
  */
 class Brand extends Model
 {

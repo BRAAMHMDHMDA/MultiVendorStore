@@ -71,6 +71,8 @@ return [
 
   'timezone' => 'UTC',
 
+  'currency' => 'USD',
+
   /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -197,6 +199,7 @@ return [
     // ...
     'Helper' => App\Helpers\Helpers::class,
     'DataTables' => \Yajra\DataTables\DataTablesServiceProvider::class,
+    'Currency' => App\Helpers\Currency::class,
 
   ])->toArray(),
 

@@ -2,17 +2,26 @@
 
 namespace App\Models;
 
+use App\Traits\GetImageUrl;
+use App\Traits\HasImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
+/**
+ * @method static latest()
+ * @method static create(array $data)
+ */
 class Category extends Model
 {
-  use HasFactory;
+  use HasFactory, GetImageUrl, HasImage;
 
   protected $fillable = ['name','slug','description','parent_id','status','image'];
   protected $guarded = ['id'];
+
+    public static string $imageDisk = 'media';
+    public static string $imageFolder = '/categories';
 
     public function setNameAttribute($value)
     {
@@ -31,8 +40,9 @@ class Category extends Model
             ]);
     }
 
-    public function children() {
-        return $this->hasMany(Category::class);
+    public function children()
+    {
+        return $this->hasMany(Category::class , 'parent_id')->with('children');
     }
 
 }

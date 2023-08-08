@@ -12,13 +12,21 @@
 <!-- END: Page Vendor JS-->
 <!-- BEGIN: Theme JS-->
 <script src="{{ asset(mix('assets/js/main.js')) }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+
 
 <!-- END: Theme JS-->
+
 <!-- Pricing Modal JS-->
 @stack('pricing-script')
 <!-- END: Pricing Modal JS-->
+
+
 <!-- BEGIN: Page JS-->
+<script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
 @yield('page-script')
+
+
 <!-- END: Page JS-->
 @stack('script')
 

@@ -6,12 +6,18 @@
     <span class="text-muted fw-light ">Products/</span> Products List
 @endsection
 @section('breadcrumb_right')
-    <a class="" href="{{ route('dashboard.products.create') }}">
-        <button type="button" class="btn btn-primary p-2"><i class="fab fa-plus me-2"> </i> Add New Product</button>
-    </a>
+    <div class="d-flex justify-content-end gap-2">
+        <a class="" href="{{ route('dashboard.products.trash') }}">
+            <button type="button" class="btn btn-outline-danger p-2"><i class="fa fa-trash me-2"> </i> Trashed Products</button>
+        </a>
+        <a class="" href="{{ route('dashboard.products.create') }}">
+            <button type="button" class="btn btn-primary p-2"><i class="fab fa-plus me-2"> </i> Add New Product</button>
+        </a>
+    </div>
 @endsection
 @push('style')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" />
+    {{--    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" />--}}
+        <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
 @endpush
 
 @section('content')
@@ -21,6 +27,7 @@
                 <thead>
                 <tr>
                     <th>#</th>
+                    <th></th>
                     <th>Name</th>
                     <th>Category</th>
                     <th>Price</th>
@@ -43,11 +50,12 @@
                     responsive: true,
                     processing: true,
                     serverSide: true,
-                    ajax: "{{ Route('dashboard.product.data') }}",
+                    ajax: "{{ Route('dashboard.products.datatable') }}",
                     columns: [
                         {data: 'id', name: 'id'},
+                        {data: 'image', name: 'image', orderable:false},
                         {data: 'name', name: 'name'},
-                        {data: 'category.name', name: 'category.name'},
+                        {data: 'category.name', name: 'category.name', orderable:false},
                         {data: 'price', name: 'price'},
                         {data: 'quantity', name: 'quantity'},
                         {data: 'rating', name: 'rating'},
@@ -62,7 +70,11 @@
 
         </script>
         <!-- Include Scripts -->
-        <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+{{--        <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>--}}
+{{--        <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>--}}
+
+        <script src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+{{--        <script src="{{ asset('assets/js/tables-datatables-advanced.js') }}"></script>--}}
+
     @endpush
 @endsection

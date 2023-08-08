@@ -2,9 +2,9 @@
     'name' , 'label' , 'value' => '' , 'rows' => '3'
 ])
 
-<div class="row mb-3">
+<div class="row">
     <label class="col-sm-2 col-form-label" for="{{ $name }}">{{ $label }}</label>
-    <div class="col-sm-10">
+    <div class="col-sm-9">
         <textarea id="{{ $name }}"
                   name="{{ $name }}"
                   rows="{{ $rows }}"
