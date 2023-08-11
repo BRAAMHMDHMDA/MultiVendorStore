@@ -2,8 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Store;
+use App\Models\Vendor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -24,12 +26,15 @@ class ProductFactory extends Factory
             'name' => $name,
             'slug' => Str::slug($name),
             'description' => $this->faker->sentence(15),
-            'image' => $this->faker->imageUrl(600, 600),
+            'image_path' => $this->faker->imageUrl(600, 600),
             'price' => $this->faker->randomFloat(1, 1, 499),
             'compare_price' => $this->faker->randomFloat(1, 500, 999),
-            'category_id' => Category::inRandomOrder()->first()->id,
             'featured' => rand(0, 1),
+            'quantity' => $this->faker->numberBetween(1,200),
+            'category_id' => Category::inRandomOrder()->first()->id,
+            'brand_id' => Brand::inRandomOrder()->first()->id,
             'store_id' => Store::inRandomOrder()->first()->id,
+            'created_by' => Vendor::inRandomOrder()->first()->id,
         ];
     }
 }

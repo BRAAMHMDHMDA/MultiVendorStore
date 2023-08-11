@@ -7,9 +7,11 @@
 @endsection
 @section('breadcrumb_right')
 <!-- Button trigger modal -->
+@admin
 <button type="button" class="btn btn-primary p-2" data-bs-toggle="modal" data-bs-target="#addTag">
   <i class="fab fa-plus me-2"> </i> Add New Tag
 </button>
+  @endadmin
 @endsection
 <form action="{{ route('dashboard.tags.store') }}" method="post" class="">
   @csrf
@@ -26,7 +28,9 @@
           <th>Name</th>
           <th>Slug</th>
           <th>Created At</th>
+          @admin
           <th>Actions</th>
+          @endadmin
         </tr>
         </thead>
         <tbody class="table-border-bottom-0">
@@ -42,6 +46,7 @@
               <td>
                 {{ $tag->created_at->diffForHumans() }}
               </td>
+              @admin
               <td>
                 <div class="dropdown">
                   <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical"></i></button>
@@ -60,6 +65,7 @@
                   </div>
                 </div>
               </td>
+              @endadmin
             </tr>
             <!-- Modal -->
 

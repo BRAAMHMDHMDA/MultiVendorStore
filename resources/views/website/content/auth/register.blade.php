@@ -30,6 +30,9 @@
                                 <div class="button-box">
                                     <button type="submit" class="btn btn-common log-btn">Register</button>
                                 </div>
+                                <p style="margin-top: 25px">
+                                    You have account? <a href="{{ route('login') }}">Login</a>
+                                </p>
                             </form>
                             <!-- Account Form End -->
                         </div>

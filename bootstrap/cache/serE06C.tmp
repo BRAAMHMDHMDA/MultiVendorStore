@@ -43,9 +43,7 @@
     39 => 'App\\Providers\\EventServiceProvider',
     40 => 'App\\Providers\\RouteServiceProvider',
     41 => 'App\\Providers\\MenuServiceProvider',
-    42 => 'App\\Providers\\FortifyServiceProvider',
-    43 => 'App\\Providers\\AdminCheckDirectiveServiceProvider',
-    44 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    42 => 'Yajra\\DataTables\\DataTablesServiceProvider',
   ),
   'eager' => 
   array (
@@ -76,9 +74,7 @@
     24 => 'App\\Providers\\EventServiceProvider',
     25 => 'App\\Providers\\RouteServiceProvider',
     26 => 'App\\Providers\\MenuServiceProvider',
-    27 => 'App\\Providers\\FortifyServiceProvider',
-    28 => 'App\\Providers\\AdminCheckDirectiveServiceProvider',
-    29 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    27 => 'Yajra\\DataTables\\DataTablesServiceProvider',
   ),
   'deferred' => 
   array (

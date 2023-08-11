@@ -10,9 +10,11 @@
   <span class="text-muted fw-light ">Categories/</span> Categories List
 @endsection
 @section('breadcrumb_right')
-<a class="" href="{{ route('dashboard.categories.create') }}">
-  <button type="button" class="btn btn-primary p-2"><i class="fab fa-plus me-2"> </i> Add New Category</button>
-</a>
+  @admin
+    <a class="" href="{{ route('dashboard.categories.create') }}">
+      <button type="button" class="btn btn-primary p-2"><i class="fab fa-plus me-2"> </i> Add New Category</button>
+    </a>
+  @endadmin
 @endsection
 
 @section('content')
@@ -30,7 +32,9 @@
           <th>Products Num#</th>
           <th>Status</th>
           <th>Created At</th>
+          @admin
           <th>Actions</th>
+          @endadmin
         </tr>
         </thead>
         <tbody class="table-border-bottom-0">
@@ -58,6 +62,7 @@
               <td>
                 {{ $category->created_at->diffForHumans() }}
               </td>
+              @admin
               <td>
                  <div class="dropdown">
                   <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical"></i></button>
@@ -73,6 +78,7 @@
                   </div>
                 </div>
               </td>
+              @endadmin
             </tr>
           @endforeach
         </tbody>

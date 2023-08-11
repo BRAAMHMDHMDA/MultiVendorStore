@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin')->except('index');
+    }
     /**
      * Display a listing of the resource.
      *

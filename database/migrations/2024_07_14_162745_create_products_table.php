@@ -16,13 +16,10 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('store_id')->constrained('stores')->cascadeOnDelete();
-            $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
-            $table->foreignId('brand_id')->nullable()->constrained('brands')->nullOnDelete();
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image_path');
             $table->float('price')->default(0);
             $table->float('compare_price')->nullable();
             $table->unsignedSmallInteger('quantity')->default(0);
@@ -31,6 +28,10 @@ return new class extends Migration
             $table->boolean('featured')->default(0);
             $table->enum('status', [Product::STATUS_ACTIVE, Product::STATUS_DRAFT, Product::STATUS_ARCHIVED])
                         ->default('draft');
+            $table->foreignId('store_id')->constrained('stores')->cascadeOnDelete();
+            $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
+            $table->foreignId('brand_id')->nullable()->constrained('brands')->nullOnDelete();
+            $table->foreignId('created_by')->constrained('vendors')->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

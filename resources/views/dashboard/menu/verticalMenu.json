@@ -1,45 +1,78 @@
 {
   "menu": [
     {
-      "url": "/",
+      "url": "/dashboard",
       "name": "Home",
       "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "pages-home"
+      "slug": "pages-home",
+      "guard": "all"
     },
     {
       "url": "dashboard/categories",
-      "name": "Manage Categories",
+      "name": "Categories",
       "icon": "menu-icon tf-icons ti ti-category",
       "slug": "dashboard-categories",
-      "target": ""
+      "target": "",
+      "guard": "all"
     },
     {
       "url": "dashboard/brands",
-      "name": "Manage Brands",
+      "name": "Brands",
       "icon": "menu-icon tf-icons ti ti-award",
       "slug": "dashboard-brands",
-      "target": ""
+      "target": "",
+      "guard": "all"
+
     },
     {
       "url": "dashboard/tags",
-      "name": "Manage Tags",
+      "name": "Tags",
       "icon": "menu-icon tf-icons ti ti-tags",
       "slug": "dashboard-tags",
-      "target": ""
+      "target": "",
+      "guard": "all"
     },
     {
       "url": "dashboard/products",
-      "name": "Manage Products",
+      "name": "Products",
       "icon": "menu-icon tf-icons ti ti-shopping-cart",
       "slug": "dashboard-products",
-      "target": ""
+      "target": "",
+      "guard": "all"
     },
     {
       "url": "dashboard/stores",
-      "name": "Manage Stores",
+      "name": "Stores",
       "icon": "menu-icon tf-icons ti ti-building-store",
       "slug": "dashboard-stores",
-      "target": ""
+      "target": "",
+      "guard": "admins"
+
+    },
+    {
+      "url": "dashboard/users",
+      "name": "Users",
+      "icon": "menu-icon tf-icons ti ti-users",
+      "slug": "dashboard-customers",
+      "target": "",
+      "guard": "admins"
+    },
+    {
+      "url": "dashboard/vendors",
+      "name": "Vendors",
+      "icon": "menu-icon tf-icons fa-solid fa-house-chimney-user",
+      "slug": "dashboard-vendors",
+      "target": "",
+      "guard": "admins"
+    },
+    {
+      "url": "dashboard/admins",
+      "name": "Admins",
+      "icon": "menu-icon tf-icons fa-solid fa-users-gear",
+      "slug": "dashboard-admins",
+      "target": "",
+      "guard": "admins"
     }
+
   ]
 }

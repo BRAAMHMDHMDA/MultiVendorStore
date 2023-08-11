@@ -9,6 +9,10 @@ use Illuminate\Validation\Rule;
 
 class TagController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin')->except('index');
+    }
     public function index()
     {
         return view('dashboard.content.tags.index')->with([

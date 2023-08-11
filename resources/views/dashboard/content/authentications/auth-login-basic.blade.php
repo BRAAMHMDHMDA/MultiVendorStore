@@ -1,8 +1,5 @@
-@php
-$customizerHidden = 'customizer-hide';
-@endphp
 
-@extends('dashboard/layouts/layoutMaster')
+@extends('dashboard/layouts/blankLayout' )
 
 @section('title', 'Login Basic - Pages')
 
@@ -42,12 +39,41 @@ $customizerHidden = 'customizer-hide';
           </div>
           <!-- /Logo -->
           <h4 class="mb-1 pt-2">Welcome to {{config('variables.templateName')}}! 👋</h4>
-          <p class="mb-4">Please sign-in to your account and start the adventure</p>
+          <p class="mb-4">Please sign-in to your account</p>
+{{--    Form      --}}
+          <form id="formAuthentication" class="mb-3" action="{{route('login')}}" method="Post">
+            @csrf
+            <div class="mb-4 mt-4">
+              <label for="guard" class="form-label">Login As :</label>
+              <span class="m-2">
+                <input
+                        type="radio"
+                        name="guard"
+                        value="vendor"
+                        id="vendor"
+                        class="form-check-input"
+                />
+                <label class="form-check-label" for="vendor"> Vendor</label>
+              </span>
+              <span class="m-2">
+                <input
+                        type="radio"
+                        name="guard"
+                        value="admin"
+                        id="admin"
+                        class="form-check-input"
+                />
+                <label class="form-check-label" for="admin"> Admin</label>
+              </span>
+              {{--              <x-dashboard.form.radio id="guard" class="form-control" name="guard" >--}}
+              {{--                <option value="vendor">vendor</option>--}}
+              {{--                <option value="admin">admin</option>--}}
+              {{--              </x-dashboard.form.radio>--}}
+            </div>
 
-          <form id="formAuthentication" class="mb-3" action="{{url('/')}}" method="GET">
             <div class="mb-3">
               <label for="email" class="form-label">Email or Username</label>
-              <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus>
+              <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email or username" autofocus>
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="d-flex justify-content-between">
@@ -57,7 +83,7 @@ $customizerHidden = 'customizer-hide';
                 </a>
               </div>
               <div class="input-group input-group-merge">
-                <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                <input type="password" id="password" class="form-control" name="password"/>
                 <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
               </div>
             </div>
@@ -73,34 +99,9 @@ $customizerHidden = 'customizer-hide';
               <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
             </div>
           </form>
+          {{--    Form      --}}
 
-          <p class="text-center">
-            <span>New on our platform?</span>
-            <a href="{{url('auth/register-basic')}}">
-              <span>Create an account</span>
-            </a>
-          </p>
 
-          <div class="divider my-4">
-            <div class="divider-text">or</div>
-          </div>
-
-          <div class="d-flex justify-content-center">
-            <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
-              <i class="tf-icons fa-brands fa-facebook-f fs-5"></i>
-            </a>
-
-            <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
-              <i class="tf-icons fa-brands fa-google fs-5"></i>
-            </a>
-
-            <a href="javascript:;" class="btn btn-icon btn-label-twitter">
-              <i class="tf-icons fa-brands fa-twitter fs-5"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- /Register -->
     </div>
   </div>
 </div>

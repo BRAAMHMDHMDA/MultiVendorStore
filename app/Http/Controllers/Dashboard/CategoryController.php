@@ -14,23 +14,27 @@ use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
 {
-
-    public function dt()
+    public function __construct()
     {
-        $data = Category::with('parent')->withCount('products');
-        return  Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action',  function ($row) {
-                return view('dashboard.content.categories.action_buttons', ['id' => $row->id])->render();
-            })
-            ->addColumn('parent', function ($row) {
-                return $row->parent->name;
-            })
-            ->addColumn('created_at', function ($row) {
-                return $row->created_at->diffForHumans();
-            })
-            ->make(true);
+        $this->middleware('admin')->except('index');
     }
+
+//    public function dt()
+//    {
+//        $data = Category::with('parent')->withCount('products');
+//        return  Datatables::of($data)
+//            ->addIndexColumn()
+//            ->addColumn('action',  function ($row) {
+//                return view('dashboard.content.categories.action_buttons', ['id' => $row->id])->render();
+//            })
+//            ->addColumn('parent', function ($row) {
+//                return $row->parent->name;
+//            })
+//            ->addColumn('created_at', function ($row) {
+//                return $row->created_at->diffForHumans();
+//            })
+//            ->make(true);
+//    }
 
 
     public function index()

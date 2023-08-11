@@ -2,36 +2,9 @@
 <div class="top-bar">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-sm-2">
+            <div class="col-md-3 col-sm-2">
                 <div class="language-wrapper">
-                    {{--                    <div class="box-language">--}}
-                    {{--                        <form id="form-language">--}}
-                    {{--                            <div class="btn-group toggle-wrap">--}}
-                    {{--                                      <span class="toggle">--}}
-                    {{--                                        <span><img src="{{ asset('website/assets/img/language/flag-lang.png') }}" alt="English" title="English" height="11" width="16"> English</span>--}}
-                    {{--                                        <span class="hidden">Language</span>--}}
-                    {{--                                      </span>--}}
-                    {{--                                <ul style="display: none;" class="toggle_cont pull-right">--}}
-                    {{--                                    <li>--}}
-                    {{--                                        <button class="language-select selected" type="button" name="en-gb">--}}
-                    {{--                                            <img src="{{ asset('website/assets/img/language/en-gb.png') }}" alt="English" title="English" height="11" width="16">--}}
-                    {{--                                            English </button>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li>--}}
-                    {{--                                        <button class="language-select" type="button" name="de-DE">--}}
-                    {{--                                            <img src="{{ asset('website/assets/img/language/de-DE.png') }}" alt="Deutsch" title="Deutsch" height="11" width="16">--}}
-                    {{--                                            Deutsch </button>--}}
-                    {{--                                    </li>--}}
-                    {{--                                    <li>--}}
-                    {{--                                        <button class="language-select" type="button" name="ru-ru">--}}
-                    {{--                                            <img src="{{ asset('website/assets/img/language/ru-ru.png') }}" alt="Русский" title="Русский" height="11" width="16">--}}
-                    {{--                                            Русский </button>--}}
-                    {{--                                    </li>--}}
-                    {{--                                </ul>--}}
-                    {{--                            </div>--}}
-                    {{--                        </form>--}}
-                    {{--                    </div>--}}
-                    <div class="box-currency" style="margin-right: 35px">
+                    <div class="box-currency" >
                         <form method="post" id="form-currency">
                             <div class="btn-group toggle-wrap">
                       <span class="toggle">
@@ -59,7 +32,7 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="col-md-8 col-sm-10">
+            <div class="col-md-9 col-sm-10">
                 <!-- shopping cart end -->
                 <div class="search-area">
                     <form>
@@ -133,9 +106,17 @@
                         </li>
                     </ul>
                 </div>
-                <div class="account link-inline">
-                    <a href="login-form.html"><i class="icon-login"></i><span class="hidden-mobile">login/register</span></a>
-                </div>
+                @auth('web')
+                    <div class="account link-inline">
+                        <a href="{{ route('logout') }}"><i class="icon-logout"></i><span class="hidden-mobile">logout</span></a>
+                    </div>
+                    <div href="#" style="padding: 15px"><i class="icon-user" ></i> Hi, {{ Auth::user()->name }}</div>
+                @else
+                    <div class="account link-inline">
+                        <a href="{{ route('login') }}"><i class="icon-login"></i><span class="hidden-mobile">login/register</span></a>
+                    </div>
+                @endauth
+
             </div>
         </div>
     </div>

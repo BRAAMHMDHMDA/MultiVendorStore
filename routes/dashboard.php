@@ -7,14 +7,20 @@ use App\Http\Controllers\Dashboard\{
     TagController,
     ProductController,
     StoreController,
+    UserController,
+    VendorController,
+    AdminController,
 };
 
 
 Route::group([
-  'middleware' => [],
+  'middleware' => ['auth:admins,vendors'],
   'as' => 'dashboard.',
   'prefix' => 'dashboard',
 ], function (){
+    Route::get('/', function (){
+        return view('dashboard.content.pages.pages-home');
+    })->name('home');
 
     // Routes Categories
     Route::get('categories/dt', [CategoryController::class, 'dt'])->name('category.dt');
@@ -36,5 +42,15 @@ Route::group([
 
     // Routes Stores
     Route::resource('stores', StoreController::class);
+
+    // Routes Users
+    Route::get('users', [UserController::class, 'index'])->name('user.index');
+
+    // Routes vendors
+    Route::get('vendors', [VendorController::class, 'index'])->name('vendor.index');
+
+    // Routes admins
+    Route::get('admins', [AdminController::class, 'index'])->name('admin.index');
+
 
 });

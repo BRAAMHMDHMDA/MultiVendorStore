@@ -1,3 +1,4 @@
+@admin
 <a href="{{ Route('dashboard.categories.edit', $id) }}"  class="btn btn-outline btn-sm" >
     <i class="fa fa-edit "></i>
 </a>
@@ -10,3 +11,4 @@
     {{ csrf_field() }}
     @method('DELETE')
 </form>
+@endadmin

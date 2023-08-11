@@ -10,10 +10,11 @@
                                 <p>Please Register using account detail bellow.</p>
                             </div>
                             <!-- Login Form Start -->
-                            <form  class="login-form" role="form" method="post">
+                            <form  class="login-form" role="form" action="{{ route('login') }}" method="post">
+                                @csrf
                                 <div class="form-group">
                                     <div class="controls">
-                                        <input type="text" class="form-control" placeholder="Username" name="name">
+                                        <input type="text" class="form-control" placeholder="Email" name="email">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -28,6 +29,9 @@
                                         <a href="#">Forgot Password?</a>
                                     </div>
                                     <button type="submit" class="btn btn-common log-btn">Login</button>
+                                    <p style="margin-top: 25px">
+                                        Dont have account? <a href="{{ route('register') }}">Register</a>
+                                    </p>
                                 </div>
                             </form>
                             <!-- Login Form End -->
