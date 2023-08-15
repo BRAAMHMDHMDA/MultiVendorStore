@@ -47,12 +47,10 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $data = $request->except('image');
-
         DB::beginTransaction();
         try {
-            $data['image'] = Product::storeImage($request);
-            $product = Product::create($data);
+            Product::storeImage($request);
+            $product = Product::create($request->except('image'));
             $product->tags()->attach($request->tags);
 
             DB::commit();

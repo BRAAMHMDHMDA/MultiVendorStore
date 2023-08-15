@@ -32,7 +32,7 @@ class Product extends Model
     public static string $imageFolder = '/products/main';
 
     protected $fillable =[
-        'name', 'slug', 'description', 'image', 'featured',
+        'name', 'slug', 'description', 'image_path', 'featured',
         'price', 'compare_price', 'status', 'quantity',
         'category_id', 'store_id', 'brand_id'
     ];

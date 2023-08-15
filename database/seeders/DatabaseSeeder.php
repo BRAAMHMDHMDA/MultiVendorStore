@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'vendor1@store1.com',
             'username' => 'vendor1',
             'phone_number' => '009728478524',
-            'image_path' => '',
+            'image_path' => 'default.jpg',
             'store_id' => 1,
             'password'=>Hash::make('000000'),
         ]);
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'vendor2@store2.com',
             'username' => 'vendor2',
             'phone_number' => '009728246524',
-            'image_path' => '',
+            'image_path' => 'default.jpg',
             'store_id' => 2,
             'password'=>Hash::make('000'),
 
@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'vendor3@store3.com',
             'username' => 'vendor3',
             'phone_number' => '009728448584',
-            'image_path' => '',
+            'image_path' => 'default.jpg',
             'store_id' => 3,
             'password'=>Hash::make('000'),
 
@@ -99,7 +99,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin1@admin.com',
             'username' => 'admin1',
             'phone_number' => '009723448524',
-            'image_path' => '',
+            'image_path' => 'default.jpg',
             'password'=>Hash::make('000000'),
 
         ]);
@@ -108,7 +108,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin2@admin.com',
             'username' => 'admin2',
             'phone_number' => '009721144524',
-            'image_path' => '',
+            'image_path' => 'default.jpg',
             'password'=>Hash::make('000'),
 
         ]);
@@ -117,7 +117,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin3@admin.com',
             'username' => 'admin3',
             'phone_number' => '009725544524',
-            'image_path' => '',
+            'image_path' => 'default.jpg',
             'password'=>Hash::make('000'),
 
         ]);
@@ -125,7 +125,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'user1',
             'email' => 'user1@user1.com',
             'phone_number' => '009738478524',
-            'image_path' => '',
+            'image_path' => 'default.jpg',
             'password'=>Hash::make('000000'),
         ]);
         Product::factory(50)->create();

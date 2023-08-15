@@ -17,7 +17,7 @@ class Category extends Model
 {
   use HasFactory, GetImageUrl, HasImage;
 
-  protected $fillable = ['name','slug','description','parent_id','status','image'];
+  protected $fillable = ['name','slug','description','parent_id','status','image_path'];
   protected $guarded = ['id'];
 
     public static string $imageDisk = 'media';

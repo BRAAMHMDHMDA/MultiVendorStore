@@ -40,7 +40,8 @@
           <!-- /Logo -->
           <h4 class="mb-1 pt-2">Welcome to {{config('variables.templateName')}}! 👋</h4>
           <p class="mb-4">Please sign-in to your account</p>
-{{--    Form      --}}
+          {{--    Form      --}}
+          {!! $errors->has('email') ? '<div class="alert alert-danger">'.$errors->first('email').'</div>' : null  !!}
           <form id="formAuthentication" class="mb-3" action="{{route('login')}}" method="Post">
             @csrf
             <div class="mb-4 mt-4">
@@ -65,12 +66,7 @@
                 />
                 <label class="form-check-label" for="admin"> Admin</label>
               </span>
-              {{--              <x-dashboard.form.radio id="guard" class="form-control" name="guard" >--}}
-              {{--                <option value="vendor">vendor</option>--}}
-              {{--                <option value="admin">admin</option>--}}
-              {{--              </x-dashboard.form.radio>--}}
             </div>
-
             <div class="mb-3">
               <label for="email" class="form-label">Email or Username</label>
               <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email or username" autofocus>

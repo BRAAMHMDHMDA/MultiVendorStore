@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Str;
+
 trait GetImageUrl
 {
 
@@ -14,7 +16,13 @@ trait GetImageUrl
     // Get Image Url
     public function getImageUrlAttribute(): string
     {
-        return asset('storage/media/' . $this->image);
+        if (!$this->image_path){
+            return asset('storage/media/no-image.jpg');
+        }elseif (Str::startsWith($this->image_path, ['http://', 'https://'])) {
+            return $this->image_path;
+        }else {
+            return asset('storage/media/' . $this -> image_path);
+        }
     }
 
     public function getArrayableAppends(): array

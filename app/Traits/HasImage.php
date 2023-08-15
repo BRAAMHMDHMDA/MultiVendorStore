@@ -12,8 +12,11 @@ trait HasImage
     {
         if ($requset->hasFile('image') && $requset->file('image')->isValid()){
             $image = $requset->file('image');
-            return $image->store(static::$imageFolder, static::$imageDisk);
-        }else return false;
+            $image_path = $image->store(static::$imageFolder, static::$imageDisk);
+            $requset->merge(['image_path' => $image_path]);
+            return true;
+        }
+        return false;
     }
 
     public static function updateImage(Request $requset, $oldImage)
@@ -26,9 +29,9 @@ trait HasImage
         return $oldImage;
     }
 
-    public static function deleteImage($image)
+    public static function deleteImage($image_path)
     {
-        if (!$image) return true;
-        return Storage::disk(static::$imageDisk)->delete($image);
+        if (!$image_path) return true;
+        return Storage::disk(static::$imageDisk)->delete($image_path);
     }
 }

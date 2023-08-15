@@ -12,21 +12,16 @@ class StoreController extends Controller
     {
         $this->middleware('admin')->except('index');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $stores = Store::latest()->paginate();
+        return view('dashboard.content.stores.index', [
+            'stores' => $stores
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //

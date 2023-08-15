@@ -108,7 +108,10 @@
                 </div>
                 @auth('web')
                     <div class="account link-inline">
-                        <a href="{{ route('logout') }}"><i class="icon-logout"></i><span class="hidden-mobile">logout</span></a>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout').submit();"><i class="icon-logout"></i><span class="hidden-mobile">logout</span></a>
+                        <form id="logout" method="post" action="{{ route('logout')}}" hidden>
+                            @csrf
+                        </form>
                     </div>
                     <div href="#" style="padding: 15px"><i class="icon-user" ></i> Hi, {{ Auth::user()->name }}</div>
                 @else

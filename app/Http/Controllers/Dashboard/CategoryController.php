@@ -58,10 +58,8 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-      $data = $request->except('image');
-      $data['image'] = Category::storeImage($request);
-
-      Category::create($data);
+      Category::storeImage($request);
+      Category::create($request->all());
 
       return Redirect::route('dashboard.categories.index')
         ->with('success', 'Category created Successfully!');
@@ -89,21 +87,9 @@ class CategoryController extends Controller
 
     public function update(CategoryRequest $request, Category $category)
     {
+        Category::updateImage($request, $category->image_path);
+        $category->update($request->all());
 
-        $old_image = $category->image;
-        $data = $request->except('image');
-
-//        if ($request->hasFile('image') && $request->file('image')->isValid()){
-//            $image = $request->file('image');
-//            $image = $image->store('/categories', 'media');
-//            $data['image'] = $image;
-//        }
-        $data['image'] = Category::updateImage($request, $old_image);
-        $category->update($data);
-
-//        if ($old_image && isset($data['image'])) {
-//            Storage::disk('media')->delete($old_image);
-//        }
         return Redirect::route('dashboard.categories.index')
             ->with('success', 'Category updated!');
     }
@@ -112,7 +98,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        Category::deleteImage($category->image);
+        Category::deleteImage($category->image_path);
 
         return Redirect::route('dashboard.categories.index')
             ->with('success', 'Category Deleted Successfully!');

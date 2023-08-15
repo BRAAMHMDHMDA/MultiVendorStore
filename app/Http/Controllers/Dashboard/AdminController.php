@@ -20,4 +20,30 @@ class AdminController extends Controller
             'admins' => $admins
         ]);
     }
+    public function create()
+    {
+
+    }
+    public function edit()
+    {
+
+    }
+    public function update()
+    {
+
+    }
+    public function delete()
+    {
+
+    }
+
+    public function setStatus(Admin $admin)
+    {
+        $admin->updateOrFail([
+            'status' => ($admin->status === 'active') ? 'inactive' : 'active',
+        ]);
+
+        return redirect()->route('dashboard.admins.index');
+    }
+
 }

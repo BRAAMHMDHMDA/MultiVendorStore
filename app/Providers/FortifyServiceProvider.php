@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\Config;
 use Laravel\Fortify\Contracts\LoginResponse;
@@ -38,7 +39,14 @@ class FortifyServiceProvider extends ServiceProvider
                 return redirect()->intended('/');
             }
         });
-
+        $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
+            public function toResponse($request) {
+                if (request()->is('dashboard/*')) {
+                    return redirect()->intended('dashboard');
+                }
+                return redirect()->intended('/');
+            }
+        });
         $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
             public function toResponse($request) {
                 return redirect('/');
@@ -67,9 +75,12 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         if (request()->is('dashboard/*')) {
-            Fortify::loginView('dashboard.content.authentications.auth-login-basic');
+            Fortify::loginView('dashboard.content.authentications.login');
+//            Fortify::registerView('dashboard.contenr.');
         } else{
             Fortify::loginView('website.content.auth.login');
+            Fortify::registerView('website.content.auth.register');
+
         }
     }
 }

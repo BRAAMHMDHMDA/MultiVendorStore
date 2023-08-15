@@ -8,6 +8,14 @@
       "guard": "all"
     },
     {
+      "url": "dashboard/admins",
+      "name": "Admins",
+      "icon": "menu-icon tf-icons fa-solid fa-users-gear",
+      "slug": "dashboard-admins",
+      "target": "",
+      "guard": "admins"
+    },
+    {
       "url": "dashboard/categories",
       "name": "Categories",
       "icon": "menu-icon tf-icons ti ti-category",
@@ -50,14 +58,6 @@
 
     },
     {
-      "url": "dashboard/users",
-      "name": "Users",
-      "icon": "menu-icon tf-icons ti ti-users",
-      "slug": "dashboard-customers",
-      "target": "",
-      "guard": "admins"
-    },
-    {
       "url": "dashboard/vendors",
       "name": "Vendors",
       "icon": "menu-icon tf-icons fa-solid fa-house-chimney-user",
@@ -66,10 +66,10 @@
       "guard": "admins"
     },
     {
-      "url": "dashboard/admins",
-      "name": "Admins",
-      "icon": "menu-icon tf-icons fa-solid fa-users-gear",
-      "slug": "dashboard-admins",
+      "url": "dashboard/users",
+      "name": "Users",
+      "icon": "menu-icon tf-icons ti ti-users",
+      "slug": "dashboard-customers",
       "target": "",
       "guard": "admins"
     }

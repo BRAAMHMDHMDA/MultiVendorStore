@@ -3,6 +3,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-6 col-lg-offset-3">
+                    {!! $errors->has('email') ? '<div class="alert alert-danger">'.$errors->first('email').'</div>' : null  !!}
+
                     <div class="login">
                         <div class="login-form-container">
                             <div class="login-text">
@@ -14,7 +16,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <div class="controls">
-                                        <input type="text" class="form-control" placeholder="Email" name="email">
+                                        <input type="text" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}">
                                     </div>
                                 </div>
                                 <div class="form-group">

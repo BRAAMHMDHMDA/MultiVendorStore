@@ -20,4 +20,13 @@ class VendorController extends Controller
             'vendors' => $vendors
         ]);
     }
+
+    public function setStatus(Vendor $vendor)
+    {
+        $vendor->updateOrFail([
+            'status' => ($vendor->status === 'active') ? 'inactive' : 'active',
+        ]);
+
+        return redirect()->route('dashboard.vendors.index');
+    }
 }

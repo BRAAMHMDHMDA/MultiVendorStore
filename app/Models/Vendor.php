@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\GetImageUrl;
 use App\Traits\HasImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +11,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Vendor extends Authenticatable
 {
-    use HasFactory, Notifiable ,HasImage;
+    use HasFactory, Notifiable , HasImage, GetImageUrl;
 
     protected $fillable = [
         'name',

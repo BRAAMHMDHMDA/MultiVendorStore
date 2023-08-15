@@ -10,7 +10,8 @@ use App\Http\Controllers\Website\{
 
 
 // Website Public Routes
-Route ::get('/', HomeController::class) -> name('home');
+Route::get('/', HomeController::class)->name('home');
+Route::redirect('/home', '/');
 
 Route ::get('/products', [ProductController::class, 'index']) -> name('all-products');
 Route ::get('/product/{product:slug}', [ProductController::class, 'show']) -> name('product-details');

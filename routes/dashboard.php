@@ -44,13 +44,14 @@ Route::group([
     Route::resource('stores', StoreController::class);
 
     // Routes Users
-    Route::get('users', [UserController::class, 'index'])->name('user.index');
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
 
     // Routes vendors
-    Route::get('vendors', [VendorController::class, 'index'])->name('vendor.index');
+    Route::get('vendors', [VendorController::class, 'index'])->name('vendors.index');
+    Route::patch('vendor/{vendor}/status', [VendorController::class, 'setStatus'])->name('vendor.status');
 
     // Routes admins
-    Route::get('admins', [AdminController::class, 'index'])->name('admin.index');
-
+    Route::resource('admins', AdminController::class);
+    Route::patch('admin/{admin}/status', [AdminController::class, 'setStatus'])->name('admin.status');
 
 });

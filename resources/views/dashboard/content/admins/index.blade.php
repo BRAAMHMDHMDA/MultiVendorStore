@@ -5,13 +5,11 @@
 @section('breadcrumb_left')
     <span class="text-muted fw-light ">Admins/</span> Admins List
 @endsection
-{{--@section('breadcrumb_right')--}}
-{{--    @admin--}}
-{{--    <a class="" href="{{ route('dashboard.categories.create') }}">--}}
-{{--        <button type="button" class="btn btn-primary p-2"><i class="fab fa-plus me-2"> </i> Add New Category</button>--}}
-{{--    </a>--}}
-{{--    @endadmin--}}
-{{--@endsection--}}
+@section('breadcrumb_right')
+    <a class="" href="{{ route('dashboard.admins.create') }}">
+        <button type="button" class="btn btn-primary p-2"><i class="fab fa-plus me-2"> </i> Add New Admin</button>
+    </a>
+@endsection
 
 @section('content')
 
@@ -57,16 +55,24 @@
                         <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical"></i></button>
-{{--                                <div class="dropdown-menu">--}}
-{{--                                    <a class="dropdown-item" href="{{ route('dashboard.categories.edit', $admin->id) }}">--}}
-{{--                                        <i class="ti ti-pencil me-1"></i> Edit--}}
-{{--                                    </a>--}}
-{{--                                    <a class="dropdown-item" onclick="confirmDelete({{$admin->id}})"><i class="ti ti-trash me-1"></i> Delete</a>--}}
-{{--                                    <form action="{{ route('dashboard.categories.destroy', $admin->id) }}" method="post" id={{$admin->id}}>--}}
-{{--                                        @csrf--}}
-{{--                                        @method('delete')--}}
-{{--                                    </form>--}}
-{{--                                </div>--}}
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{ route('dashboard.admins.edit', $admin->id) }}">
+                                        <i class="ti ti-pencil me-1"></i> Edit
+                                    </a>
+                                    <a class="dropdown-item" onclick="confirmDelete({{$admin->id}})"><i class="ti ti-trash me-1"></i> Delete</a>
+                                    <form action="{{ route('dashboard.admins.destroy', $admin->id) }}" method="post" id={{$admin->id}}>
+                                        @csrf
+                                        @method('delete')
+                                    </form>
+                                    <a class="dropdown-item" onclick="confirmStatus(s{{$admin->id}})">
+                                        <i class="ti ti-ban me-1"></i>
+                                        {{ $admin->status === 'active' ? 'Ban Account' : 'Active Account' }}
+                                    </a>
+                                    <form action="{{ route('dashboard.admin.status', $admin->id) }}" method="post" id=s{{$admin->id}} data-status={{$admin->status}}>
+                                        @csrf
+                                        @method('patch')
+                                    </form>
+                                </div>
                             </div>
                         </td>
                     </tr>

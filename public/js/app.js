@@ -4316,6 +4316,8 @@ window.deleteConfirm = function (formId) {
 };
 
   window.confirmDelete = function (formId) {
+    console.log(formId);
+
     sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
       icon: 'warning',
       text: 'Do you want to delete this?',
@@ -4324,6 +4326,7 @@ window.deleteConfirm = function (formId) {
       confirmButtonColor: '#e3342f'
     }).then(function (result) {
       if (result.isConfirmed) {
+        console.log(document.getElementById(formId));
         document.getElementById(formId).submit();
       }
     });
@@ -4340,6 +4343,32 @@ window.deleteConfirm = function (formId) {
         document.getElementById(formId).submit();
       }
     });
+  };
+  window.confirmStatus = function (formId) {
+    let status = formId.dataset.status;
+    if (status === 'active') {
+      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+        icon: 'info',
+        text: 'Do you want to Ban this Account?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Ban it!',
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          formId.submit();
+        }
+      });
+    }else {
+      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+        icon: 'info',
+        text: 'Do you want to Active this Account?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Active it!',
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          formId.submit();
+        }
+      });
+    }
   };
 
 //end of confirmation Delete
