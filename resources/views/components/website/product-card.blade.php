@@ -12,7 +12,7 @@
         @endif
         <div class="actions">
             <div class="add-to-links">
-                <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
+                <a href="#" class="btn-cart add-to-cart" data-id="{{ $product->id }}"><i class="icon-basket"></i></a>
                 <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
                 <a  class="btn-quickview md-trigger" data-modal="{{ $product->slug }}"><i class="icon-eye"></i></a>
             </div>
@@ -22,7 +22,7 @@
         <h4 class="product-title"><a href="{{ route('product-details', $product->slug) }}">{{$product->name}}</a></h4>
         <div class="align-items">
             <div class="pull-left">
-                <span class="price">${{$product->format_price}}
+                <span class="price">{{$product->format_price}}
                     @if ($product->compare_price)
                         <del>{{$product->format_compare_price}}</del>
                     @endif
@@ -97,7 +97,7 @@
 {{--                    </div>--}}
                     <!-- Quantity Cart -->
                     <div class="quantity-cart" style="margin-top: 50px">
-                        <button class="btn btn-common"><i class="icon-basket"></i> add to cart</button>
+                        <button class="add-to-cart btn btn-common " data-id="{{ $product->id }}" data-quantity="1"><i class="icon-basket"></i> add to cart</button>
                     </div>
                     <!-- Share -->
                     <div class="share-icons pull-right">

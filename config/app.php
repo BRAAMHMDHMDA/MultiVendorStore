@@ -182,6 +182,8 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\AdminCheckDirectiveServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        App\Providers\CartServiceProvider::class,
+
 
     ],
 

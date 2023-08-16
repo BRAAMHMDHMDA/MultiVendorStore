@@ -73,7 +73,11 @@
                             <h5 class="sub-title">Quick Overview</h5>
                             <p>{{ $product->description }}</p>
                         </div>
-                        <!-- Product Size -->
+                        <form action="{{ route('cart.store') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                            <!-- Product Size -->
                         {{--                        <div class="product-size">--}}
                         {{--                            <h5 class="sub-title">Select Size</h5>--}}
                         {{--                            <span>S</span>--}}
@@ -90,9 +94,10 @@
                         {{--                            <button class="color" style="background-color: #414141;"><i class="fa fa-check"></i></button>--}}
                         {{--                        </div>--}}
                         <!-- Quantity Cart -->
-                        <div class="quantity-cart">
-                            <button class="btn btn-common"><i class="icon-basket-loaded"></i> add to cart</button>
-                        </div>
+                            <div class="quantity-cart">
+                                <button class="btn btn-common" type="submit"><i class="icon-basket-loaded"></i> add to cart</button>
+                            </div>
+                        </form>
                         <!-- Usefull Link -->
                         <ul class="usefull-link">
                             <li><a href="#"><i class="icon-envelope-open"></i> Email to a Friend</a></li>
@@ -278,5 +283,11 @@
         </div>
     </div>
     <!-- Single-prouduct-tab End -->
-
+    @push('scripts')
+        <script>
+            const csrf_token = "{{ csrf_token() }}";
+        </script>
+        {{--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>--}}
+        <script src="{{ asset('js/cart.js') }}"></script>
+    @endpush
 </x-website.website-layout>

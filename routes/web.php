@@ -5,6 +5,7 @@ use App\Http\Controllers\Website\{
     HomeController,
     ProductController,
     StoreController,
+    CartController,
 };
 
 
@@ -18,6 +19,8 @@ Route ::get('/product/{product:slug}', [ProductController::class, 'show']) -> na
 
 Route ::get('/stores', [StoreController::class, 'index']) -> name('all-stores');
 Route ::get('/store/{store:slug}', [StoreController::class, 'show']) -> name('store-details');
+
+Route::resource('cart', CartController::class)->except(['create', 'edit']);
 
 // Website Protected Routes
 Route::group([

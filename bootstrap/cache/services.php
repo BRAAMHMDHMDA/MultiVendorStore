@@ -46,6 +46,7 @@
     42 => 'App\\Providers\\FortifyServiceProvider',
     43 => 'App\\Providers\\AdminCheckDirectiveServiceProvider',
     44 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    45 => 'App\\Providers\\CartServiceProvider',
   ),
   'eager' => 
   array (
@@ -79,6 +80,7 @@
     27 => 'App\\Providers\\FortifyServiceProvider',
     28 => 'App\\Providers\\AdminCheckDirectiveServiceProvider',
     29 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    30 => 'App\\Providers\\CartServiceProvider',
   ),
   'deferred' => 
   array (

@@ -91,24 +91,20 @@ class ProductController extends Controller
 
     }
 
-
     public function update(Request $request, Product $product)
     {
         $old_image = $product->image;
-        $data = $request->except('image');
         if (!isset($data['featured'])) $data['featured'] = 0;
 
         DB::beginTransaction();
         try {
-            $data['image'] = Category::updateImage($request, $old_image);
-            $product->update($data);
+            Category::updateImage($request, $old_image);
+            $product->update($request->all());
             $product->tags()->sync($request->tags);
 
             DB::commit();
-
             return Redirect::route('dashboard.products.index')
                 ->with('success', "Product ($product->name) Updated.");
-
         } catch (\Throwable $e) {
             DB::rollBack();
             throw $e;
@@ -157,7 +153,7 @@ class ProductController extends Controller
     {
         if ($id) {
             $product = Product::onlyTrashed()->findOrFail($id);
-            Product::deleteImage($product->image);
+            Product::deleteImage($product->image_path);
             $product->forceDelete();
             return redirect()->route('dashboard.products.trash')->with([
                 'success' => "Product ($product->name) Deleted For Ever"
@@ -166,7 +162,7 @@ class ProductController extends Controller
 
         $productsTrashed = Product::onlyTrashed();
         foreach ($productsTrashed as $productTrashed){
-            Product::deleteImage($productTrashed->image);
+            Product::deleteImage($productTrashed->image_path);
         }
         $productsTrashed->forceDelete();
         return redirect()->route('dashboard.products.trash')->with([

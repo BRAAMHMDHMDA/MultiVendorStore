@@ -336,4 +336,11 @@
         </div>
     </div>
     <!-- Product Categories Section End -->
+
+    @push('scripts')
+        <script>
+            const csrf_token = "{{ csrf_token() }}";
+        </script>
+        <script src="{{ asset('js/cart.js') }}"></script>
+    @endpush
 </x-website.website-layout>

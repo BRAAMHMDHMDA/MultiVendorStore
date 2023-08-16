@@ -14,3 +14,4 @@
 <script type="text/javascript" src="{{ asset('website/assets/js/jquery.themepunch.revolution.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('website/assets/js/jquery.themepunch.tools.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('website/assets/js/main.js') }}"></script>
+@stack('scripts')
