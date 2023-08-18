@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\GetImageUrl;
 use App\Traits\HasImage;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -28,10 +29,14 @@ class Category extends Model
         $this->attributes['slug'] = Str::slug($value);
         $this->attributes['name'] = Str::title($value);
     }
+    public function scopeActive(Builder $builder): void
+    {
+        $builder->where('status', '=', 'active');
+    }
 
-  public function products() {
-      return $this->hasMany(Product::class);
-  }
+    public function products() {
+          return $this->hasMany(Product::class);
+      }
 
     public function parent() {
         return $this->belongsTo(Category::class)

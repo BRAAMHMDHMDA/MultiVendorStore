@@ -15,10 +15,8 @@ class SetFortifyGuard
             Config::set('fortify.guard', 'web');
         }elseif ($request->guard === 'admin'){
             Config::set('fortify.guard', 'admins');
-        }elseif ($request->guard === 'vendors'){
+        }elseif ($request->guard === 'vendor'){
             Config::set('fortify.guard', 'vendors');
-        }elseif ($request->is('dashboard/*') && !$request->guard){
-            Config::set('fortify.guard', 'dashboard');
         }
 
         return $next($request);

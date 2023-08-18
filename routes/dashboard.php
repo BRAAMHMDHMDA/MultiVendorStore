@@ -18,7 +18,7 @@ Route::group([
   'as' => 'dashboard.',
   'prefix' => 'dashboard',
 ], function (){
-    Route::get('/', function (){
+    Route::get('/home', function (){
         return view('dashboard.content.pages.pages-home');
     })->name('home');
 
@@ -42,12 +42,13 @@ Route::group([
 
     // Routes Stores
     Route::resource('stores', StoreController::class);
+    Route::patch('store/{store}/status', [StoreController::class, 'setStatus'])->name('store.status');
 
     // Routes Users
     Route::get('users', [UserController::class, 'index'])->name('users.index');
 
     // Routes vendors
-    Route::get('vendors', [VendorController::class, 'index'])->name('vendors.index');
+    Route::resource('vendors', VendorController::class);
     Route::patch('vendor/{vendor}/status', [VendorController::class, 'setStatus'])->name('vendor.status');
 
     // Routes admins

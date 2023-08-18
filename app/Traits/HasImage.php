@@ -8,20 +8,20 @@ use Illuminate\Support\Facades\Storage;
 trait HasImage
 {
 
-    public static function storeImage(Request $requset)
+    public static function storeImage($request, $name_image_in_request='image', $name_image_in_DB='image_path')
     {
-        if ($requset->hasFile('image') && $requset->file('image')->isValid()){
-            $image = $requset->file('image');
+        if ($request->hasFile($name_image_in_request) && $request->file($name_image_in_request)->isValid()){
+            $image = $request->file($name_image_in_request);
             $image_path = $image->store(static::$imageFolder, static::$imageDisk);
-            $requset->merge(['image_path' => $image_path]);
+            $request->merge([$name_image_in_DB => $image_path]);
             return true;
         }
         return false;
     }
 
-    public static function updateImage(Request $requset, $oldImage)
+    public static function updateImage($request, $oldImage, $name_image_in_request='image', $name_image_in_DB='image_path')
     {
-        $newImage = static::storeImage($requset);
+        $newImage = static::storeImage($request, $name_image_in_request, $name_image_in_DB);
         if ($newImage) {
             static::deleteImage($oldImage);
             return $newImage;

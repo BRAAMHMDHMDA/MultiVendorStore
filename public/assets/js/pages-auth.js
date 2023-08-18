@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', function (e) {
     if (formAuthentication) {
       const fv = FormValidation.formValidation(formAuthentication, {
         fields: {
+          guard: {
+            validators: {
+              notEmpty: {
+                message: 'Please Enter Your Role to Access the Dashboard'
+              }
+            }
+          },
           username: {
             validators: {
               notEmpty: {

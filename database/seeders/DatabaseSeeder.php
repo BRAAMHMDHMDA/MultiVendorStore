@@ -46,23 +46,23 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Tag::create([
-            'name' => '#tag1',
+            'name' => 'tag1',
             'slug' => 'tag1',
         ]);
         Tag::create([
-            'name' => '#tag2',
+            'name' => 'tag2',
             'slug' => 'tag2',
         ]);
         Tag::create([
-            'name' => '#tag3',
+            'name' => 'tag3',
             'slug' => 'tag3',
         ]);
         Tag::create([
-            'name' => '#tag4',
+            'name' => 'tag4',
             'slug' => 'tag4',
         ]);
 
-        Store::factory(3)->create();
+        Store::factory(6)->create();
 
         Vendor::create([
             'name' => 'Vendor1',
@@ -80,17 +80,57 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '009728246524',
             'image_path' => 'default.jpg',
             'store_id' => 2,
-            'password'=>Hash::make('000'),
+            'password'=>Hash::make('000000'),
 
         ]);
         Vendor::create([
             'name' => 'Vendor3',
             'email' => 'vendor3@store3.com',
             'username' => 'vendor3',
-            'phone_number' => '009728448584',
+            'phone_number' => '009728148584',
             'image_path' => 'default.jpg',
             'store_id' => 3,
-            'password'=>Hash::make('000'),
+            'password'=>Hash::make('000000'),
+
+        ]);
+        Vendor::create([
+            'name' => 'Vendor4',
+            'email' => 'vendor4@store4.com',
+            'username' => 'vendor4',
+            'phone_number' => '009728348584',
+            'image_path' => 'default.jpg',
+            'store_id' => 4,
+            'password'=>Hash::make('000000'),
+
+        ]);
+        Vendor::create([
+            'name' => 'Vendor5',
+            'email' => 'vendor5@store5.com',
+            'username' => 'vendor5',
+            'phone_number' => '009728488584',
+            'image_path' => 'default.jpg',
+            'store_id' => 5,
+            'password'=>Hash::make('000000'),
+
+        ]);
+        Vendor::create([
+            'name' => 'Vendor6',
+            'email' => 'vendor6@store6.com',
+            'username' => 'vendor6',
+            'phone_number' => '009723338584',
+            'image_path' => 'default.jpg',
+            'store_id' => 6,
+            'password'=>Hash::make('000000'),
+
+        ]);
+        Vendor::create([
+            'name' => 'Vendor7',
+            'email' => 'vendor7@store1.com',
+            'username' => 'vendor7',
+            'phone_number' => '009722448584',
+            'image_path' => 'default.jpg',
+            'store_id' => 1,
+            'password'=>Hash::make('000000'),
 
         ]);
 

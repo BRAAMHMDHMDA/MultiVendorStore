@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -19,6 +20,11 @@ class ProductController extends Controller
 
     public function index()
     {
+        if (Auth::guard('vendors')->check() && Auth::guard('vendors')->user()->store->status === 'inactive'){
+            $notify = 'Your Store is Banned, if you need activation Store Call the admin';
+            return view('dashboard.content.products.index')->with('notify', $notify);
+
+        }
         return view('dashboard.content.products.index');
     }
 

@@ -5,58 +5,76 @@
             <div class="row">
                 <div class="col-md-3 col-sm-4">
                     <div class="categories-wrapper white-bg">
-                        <h3 class="block-title">Product Categories</h3>
+                        <h3 class="block-title">Top Categories</h3>
                         <ul class="vertical-menu">
-                            @php
-                                $numOfCategories = 8;
-                                $mainCategories = $categories->take($numOfCategories);
-                                $otherCategories = $categories->slice($numOfCategories);
-                            @endphp
-                            @foreach($mainCategories as $category)
+                            @foreach($categories as $category)
                                 @if($category->children->count() > 0)
                                     <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url('/products?category='.$category->name)  }}" role="button">
                                             {{ $category->name }} <i class="caret-right fa fa-angle-right"></i>
                                         </a>
                                         <ul class="dropdown-menu">
                                             @foreach($category->children as $child)
-                                                <li><a href="#">{{ $child->name }}</a></li>
+                                                <li><a href="{{ url('/products?category='.$child->name)}}">{{ $child->name }}</a></li>
                                             @endforeach
                                         </ul>
                                     </li>
                                 @else
                                     <li>
-                                        <a href="#">{{ $category->name }}</a>
+                                        <a href="{{ url('/products?category='.$category->name)  }}">{{ $category->name }}</a>
                                     </li>
                                 @endif
                             @endforeach
+{{--                            @php--}}
+{{--                                $numOfCategories = 8;--}}
+{{--                                $mainCategories = $categories->take($numOfCategories);--}}
+{{--                                $otherCategories = $categories->slice($numOfCategories);--}}
+{{--                            @endphp--}}
+{{--                            @foreach($mainCategories as $category)--}}
+{{--                                @if($category->children->count() > 0)--}}
+{{--                                    <li class="dropdown">--}}
+{{--                                        <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url('/products?category='.$category->name)  }}" role="button">--}}
+{{--                                            {{ $category->name }} <i class="caret-right fa fa-angle-right"></i>--}}
+{{--                                        </a>--}}
+{{--                                        <ul class="dropdown-menu">--}}
+{{--                                            @foreach($category->children as $child)--}}
+{{--                                                <li><a href="{{ url('/products?category='.$child->name)}}">{{ $child->name }}</a></li>--}}
+{{--                                            @endforeach--}}
+{{--                                        </ul>--}}
+{{--                                    </li>--}}
+{{--                                @else--}}
+{{--                                    <li>--}}
+{{--                                        <a href="{{ url('/products?category='.$category->name)  }}">{{ $category->name }}</a>--}}
+{{--                                    </li>--}}
+{{--                                @endif--}}
+{{--                            @endforeach--}}
 
-                            @if($otherCategories->count() > 0)
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-                                        Others <i class="caret-right fa fa-angle-right"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        @foreach($otherCategories as $category)
-                                            @if($category->children->count() > 0)
-                                                <li class="dropdown">
-                                                    <a class="dropdown-toggle" data-toggle="dropdown{{ $category->id }}" href="#" role="button"
-                                                       onclick="event.stopPropagation();this.closest('li.dropdown').classList.toggle('open');">
-                                                        {{ $category->name }} <i class="caret-right fa fa-angle-right"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu">
-                                                        @foreach($category->children as $child)
-                                                            <li><a href="#">{{ $child->name }}</a></li>
-                                                        @endforeach
-                                                    </ul>
-                                                </li>
-                                            @else
-                                                <li><a href="#">{{ $category->name }}</a></li>
-                                            @endif
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @endif
+{{--                            @if($otherCategories->count() > 0)--}}
+{{--                                <li class="dropdown">--}}
+{{--                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">--}}
+{{--                                        Others <i class="caret-right fa fa-angle-right"></i>--}}
+{{--                                    </a>--}}
+{{--                                    <ul class="dropdown-menu">--}}
+{{--                                        @foreach($otherCategories as $category)--}}
+{{--                                            @if($category->children->count() > 0)--}}
+{{--                                                <li class="dropdown">--}}
+{{--                                                    <a class="dropdown-toggle" data-toggle="dropdown{{ $category->id }}" href="#" role="button"--}}
+{{--                                                       onclick="event.stopPropagation();this.closest('li.dropdown').classList.toggle('open');">--}}
+{{--                                                        {{ $category->name }} <i class="caret-right fa fa-angle-right"></i>--}}
+{{--                                                    </a>--}}
+{{--                                                    <ul class="dropdown-menu">--}}
+{{--                                                        @foreach($category->children as $child)--}}
+{{--                                                            <li><a href="{{ url('/products?category='.$category->name)  }}">{{ $child->name }}</a></li>--}}
+{{--                                                        @endforeach--}}
+{{--                                                    </ul>--}}
+{{--                                                </li>--}}
+{{--                                            @else--}}
+{{--                                                <li><a href="#">{{ $category->name }}</a></li>--}}
+{{--                                            @endif--}}
+{{--                                        @endforeach--}}
+{{--                                    </ul>--}}
+{{--                                </li>--}}
+{{--                            @endif--}}
                         </ul>
                     </div>
                 </div>

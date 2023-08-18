@@ -34,15 +34,15 @@ class Product extends Model
     protected $fillable =[
         'name', 'slug', 'description', 'image_path', 'featured',
         'price', 'compare_price', 'status', 'quantity',
-        'category_id', 'store_id', 'brand_id'
+        'category_id', 'store_id', 'brand_id','created_by'
     ];
     protected $guarded = ['id'];
     protected $appends = ['format_price', 'format_compare_price'];
+    protected $with = ['category', 'brand'];
     public function setNameAttribute($value)
     {
         $this->attributes['slug'] = Str::slug($value);
         $this->attributes['name'] = Str::title($value);
-        $this->attributes['store_id'] = 1;
     }
     public function getFormatPriceAttribute()
     {
@@ -69,6 +69,12 @@ class Product extends Model
     }
     protected static function booted()
     {
+
+        static::creating(function ($product) {
+            $product->store_id = Auth::guard('vendors')->user()->store_id;
+            $product->created_by = Auth::guard('vendors')->user()->id;
+        });
+
         static::addGlobalScope('store', function (Builder $builder){
             $user = Auth::user();
             if ($user && $user->store_id) {
@@ -78,7 +84,9 @@ class Product extends Model
     }
     public function scopeActive(Builder $builder)
     {
-        $builder->where('status', '=', 'active');
+        $builder->where('status', '=', 'active')->whereHas('store', function ($query) {
+            $query->where('status', '=', 'active');
+        });
     }
     public function scopeFeatured(Builder $builder)
     {

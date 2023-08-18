@@ -23,6 +23,14 @@
 @section('content')
     <div class="container">
         <div class="card p-4">
+            @if (isset($notify))
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <span class="alert-icon text-danger me-2">
+                          <i class="ti ti-ban ti-xs"></i>
+                        </span>
+                    {{$notify}}
+                </div>
+            @endif
             <table class="table table-hover table-responsive" id="table_id">
                 <thead>
                 <tr>

@@ -8,7 +8,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="widget-search md-30">
                         <form action="#">
-                            <input class="form-control" placeholder="Search here..." type="text">
+                            <input class="form-control" placeholder="Search By Store Name..." type="text" name="search" value="{{ request('search') }}">
                             <button type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
@@ -23,7 +23,7 @@
                             </ul>
                             <!-- Size end -->
                             <div class="showing text-right">
-                                <p class="hidden-xs">Showing 01-09 of 17 Results</p>
+                                <p class="hidden-xs">Showing {{$stores->firstItem()}}-{{$stores->lastItem()}} of {{$stores->total()}} Results</p>
                             </div>
                         </div>
                     </div>
@@ -35,24 +35,14 @@
                     <div id="list-view" class="tab-pane active">
                         <div class="shop-list">
                             @foreach($stores as $store)
-                                <x-website.store-box :store="$store" />
+                                <x-website.store-box :store="$store"/>
                             @endforeach
                         </div>
                     </div>
                 </div>
                 <!-- Start Pagination -->
                 <div class="pagination">
-                    <div class="results-navigation pull-left">
-                        Showing: 1 - 6 Of 17
-                    </div>
-                    <nav class="navigation pull-right">
-                        <a class="next-page" href="#"><i class="fa fa-angle-left"></i></a>
-                        <span class="current page-num">1</span>
-                        <a class="page-num" href="#">2</a>
-                        <a class="page-num" href="#">3</a>
-                        <div class="divider">...</div>
-                        <a class="next-page" href="#"><i class="fa fa-angle-right"></i></a>
-                    </nav>
+                    {{$stores->withQueryString()->links()}}
                 </div>
                 <!-- End Pagination -->
             </div>

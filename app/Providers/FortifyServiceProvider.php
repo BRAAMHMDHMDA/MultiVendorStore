@@ -28,13 +28,13 @@ class FortifyServiceProvider extends ServiceProvider
         if (request()->is('dashboard/*'))
         {
             Config::set('fortify.prefix', 'dashboard');
-            Config::set('fortify.home', '/dashboard');
+            Config::set('fortify.home', '/dashboard/home');
         }
 
         $this->app->instance(LoginResponse::class, new class implements LoginResponse {
             public function toResponse($request) {
                 if (request()->is('dashboard/*')) {
-                    return redirect()->intended('dashboard');
+                    return redirect()->intended(route('dashboard.home'));
                 }
                 return redirect()->intended('/');
             }
@@ -42,14 +42,17 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
             public function toResponse($request) {
                 if (request()->is('dashboard/*')) {
-                    return redirect()->intended('dashboard');
+                    return redirect()->intended(route('dashboard.home'));
                 }
-                return redirect()->intended('/');
+                return redirect()->intended(route('home'));
             }
         });
         $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
             public function toResponse($request) {
-                return redirect('/');
+                if (request()->is('dashboard/*')) {
+                    return redirect()->intended(route('dashboard.home'));
+                }
+                return redirect()->intended(route('home'));
             }
         });
     }
@@ -76,7 +79,6 @@ class FortifyServiceProvider extends ServiceProvider
 
         if (request()->is('dashboard/*')) {
             Fortify::loginView('dashboard.content.authentications.login');
-//            Fortify::registerView('dashboard.contenr.');
         } else{
             Fortify::loginView('website.content.auth.login');
             Fortify::registerView('website.content.auth.register');

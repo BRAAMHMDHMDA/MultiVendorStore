@@ -7,7 +7,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index-2.html">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="{{ asset('website/assets/img/logo.png') }}" alt="">
                 </a>
             </div>
@@ -20,6 +20,18 @@
                         </a>
                     </li>
                     <li>
+                        @php
+                            $categories = \App\Models\Category::pluck('name', 'id');
+                            $halfCount = $categories->count() / 2;
+
+                            $menu1 = $categories->take($halfCount);
+                            $menu2 = $categories->skip($halfCount);
+//                                $categories = \App\Models\Category::get(['id','name']);
+//                                $numOfCategoriesInList = $categories->count()/2;
+//
+//                                $menu1 = $categories->take($numOfCategoriesInList);
+//                                $menu2 = $categories->slice($numOfCategoriesInList);
+                        @endphp
                         <a href="#">Categories <span class="caret"></span></a>
                         <div class="dropdown mega-menu megamenu1">
                             <div class="row">
@@ -28,11 +40,9 @@
                                         {{--                                        <li class="maga-menu-title">--}}
                                         {{--                                            <a href="#">Men</a>--}}
                                         {{--                                        </li>--}}
-                                        <li><a href="category.html">Clothing</a></li>
-                                        <li><a href="category.html">Handbags</a></li>
-                                        <li><a href="category.html">Maternity</a></li>
-                                        <li><a href="category.html">Jewelry</a></li>
-                                        <li><a href="category.html">Scarves</a></li>
+                                        @foreach($menu1 as $category_name)
+                                            <li><a href="{{ url('/products?category='.$category_name)  }}">{{ $category_name }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                                 <div class="col-sm-3 col-xs-12">

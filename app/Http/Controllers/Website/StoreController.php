@@ -10,17 +10,19 @@ use Illuminate\Http\Request;
 class StoreController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $stores = Store::paginate(10);
 
-//        dd($stores);
+        $stores = Store::active()->when($request -> search, function ($q) use ($request) {
+            return $q -> where('name', 'like', '%' . $request -> search . '%');
+        }) -> with('owner') -> withCount('products') -> paginate(4);
+
         return view('website.content.stores', ['stores' => $stores]);
     }
 
     public function show(Store $store)
     {
-        if (!$store->status == 'active') {
+        if (!$store -> status == 'active') {
             abort(403);
         }
         return view('website.content.store-details', ['store' => $store]);

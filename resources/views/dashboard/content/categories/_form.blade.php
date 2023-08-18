@@ -6,8 +6,8 @@
   <x-dashboard.form.select label="Category Parent" name="parent_id" :options="$parents" :old_option="$category->parent_id"/>
 
   <x-dashboard.form.input label="Image" class="" type="file" name="image" :value="$category->image" >
-    @if($category->image)
-      <img class="mt-3" src="{{ asset('storage/media/' . $category->image) }} " height="120px" />
+    @if($category->image_path)
+      <img class="mt-3" src="{{ $category->image_url }} " height="120px" />
     @endif
   </x-dashboard.form.input>
 

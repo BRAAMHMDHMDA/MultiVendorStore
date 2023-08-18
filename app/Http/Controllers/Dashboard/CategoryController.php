@@ -41,7 +41,7 @@ class CategoryController extends Controller
     {
 //        return view('dashboard.content.categories.indexDT');
         //
-      $categories = Category::with('parent')->withCount('products')->latest()->paginate();
+      $categories = Category::with('parent')->withCount('products')->latest()->paginate(10);
       return view('dashboard.content.categories.index', [
         'categories' => $categories
       ]);
@@ -97,6 +97,12 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        if ($category->products()->count())
+        {
+            return redirect()->route('dashboard.categories.index')->with([
+                'warning' => "($category->name) brand Linked with Products, First Must Delete Linked Products"
+            ]);
+        }
         $category->delete();
         Category::deleteImage($category->image_path);
 

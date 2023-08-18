@@ -4303,7 +4303,7 @@ __webpack_require__.r(__webpack_exports__);
 
 window.deleteConfirm = function (formId) {
   sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
-    icon: 'danger',
+    icon: 'warning',
     text: 'Do you want to delete this?',
     showCancelButton: true,
     confirmButtonText: 'Delete',
@@ -4315,6 +4315,33 @@ window.deleteConfirm = function (formId) {
     }
   });
 };
+window.confirmStatus = function (formId) {
+  var status = formId.dataset.status;
+  if (status === 'active') {
+    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+      icon: 'info',
+      text: 'Do you want to Ban this Account?',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Ban it!'
+    }).then(function (result) {
+      if (result.isConfirmed) {
+        formId.submit();
+      }
+    });
+  } else {
+    sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+      icon: 'info',
+      text: 'Do you want to Active this Account?',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Active it!'
+    }).then(function (result) {
+      if (result.isConfirmed) {
+        formId.submit();
+      }
+    });
+  }
+};
+
 //
 // window.confirmDeleteProduct = function(formId)
 // {
@@ -4334,23 +4361,24 @@ window.deleteConfirm = function (formId) {
 //
 // //end of confirmation Delete
 
-$('.btn-delete').click(function (e) {
-  var that = $(this);
-  e.preventDefault();
-  sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
-    title: 'Are you sure?',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, delete it!',
-    customClass: {
-      confirmButton: 'btn btn-primary',
-      cancelButton: 'btn btn-outline-danger ml-1'
-    },
-    buttonsStyling: false
-  }).then(function (result) {
-    console.log('asd');
-  });
-}); //end of confirmation Delete
+//
+// $('.btn-delete').click(function (e) {
+//     var that = $(this)
+//     e.preventDefault();
+//     Swal.fire({
+//         title: 'Are you sure?',
+//         icon: 'warning',
+//         showCancelButton: true,
+//         confirmButtonText: 'Yes, delete it!',
+//         customClass: {
+//             confirmButton: 'btn btn-primary',
+//             cancelButton: 'btn btn-outline-danger ml-1'
+//         },
+//         buttonsStyling: false
+//     }).then(function (result) {
+//         console.log('asd')
+//     });
+// });//end of confirmation Delete
 }();
 /******/ 	return __webpack_exports__;
 /******/ })()

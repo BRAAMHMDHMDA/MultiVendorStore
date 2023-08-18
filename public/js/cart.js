@@ -14,7 +14,7 @@ var __webpack_exports__ = {};
   !*** ./resources/js/cart.js ***!
   \******************************/
 (function ($) {
-  $('.quantity').on('change', function (e) {
+  $('.item-quantity').on('change', function (e) {
     $.ajax({
       url: "/cart/" + $(this).data('id'),
       //data-id

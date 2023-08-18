@@ -13,10 +13,14 @@ class Vendor extends Authenticatable
 {
     use HasFactory, Notifiable , HasImage, GetImageUrl;
 
+    public static string $imageDisk = 'media';
+    public static string $imageFolder = '/vendors';
+
     protected $fillable = [
         'name',
         'email',
         'username',
+        'password',
         'phone_number',
         'image_path',
         'status',

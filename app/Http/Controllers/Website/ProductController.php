@@ -9,15 +9,23 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(12);
-        return view('website.content.all-product',['products' => $products]);
+        $products = Product::active()
+            ->when($request->search, function ($q) use ($request) {
+                return $q->where('name', 'like', '%' . $request -> search . '%');
+            })
+            ->when($request->category, function ($q) use ($request) {
+                return $q->whereHas('category', function ($query) use ($request) {
+                    $query->where('name', 'like', '%' . $request->category . '%');
+                });
+            })->paginate(12);
+        return view('website.content.all-product', ['products' => $products]);
     }
 
     public function show(Product $product)
     {
-        if (!$product->status == Product::STATUS_ACTIVE) {
+        if (!$product -> status == Product::STATUS_ACTIVE) {
             abort(403);
         }
         return view('website.content.product-details', ['product' => $product]);

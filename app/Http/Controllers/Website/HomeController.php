@@ -13,7 +13,10 @@ class HomeController extends Controller
     {
         $newArrivalsProducts = Product::active()->latest()->take(8)->get();
         $featuredProducts = Product::active()->featured()->latest()->take(8)->get();
-        $categories = Category::whereNull('parent_id')->with('children')->get();
+        $categories = Category::active()->whereNull('parent_id')
+                        ->withCount('products')
+                        ->orderBy('products_count', 'desc')
+                        ->with('children')->take(8)->get();
 
         return view('website.content.home',[
             'newArrivalsProducts' => $newArrivalsProducts,

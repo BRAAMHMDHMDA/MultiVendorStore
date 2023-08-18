@@ -5,13 +5,11 @@
 @section('breadcrumb_left')
     <span class="text-muted fw-light ">Vendors/</span> Vendors List
 @endsection
-{{--@section('breadcrumb_right')--}}
-{{--    @admin--}}
-{{--    <a class="" href="{{ route('dashboard.categories.create') }}">--}}
-{{--        <button type="button" class="btn btn-primary p-2"><i class="fab fa-plus me-2"> </i> Add New Category</button>--}}
-{{--    </a>--}}
-{{--    @endadmin--}}
-{{--@endsection--}}
+@section('breadcrumb_right')
+    <a class="" href="{{ route('dashboard.vendors.create') }}">
+        <button type="button" class="btn btn-primary p-2"><i class="fab fa-plus me-2"> </i> Add New Vendor</button>
+    </a>
+@endsection
 
 @section('content')
 
@@ -68,14 +66,14 @@
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical"></i></button>
                                 <div class="dropdown-menu">
-{{--                                    <a class="dropdown-item" href="{{ route('dashboard.categories.edit', $vendor->id) }}">--}}
-{{--                                        <i class="ti ti-pencil me-1"></i> Edit--}}
-{{--                                    </a>--}}
-{{--                                    <a class="dropdown-item" onclick="confirmDelete({{$vendor->id}})"><i class="ti ti-trash me-1"></i> Delete</a>--}}
-{{--                                    <form action="{{ route('dashboard.categories.destroy', $vendor->id) }}" method="post" id={{$vendor->id}}>--}}
-{{--                                        @csrf--}}
-{{--                                        @method('delete')--}}
-{{--                                    </form>--}}
+                                    <a class="dropdown-item" href="{{ route('dashboard.vendors.edit', $vendor->id) }}">
+                                        <i class="ti ti-pencil me-1"></i> Edit
+                                    </a>
+                                    <a class="dropdown-item" onclick="deleteConfirm({{$vendor->id}})"><i class="ti ti-trash me-1"></i> Delete</a>
+                                    <form action="{{ route('dashboard.vendors.destroy', $vendor->id) }}" method="post" id={{$vendor->id}}>
+                                        @csrf
+                                        @method('delete')
+                                    </form>
                                     <a class="dropdown-item" onclick="confirmStatus(s{{$vendor->id}})">
                                         <i class="ti ti-ban me-1"></i>
                                         {{ $vendor->status === 'active' ? 'Ban Account' : 'Active Account' }}

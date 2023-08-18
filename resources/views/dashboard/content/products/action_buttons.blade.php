@@ -2,7 +2,7 @@
     <i class="fa fa-edit "></i>
 </a>
 
-<a class="btn btn-outline btn-sm btn-delete" onclick="confirmDelete({{$id}})">
+<a class="btn btn-outline btn-sm btn-delete" onclick="deleteConfirm({{$id}})">
     <i class="fa fa-trash-can text-danger" ></i>
 </a>
 
