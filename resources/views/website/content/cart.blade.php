@@ -35,7 +35,7 @@
                     </div>
                 @endempty
                 @foreach ($cart->get() as $item)
-                    <div class="wishlist-entry clearfix" id="{{ $item->id }}">
+                    <div class="wishlist-entry clearfix" id="{{$item->id}}">
                         <div class="col-md-4 col-sm-4">
                             <div class="cart-entry">
                                 <a class="image" href="#"><img src="{{ $item->product->image_url }}"  alt=""></a>
@@ -55,7 +55,7 @@
 {{--                                <li class="entry number-minus">1</li>--}}
 {{--                                <li class="entry number">{{ $item->quantity }}</li>--}}
 {{--                                <li class="entry number-plus">1</li>--}}
-                                <input class="quantity form-control" data-id="{{$item->id}}" value="{{$item->quantity}}" type="number" style="width: 50%; margin: auto">
+                                <input class="item-quantity form-control" data-id="{{$item->id}}" value="{{$item->quantity}}" type="number" style="width: 50%; margin: auto">
                             </ul>
                         </div>
                         <div class="col-md-2 col-sm-2 entry">
@@ -73,11 +73,4 @@
         </div>
     </div>
     <!-- End Content -->
-    @push('scripts')
-        <script>
-            const csrf_token = "{{ csrf_token() }}";
-        </script>
-{{--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>--}}
-        <script src="{{ asset('js/cart.js')}}"></script>
-    @endpush
 </x-website.website-layout>

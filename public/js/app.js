@@ -4310,7 +4310,6 @@ window.deleteConfirm = function (formId) {
     confirmButtonColor: '#e3342f'
   }).then(function (result) {
     if (result.isConfirmed) {
-      console.log('isConfirmed');
       document.getElementById(formId).submit();
     }
   });
@@ -4341,6 +4340,9 @@ window.confirmStatus = function (formId) {
     });
   }
 };
+
+
+
 
 //
 // window.confirmDeleteProduct = function(formId)

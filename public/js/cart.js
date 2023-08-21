@@ -14,6 +14,35 @@ var __webpack_exports__ = {};
   !*** ./resources/js/cart.js ***!
   \******************************/
 (function ($) {
+  function reRenderCartMenu() {
+    $.ajax({
+      url: "/reRender-cart-menu",
+      // Replace with your endpoint to fetch updated cart data
+      method: 'get',
+      success: function success(updatedCartHtml) {
+        // $('#cart-menu-container').html(updatedCartHtml);
+        $('#cart-menu-container').replaceWith(updatedCartHtml);
+      }
+    });
+  }
+  window.removeProduct = function (ID) {
+    $.ajax({
+      url: "/cart/" + ID,
+      //data-id
+      method: 'delete',
+      data: {
+        _token: csrf_token
+      },
+      success: function success(response) {
+        $("#".concat(ID)).remove();
+        $("#m".concat(ID)).remove();
+        // re-render the CartMenu component
+        reRenderCartMenu();
+        // alert('Successfully Product Deleted');
+      }
+    });
+  };
+
   $('.item-quantity').on('change', function (e) {
     $.ajax({
       url: "/cart/" + $(this).data('id'),
@@ -22,6 +51,10 @@ var __webpack_exports__ = {};
       data: {
         quantity: $(this).val(),
         _token: csrf_token
+      },
+      success: function success(response) {
+        // re-render the CartMenu component
+        reRenderCartMenu();
       }
     });
   });
@@ -36,9 +69,31 @@ var __webpack_exports__ = {};
       },
       success: function success(response) {
         $("#".concat(id)).remove();
+        $("#m".concat(id)).remove();
+        reRenderCartMenu();
+        // alert('Successfully Product Deleted');
       }
     });
   });
+
+  // $('#cart-menu-container').on('click', '.remove-item', function(e) {
+  //
+  //     let id = $(this).data('id');
+  //         $.ajax({
+  //             url: "/cart/" + id, //data-id
+  //             method: 'delete',
+  //             data: {
+  //                 _token: csrf_token
+  //             },
+  //             success: response => {
+  //                 // $(`#${id}`).remove();
+  //                 reRenderCartMenu();
+  //                 // alert('Successfully Product Deleted');
+  //
+  //             }
+  //         });
+  // });
+
   $('.add-to-cart').on('click', function (e) {
     $.ajax({
       url: "/cart",
@@ -49,7 +104,9 @@ var __webpack_exports__ = {};
         _token: csrf_token
       },
       success: function success(response) {
-        alert('product added');
+        // re-render the CartMenu component
+        reRenderCartMenu();
+        alert('Successfully Product Added');
       }
     });
   });

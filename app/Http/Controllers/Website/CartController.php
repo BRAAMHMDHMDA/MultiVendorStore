@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Repositories\Cart\CartInterfaceRepo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class CartController extends Controller
 {
@@ -56,9 +57,18 @@ class CartController extends Controller
     public function destroy($id)
     {
         $this->cart->delete($id);
-
-        return [
-            'message' => 'Item deleted!',
-        ];
     }
+
+    public function reRenderCartMenu()
+    {
+        $items = $this->cart->get();
+        $total = $this->cart->total();
+
+        // re Render the CartMenu component's view and return it as HTML
+        $updatedCartHtml = View::make('components.website.cart-menu', compact('items', 'total'))->render();
+
+        return $updatedCartHtml;
+    }
+
+
 }

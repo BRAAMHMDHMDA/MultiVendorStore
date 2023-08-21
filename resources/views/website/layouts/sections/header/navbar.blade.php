@@ -47,14 +47,9 @@
                                 </div>
                                 <div class="col-sm-3 col-xs-12">
                                     <ul class="menulinks">
-                                        {{--                                        <li class="maga-menu-title">--}}
-                                        {{--                                            <a href="#">Women</a>--}}
-                                        {{--                                        </li>--}}
-                                        <li><a href="category.html">Handbags</a></li>
-                                        <li><a href="category.html">Jewelry</a></li>
-                                        <li><a href="category.html">Clothing</a></li>
-                                        <li><a href="category.html">Watches</a></li>
-                                        <li><a href="category.html">Hats</a></li>
+                                        @foreach($menu2 as $category_name)
+                                            <li><a href="{{ url('/products?category='.$category_name)  }}">{{ $category_name }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                                 <div class="col-sm-5 col-sm-offset-1 col-xs-12">
@@ -76,7 +71,7 @@
                         </a>
                     </li>
                     <li>
-                        <a @if(Route::is('about-us')) class="active" @endif href="{{ route('all-stores') }}">
+                        <a @if(Route::is('about-us')) class="active" @endif href="about-us">
                             About Us
                         </a>
                     </li>

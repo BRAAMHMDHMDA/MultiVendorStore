@@ -25,7 +25,10 @@ class StoreController extends Controller
         if (!$store -> status == 'active') {
             abort(403);
         }
-        return view('website.content.store-details', ['store' => $store]);
+
+        $products = $store->products()->paginate(12); // Change the number per page as needed
+
+        return view('website.content.store-details', ['store' => $store, 'products' => $products]);
     }
 
 }
