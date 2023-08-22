@@ -6,6 +6,7 @@ use App\Http\Controllers\Website\{
     ProductController,
     StoreController,
     CartController,
+    CurrencyConverterController,
 };
 
 
@@ -22,6 +23,8 @@ Route ::get('/store/{store:slug}', [StoreController::class, 'show']) -> name('st
 
 Route::resource('cart', CartController::class)->except(['create', 'edit']);
 Route::get('/reRender-cart-menu', [CartController::class, 'reRenderCartMenu']);
+
+Route::post('currency', CurrencyConverterController::class)->name('currency');
 
 // Website Protected Routes
 Route::group([

@@ -5,24 +5,26 @@
             <div class="col-md-3 col-sm-2">
                 <div class="language-wrapper">
                     <div class="box-currency" >
-                        <form method="post" id="form-currency">
+                        <form method="post" action="{{ route('currency') }}">
+                            @csrf
                             <div class="btn-group toggle-wrap">
-                      <span class="toggle">
-                        $USD
-                      </span>
+                                @php
+                                    $chosenCurrency = Session::get('currency_code', Config::get('app.currency_default'));
+                                @endphp
+                                <span class="toggle">{{$chosenCurrency ==='USD' ? '' : $chosenCurrency }}{{Symfony\Component\Intl\Currencies::getSymbol($chosenCurrency)}} </span>
                                 <ul class="toggle_cont pull-right">
                                     <li>
-                                        <button class="currency-select selected" type="button" name="USD">
-                                            $ USD </button>
+                                        <button class="currency-select @if($chosenCurrency==='USD') selected @endif" type="submit" name="currency_code" value="USD">
+                                            USD $ </button>
                                     </li>
                                     <li>
-                                        <button class="currency-select" type="button" name="EUR">
-                                            € EUR
+                                        <button class="currency-select @if($chosenCurrency==='EUR') selected @endif" type="submit" name="currency_code" value="EUR">
+                                            EUR €
                                         </button>
                                     </li>
                                     <li>
-                                        <button class="currency-select" type="button" name="GBP">
-                                            £ GBP </button>
+                                        <button class="currency-select @if($chosenCurrency==='ILS') selected @endif" type="submit" name="currency_code" value="ILS">
+                                            ILS ₪ </button>
                                     </li>
                                 </ul>
                             </div>
