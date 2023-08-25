@@ -47,7 +47,10 @@
                         </div>
                         <div class="col-md-2 col-sm-2 entry">
                             <div class="price">
-                                {{ Currency::format($item->product->price) }} <del>{{ Currency::format($item->product->compare_price) }}</del>
+                                {{ Currency::format($item->product->price) }}
+                                @if($item->product->compare_price)
+                                    <del>{{ Currency::format($item->product->compare_price) }}</del>
+                                @endif
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-2">

@@ -7,6 +7,7 @@ use App\Http\Controllers\Website\{
     StoreController,
     CartController,
     CurrencyConverterController,
+    CheckoutController,
 };
 
 
@@ -26,11 +27,13 @@ Route::get('/reRender-cart-menu', [CartController::class, 'reRenderCartMenu']);
 
 Route::post('currency', CurrencyConverterController::class)->name('currency');
 
+
 // Website Protected Routes
 Route::group([
     'middleware' => ['auth:web'],
 ], function () {
-
+    Route::get('/checkout', [CheckoutController::class, 'create'])->name('checkout');
+    Route::post('/checkout', [CheckoutController::class, 'store']);
 });
 
 // Dashboard Routes
