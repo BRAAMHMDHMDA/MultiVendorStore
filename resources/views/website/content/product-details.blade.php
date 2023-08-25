@@ -8,42 +8,18 @@
                     <div class="product-details-image">
                         <div class="slider-for slider">
                             <div>
-                                <img src="{{ asset('website/assets/img/single-product/img1.jpg') }}" alt="">
+                                <img src="{{ $product->image_url }}" alt="">
                             </div>
                             <div>
-                                <img src="{{ asset('website/assets/img/single-product/img2.jpg') }}" alt="">
-                            </div>
-                            <div>
-                                <img src="{{ asset('website/assets/img/single-product/img3.jpg') }}" alt="">
-                            </div>
-                            <div>
-                                <img src="{{ asset('website/assets/img/single-product/img4.jpg') }}" alt="">
-                            </div>
-                            <div>
-                                <img src="{{ asset('website/assets/img/single-product/img5.jpg') }}" alt="">
-                            </div>
-                            <div>
-                                <img src="{{ asset('website/assets/img/single-product/img3.jpg') }}" alt="">
+                                <img src="{{ $product->image_url }}" alt="">
                             </div>
                         </div>
                         <ul id="productthumbnail" class="slider slider-nav">
                             <li>
-                                <img src="{{ asset('website/assets/img/single-product/small/img1.jpg') }}" alt="">
+                                <img src="{{ $product->image_url }}" alt="">
                             </li>
                             <li>
-                                <img src="{{ asset('website/assets/img/single-product/small/img2.jpg') }}" alt="">
-                            </li>
-                            <li>
-                                <img src="{{ asset('website/assets/img/single-product/small/img3.jpg') }}" alt="">
-                            </li>
-                            <li>
-                                <img src="{{ asset('website/assets/img/single-product/small/img4.jpg') }}" alt="">
-                            </li>
-                            <li>
-                                <img src="{{ asset('website/assets/img/single-product/small/img5.jpg') }}" alt="">
-                            </li>
-                            <li>
-                                <img src="{{ asset('website/assets/img/single-product/small/img3.jpg') }}" alt="">
+                                <img src="{{ $product->image_url }}" alt="">
                             </li>
                         </ul>
                     </div>
@@ -76,26 +52,17 @@
                         <form action="{{ route('cart.store') }}" method="post">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
-
-                            <!-- Product Size -->
-                        {{--                        <div class="product-size">--}}
-                        {{--                            <h5 class="sub-title">Select Size</h5>--}}
-                        {{--                            <span>S</span>--}}
-                        {{--                            <span class="active">M</span>--}}
-                        {{--                            <span>L</span>--}}
-                        {{--                            <span>XL</span>--}}
-                        {{--                        </div>--}}
-                        {{--                        <!-- Product Color -->--}}
-                        {{--                        <div class="color-list">--}}
-                        {{--                            <h5 class="sub-title">Select Color</h5>--}}
-                        {{--                            <button class="color active" style="background-color: #51bd99;"><i class="fa fa-check"></i></button>--}}
-                        {{--                            <button class="color" style="background-color: #ff7a5f;"><i class="fa fa-check"></i></button>--}}
-                        {{--                            <button class="color" style="background-color: #baa6c2;"><i class="fa fa-check"></i></button>--}}
-                        {{--                            <button class="color" style="background-color: #414141;"><i class="fa fa-check"></i></button>--}}
-                        {{--                        </div>--}}
                         <!-- Quantity Cart -->
                             <div class="quantity-cart">
-                                <button class="btn btn-common" type="submit"><i class="icon-basket-loaded"></i> add to cart</button>
+                                @if($product->quantity != 0)
+                                    <span style="color: #00b300;font-size: large ">In Stock </span>
+                                    <span style="font-size: small">{{ $product->quantity }}</span>
+                                    <br />
+                                    <button class="btn btn-common" style="margin-top: 15px" type="submit"><i class="icon-basket-loaded"></i> add to cart</button>
+                                @else
+                                    <div style="color: #5b0101;font-size: large ">Out Stock </div>
+                                    <button class="btn btn-common" style="margin-top: 15px" type="button" disabled><i class="icon-basket-loaded"></i> add to cart</button>
+                                @endif
                             </div>
                         </form>
                         <!-- Usefull Link -->

@@ -97,7 +97,14 @@
 {{--                    </div>--}}
                     <!-- Quantity Cart -->
                     <div class="quantity-cart" style="margin-top: 50px">
-                        <button class="add-to-cart btn btn-common " data-id="{{ $product->id }}" data-quantity="1"><i class="icon-basket"></i> add to cart</button>
+                        @if($product->quantity != 0)
+                            <span style="color: #00b300;font-size: large;">In Stock </span>
+                            <span style="font-size: small">{{ $product->quantity }}</span>
+                            <button class="add-to-cart btn btn-common " style="margin-top: 15px" data-id="{{ $product->id }}" data-quantity="1"><i class="icon-basket"></i> add to cart</button>
+                        @else
+                            <span style="color: #5b0101;font-size: large">Out Stock </span>
+                            <button class="add-to-cart btn btn-common disabled" style="margin-top: 15px" data-id="{{ $product->id }}" data-quantity="1"><i class="icon-basket"></i> add to cart</button>
+                        @endif
                     </div>
                     <!-- Share -->
                     <div class="share-icons pull-right">
