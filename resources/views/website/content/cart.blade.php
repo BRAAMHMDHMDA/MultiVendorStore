@@ -1,7 +1,6 @@
 <x-website.website-layout title="Cart Page">
     <x-website.breadcrumb current="Shopping Cart" title="Shopping Cart Products"/>
 
-
     <!-- Start Content -->
     <div id="content">
         <div class="container">
@@ -9,6 +8,9 @@
                 <div class="header text-center">
                     <h3 class="small-title">Shopping cart</h3>
                     <p>Shopping cart-Checkout-Order complete</p>
+                </div>
+                <div class="col-md-12" id="error" style="color: red">
+
                 </div>
                 <div class="col-md-12">
                     <div class="wishlist">
@@ -58,7 +60,7 @@
 {{--                                <li class="entry number-minus">1</li>--}}
 {{--                                <li class="entry number">{{ $item->quantity }}</li>--}}
 {{--                                <li class="entry number-plus">1</li>--}}
-                                <input class="item-quantity form-control" data-id="{{$item->id}}" value="{{$item->quantity}}" type="number" style="width: 50%; margin: auto">
+                                <input class="item-quantity form-control" data-id="{{$item->id}}" data-product_id="{{$item->product->id}}" value="{{$item->quantity}}" type="number" style="width: 50%; margin: auto">
                             </ul>
                         </div>
                         <div class="col-md-2 col-sm-2 entry">

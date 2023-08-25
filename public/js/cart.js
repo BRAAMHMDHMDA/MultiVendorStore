@@ -50,12 +50,17 @@ var __webpack_exports__ = {};
       method: 'put',
       data: {
         quantity: $(this).val(),
+        product_id: $(this).data('product_id'),
         _token: csrf_token
       },
       success: function success(response) {
         // re-render the CartMenu component
         reRenderCartMenu();
-      }
+        $('#error').html('')
+      },
+      error: function error(response) {{
+        $('#error').html(response.responseJSON.message)
+      }}
     });
   });
   $('.remove-item').on('click', function (e) {

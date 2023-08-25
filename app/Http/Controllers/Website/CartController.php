@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Product;
 use App\Repositories\Cart\CartInterfaceRepo;
 use Illuminate\Http\Request;
@@ -26,16 +27,21 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
+        $product = Product::findOrFail($request->post('product_id'));
+
         $request->validate([
             'product_id' => ['required', 'int', 'exists:products,id'],
-            'quantity' => ['nullable', 'int', 'min:1'],
+            'quantity' => ['nullable', 'int', 'min:1', function ($attribute, $value, $fail) use ($request, $product) {
+                if ($product && $value > $product->quantity) {
+                    $fail("The selected quantity exceeds the available stock.");
+                }
+            }],
         ]);
 
-        $product = Product::findOrFail($request->post('product_id'));
         $this->cart->add($product);
 
+        // For Ajax requests
         if ($request->expectsJson()) {
-
             return response()->json([
                 'message' => 'Item added to cart!',
             ], 201);
@@ -47,10 +53,16 @@ class CartController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'quantity' => ['required', 'int', 'min:1'],
-        ]);
+        $product = Product::findOrFail($request->post('product_id'))->first();
 
+        $request->validate([
+            'quantity' => ['required', 'int', 'min:1', function ($attribute, $value, $fail) use ($request, $product) {
+                if ($product && $value > $product->quantity) {
+                    $fail("The selected quantity exceeds the available stock.");
+                    return redirect()->refresh();
+                }
+            }],
+        ]);
         $this->cart->update($id, $request->post('quantity'));
     }
 
