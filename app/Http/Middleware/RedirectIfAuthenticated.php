@@ -40,9 +40,8 @@ class RedirectIfAuthenticated
 
         $checkAuthInDashboard = $this->isDashboard() && ( $this->guardAuth('admins') || $this->guardAuth('vendors'));
         $checkAuthInWebsite = !$this->isDashboard() && $this->guardAuth('web');
-
-        if ($checkAuthInDashboard) return redirect('dashboard');
-        elseif ($checkAuthInWebsite) return redirect('/');
+        if ($checkAuthInDashboard) return redirect(route('dashboard.home'));
+        elseif ($checkAuthInWebsite) return redirect(route('home'));
 
         return $next($request);
 

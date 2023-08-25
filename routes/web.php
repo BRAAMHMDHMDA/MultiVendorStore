@@ -10,8 +10,6 @@ use App\Http\Controllers\Website\{
     CheckoutController,
 };
 
-
-
 // Website Public Routes
 Route::get('/home', HomeController::class)->name('home');
 Route::redirect('/', '/home');

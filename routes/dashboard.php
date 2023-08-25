@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\{
     AdminController,
 };
 
+Route::redirect('/dashboard', '/dashboard/home');
 
 Route::group([
   'middleware' => ['auth:admins,vendors'],
