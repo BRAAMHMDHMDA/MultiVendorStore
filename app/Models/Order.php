@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Auth;
 
 class Order extends Model
 {
@@ -63,7 +64,8 @@ class Order extends Model
     protected static function booted(): void
     {
         static::creating(function(Order $order) {
-             $order->number = Order::getNextOrderNumber();
+            $order->number = Order::getNextOrderNumber();
+            $order->user_id = Auth::user()->id;
         });
     }
 

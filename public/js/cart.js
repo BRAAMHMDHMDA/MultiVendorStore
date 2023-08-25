@@ -80,25 +80,6 @@ var __webpack_exports__ = {};
       }
     });
   });
-
-  // $('#cart-menu-container').on('click', '.remove-item', function(e) {
-  //
-  //     let id = $(this).data('id');
-  //         $.ajax({
-  //             url: "/cart/" + id, //data-id
-  //             method: 'delete',
-  //             data: {
-  //                 _token: csrf_token
-  //             },
-  //             success: response => {
-  //                 // $(`#${id}`).remove();
-  //                 reRenderCartMenu();
-  //                 // alert('Successfully Product Deleted');
-  //
-  //             }
-  //         });
-  // });
-
   $('.add-to-cart').on('click', function (e) {
     $.ajax({
       url: "/cart",

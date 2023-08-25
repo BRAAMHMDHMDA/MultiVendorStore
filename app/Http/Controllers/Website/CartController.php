@@ -27,12 +27,15 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        $product = Product::findOrFail($request->post('product_id'));
+        $product = Product::where('id', $request->product_id)->first();
+
+        $cart = Cart::where('product_id', $request->product_id)->first('quantity');
+        $QTYInCart = $cart !== null ? $cart->quantity : 0;
 
         $request->validate([
             'product_id' => ['required', 'int', 'exists:products,id'],
-            'quantity' => ['nullable', 'int', 'min:1', function ($attribute, $value, $fail) use ($request, $product) {
-                if ($product && $value > $product->quantity) {
+            'quantity' => ['nullable', 'int', 'min:1', function ($attribute, $value, $fail) use ($product, $QTYInCart) {
+                if ($product && ($product->quantity==0 || $QTYInCart >= $product->quantity )) {
                     $fail("The selected quantity exceeds the available stock.");
                 }
             }],
@@ -43,7 +46,8 @@ class CartController extends Controller
         // For Ajax requests
         if ($request->expectsJson()) {
             return response()->json([
-                'message' => 'Item added to cart!',
+                'message' => "Item added to cart! $product->quantity ",
+
             ], 201);
         }
 
@@ -53,13 +57,11 @@ class CartController extends Controller
 
     public function update(Request $request, $id)
     {
-        $product = Product::findOrFail($request->post('product_id'))->first();
-
+        $product = Product::where('id',$request->product_id)->first();
         $request->validate([
-            'quantity' => ['required', 'int', 'min:1', function ($attribute, $value, $fail) use ($request, $product) {
+            'quantity' => ['required', 'int', 'min:1', function ($attribute, $value, $fail) use ($product) {
                 if ($product && $value > $product->quantity) {
                     $fail("The selected quantity exceeds the available stock.");
-                    return redirect()->refresh();
                 }
             }],
         ]);

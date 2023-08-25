@@ -40,9 +40,9 @@
                     <div class="wishlist-entry clearfix" id="{{$item->id}}">
                         <div class="col-md-4 col-sm-4">
                             <div class="cart-entry">
-                                <a class="image" href="#"><img src="{{ $item->product->image_url }}"  alt=""></a>
+                                <a class="image" href="{{route('product-details',$item->product->slug)}}"><img src="{{ $item->product->image_url }}"  alt=""></a>
                                 <div class="cart-content">
-                                    <h4 class="title">{{ $item->product->name }}</h4>
+                                    <a href="{{route('product-details',$item->product->slug)}}"><h4 class="title">{{ $item->product->name }}</h4></a>
                                     <p>{{ $item->product->description }}</p>
                                 </div>
                             </div>

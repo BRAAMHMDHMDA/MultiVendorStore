@@ -9,11 +9,11 @@
                             @if($items->count()!==0)
                                 @foreach($items as $item)
                                     <div class="cart-entry" id="m{{$item->id}}">
-                                        <a href="#" class="image">
+                                        <a href="{{route('product-details',$item->product->slug)}}" class="image">
                                             <img src="{{ $item->product->image_url }}"  alt="{{ $item->product->slug }}">
                                         </a>
                                         <div class="content">
-                                            <a href="#" class="title">{{ $item->product->name }}</a>
+                                            <a href="{{route('product-details',$item->product->slug)}}" class="title">{{ $item->product->name }}</a>
                                             <p class="quantity">Quantity: {{ $item->quantity }}</p>
                                             <span class="price">{{ Currency::format($item->product->price) }} x {{ $item->quantity }}</span>
                                         </div>

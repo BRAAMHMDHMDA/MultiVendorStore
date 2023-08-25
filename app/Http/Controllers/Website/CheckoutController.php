@@ -34,7 +34,6 @@ class CheckoutController extends Controller
 
                 $order = Order::create([
                     'store_id' => $store_id,
-                    'user_id' => Auth::id(),
                     'payment_method' => 'COD',
                 ]);
 
