@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 class Order extends Model
 {
@@ -66,6 +67,12 @@ class Order extends Model
         static::creating(function(Order $order) {
             $order->number = Order::getNextOrderNumber();
             $order->user_id = Auth::user()->id;
+        });
+        static::addGlobalScope('store', function (Builder $builder){
+            $user = Auth::guard('vendors')->user();
+            if ($user && $user->store_id) {
+                $builder->where('store_id', '=', $user->store_id);
+            }
         });
     }
 

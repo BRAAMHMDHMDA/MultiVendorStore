@@ -49,6 +49,14 @@
       "guard": "all"
     },
     {
+      "url": "dashboard/orders",
+      "name": "Orders",
+      "icon": "menu-icon tf-icons ti ti-file-dollar",
+      "slug": "dashboard-orders",
+      "target": "",
+      "guard": "all"
+    },
+    {
       "url": "dashboard/stores",
       "name": "Stores",
       "icon": "menu-icon tf-icons ti ti-building-store",

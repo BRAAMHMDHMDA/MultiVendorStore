@@ -28,13 +28,18 @@ class CheckoutController extends Controller
 //        $request->dd();
         $items = $cart->get()->groupBy('product.store_id')->all();
 
+
         DB::beginTransaction();
         try {
-            foreach ($items as $store_id => $cart_items) {
 
+            foreach ($items as $store_id => $cart_items) {
+                $total = $cart_items->sum(function($item) {
+                    return $item->quantity * $item->product->price;
+                });
                 $order = Order::create([
                     'store_id' => $store_id,
                     'payment_method' => 'COD',
+                    'total' => $total,
                 ]);
 
                 foreach ($cart_items as $item) {

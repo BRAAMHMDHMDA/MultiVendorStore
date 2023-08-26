@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\{
     UserController,
     VendorController,
     AdminController,
+    OrderController,
 };
 
 Route::redirect('/dashboard', '/dashboard/home');
@@ -55,5 +56,11 @@ Route::group([
     // Routes admins
     Route::resource('admins', AdminController::class);
     Route::patch('admin/{admin}/status', [AdminController::class, 'setStatus'])->name('admin.status');
+
+    // Routes Orders
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+
+
 
 });
