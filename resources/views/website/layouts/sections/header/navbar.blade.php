@@ -78,13 +78,13 @@
                         </a>
                     </li>
                     <li>
-                        <a @if(Route::is('about-us')) class="active" @endif href="about-us">
+                        <a @if(Route::is('about-us')) class="active" @endif href="{{ route('about-us') }}">
                             About Us
                         </a>
                     </li>
                     <li>
-                        <a href="contact.html">
-                            Contact
+                        <a @if(Route::is('contact-us')) class="active" @endif href="{{ route('contact-us') }}">
+                            Contact Us
                         </a>
                     </li>
                 </ul>

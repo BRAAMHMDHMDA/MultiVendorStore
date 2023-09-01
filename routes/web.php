@@ -8,6 +8,8 @@ use App\Http\Controllers\Website\{
     CartController,
     CurrencyConverterController,
     CheckoutController,
+    ContactUsController,
+    AboutUsController,
 };
 
 // Website Public Routes
@@ -24,6 +26,9 @@ Route::resource('cart', CartController::class)->except(['create', 'edit']);
 Route::get('/reRender-cart-menu', [CartController::class, 'reRenderCartMenu']);
 
 Route::post('currency', CurrencyConverterController::class)->name('currency');
+
+Route::get('/contactUs', [ContactUsController::class, 'index'])->name('contact-us');
+Route::get('/aboutUs', AboutUsController::class)->name('about-us');
 
 
 // Website Protected Routes
