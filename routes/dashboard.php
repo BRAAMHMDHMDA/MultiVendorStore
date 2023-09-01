@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\{
     VendorController,
     AdminController,
     OrderController,
+    SettingsController,
 };
 
 Route::redirect('/dashboard', '/dashboard/home');
@@ -61,6 +62,8 @@ Route::group([
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 
+    Route::get('settings/{group?}', [SettingsController::class, 'index'])->name('settings.index');
+    Route::put('settings/{group}', [SettingsController::class, 'update'])->name('settings.update');
 
 
 });

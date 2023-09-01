@@ -7,9 +7,16 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="{{ route('home') }}">
-                    <img src="{{ asset('website/assets/img/logo.png') }}" alt="">
-                </a>
+                @if(config('app.logo&name'))
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        <img src="{{ config('app.logo&name') }}" alt="">
+                    </a>
+                @else
+                    <a class="" href="{{ route('home') }}" style="display: flex; align-items: center; justify-content: center; padding: 20px; gap: 10px;color: #3f51b5">
+                        <img src="{{ config('app.logo') }}" alt="" height="40px">
+                        <p style="font-size: larger; font-weight: bold; text-transform: uppercase">{{ config('app.name') }}</p>
+                    </a>
+                @endif
             </div>
             <div class="navbar-collapse collapse">
                 <!-- Start Navigation List -->

@@ -30,7 +30,7 @@
                             </div>
                         </form>
                     </div>
-                    <a href="#"><i class="icon-phone"></i> Call Us: (123) 456- 789</a>
+                    <a href="#"><i class="icon-phone"></i> Call Us: {{config('contact.phone')}}</a>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -42,16 +42,14 @@
                             <ul class="categories-filter animate-dropdown">
                                 <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="category.html">Categories <span class="caret"></span></a>
                                     <ul class="dropdown-menu animated fadeIn">
-                                        <li class="menu-header">Clothing</li>
-                                        <li><a tabindex="-1" href="#">- Men</a></li>
-                                        <li><a tabindex="-1" href="#">- Women</a></li>
-                                        <li><a tabindex="-1" href="#">- Boys</a></li>
-                                        <li><a tabindex="-1" href="#">- Girls</a></li>
-                                        <li class="menu-header">Electronics</li>
-                                        <li><a tabindex="-1" href="#">- Laptops</a></li>
-                                        <li><a tabindex="-1" href="#">- Desktops</a></li>
-                                        <li><a tabindex="-1" href="#">- Cameras</a></li>
-                                        <li><a tabindex="-1" href="#">- Mobile Phones</a></li>
+                                        <li><a href="#">- Men</a></li>
+                                        <li><a href="#">- Women</a></li>
+                                        <li><a href="#">- Boys</a></li>
+                                        <li><a href="#">- Girls</a></li>
+                                        <li><a href="#">- Laptops</a></li>
+                                        <li><a href="#">- Desktops</a></li>
+                                        <li><a href="#">- Cameras</a></li>
+                                        <li><a href="#">- Mobile Phones</a></li>
                                     </ul>
                                 </li>
                             </ul>

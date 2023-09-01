@@ -6,9 +6,9 @@
                 <div class="contact-us">
                     <h3 class="widget-title">Contact Us</h3>
                     <ul class="contact-list">
-                        <li><i class="icon-home"></i> <span>888 6th 10001 Oakwood Avenue, New York City, NY</span></li>
-                        <li><i class="icon-call-out"></i> <span>212-631-5135 <br> 212-631-5105</span></li>
-                        <li><i class="icon-envelope"></i> <span>sales@emart.com  support@emart.com</span></li>
+                        <li style="margin-bottom: 25px"><i class="icon-home"></i> <span>{{ config('contact.locationAddress') }}</span></li>
+                        <li style="margin-bottom: 25px"><i class="icon-call-out"></i> {{ config('contact.telephone') }}</li>
+                        <li style="margin-bottom: 25px"><i class="icon-envelope"></i> {{ config('contact.email') }}</li>
                     </ul>
                 </div>
             </div>

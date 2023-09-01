@@ -7,11 +7,18 @@
     <!-- ! Hide app brand if navbar-full -->
     @if(!isset($navbarFull))
         <div class="app-brand demo">
-            <a href="{{url('/')}}" class="app-brand-link">
-      <span class="app-brand-logo demo">
-        @include('dashboard._partials.macros',["height"=>20])
-      </span>
-                <span class="app-brand-text demo menu-text fw-bold">{{config('variables.templateName')}}</span>
+            <a href="{{route('dashboard.home')}}" class="app-brand-link">
+                @if(config('app.logo&name'))
+                    <img src="{{config('app.logo&name')}}" width="70%" alt="">
+                @else
+                    <img src="{{config('app.logo')}}" width="70%" alt="">
+                    <span class="app-brand-text demo menu-text fw-bold">{{config('app.name')}}</span>
+                @endif
+
+{{--                <span class="app-brand-logo demo">--}}
+{{--                --}}{{--        @include('dashboard._partials.macros',["height"=>20])--}}
+{{--              </span>--}}
+{{--                <span class="app-brand-text demo menu-text fw-bold">{{config('app.name')}}</span>--}}
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">

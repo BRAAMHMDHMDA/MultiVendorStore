@@ -80,6 +80,14 @@
       "slug": "dashboard-customers",
       "target": "",
       "guard": "admins"
+    },
+    {
+      "url": "dashboard/settings",
+      "name": "Settings",
+      "icon": "menu-icon tf-icons ti ti-settings",
+      "slug": "dashboard-settings",
+      "target": "",
+      "guard": "admins"
     }
 
   ]
