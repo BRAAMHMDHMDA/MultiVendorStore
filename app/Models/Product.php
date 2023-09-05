@@ -118,18 +118,36 @@ class Product extends Model
     {
         return DataTables::of($query)
             ->addIndexColumn()
-            ->addColumn('image', function ($product) {
-                return $img = '<img src="'.asset($product->image_url).'" class="thumbnail me-2" width="40">';
+            ->editColumn('name', function ($product) {
+                $img = '<img src="'.asset($product->image_url).'" class="thumbnail me-2" width="40">';
+                $name = $img . "<span> $product->name </span>";
+                return $name;
             })
             ->addColumn('action',  function ($row) use ($is_trash) {
                 // Render the action_buttons view and pass the 'id' data
                 return view('dashboard.content.products.action_buttons', ['id' => $row->id] , ['is_trash' => $is_trash])->render();
             })
-            ->addColumn('created_at', function ($row) {
+            ->editColumn('created_at', function ($row) {
                 return $row->created_at->diffForHumans();
+//                return $row->created_at->format('Y-m-d H:i');
             })
-            ->rawColumns(['image', 'action'])
+            ->rawColumns(['image', 'action','name'])
             ->make(true);
     }
+
+    //scope
+    public function scopeWhenCategoryId($query, $categoryId)
+    {
+        return $query->when($categoryId, function ($q) use ($categoryId) {
+
+            return $q->whereHas('categories', function ($qu) use ($categoryId) {
+
+                return $qu->where('category.id', $categoryId);
+
+            });
+
+        });
+
+    }// end of scopeWhenGenreId
 
 }

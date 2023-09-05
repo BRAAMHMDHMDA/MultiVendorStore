@@ -25,11 +25,13 @@ class ProductController extends Controller
             return view('dashboard.content.products.index')->with('notify', $notify);
 
         }
-        return view('dashboard.content.products.index');
+        return view('dashboard.content.products.index')->with([
+            'categories' => Category::all()
+        ]);
     }
 
     public function datatable() {
-        $query = Product::with('category:id,name');
+        $query = Product::whenCategoryId(request()->category_id)->with('category:id,name');
         return Product::get_datatable($query);
     }
 

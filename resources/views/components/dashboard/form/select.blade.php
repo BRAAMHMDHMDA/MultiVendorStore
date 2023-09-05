@@ -1,11 +1,13 @@
 @props([
-     'name', 'label' , 'options' , 'old_option'
+     'name', 'label' => '' , 'options' , 'old_option'
 ])
 
 
 <div class="row">
-    <label class="col-sm-2 col-form-label" for="{{ $name }}">{{ $label }}</label>
-    <div class="col-sm-9">
+    @if($label !== '')
+        <label class="col-sm-2 col-form-label" for="{{ $name }}">{{ $label }}</label>
+    @endif
+    <div @if($label != '')class="col-sm-9"@endif>
         <select id="{{ $name }}"
                 name="{{ $name }}"
                 data-allow-clear="false"

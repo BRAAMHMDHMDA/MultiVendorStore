@@ -10,9 +10,11 @@
         <a class="" href="{{ route('dashboard.products.trash') }}">
             <button type="button" class="btn btn-outline-danger p-2"><i class="fa fa-trash me-2"> </i> Trashed Products</button>
         </a>
-        <a class="" href="{{ route('dashboard.products.create') }}">
-            <button type="button" class="btn btn-primary p-2"><i class="fab fa-plus me-2"> </i> Add New Product</button>
-        </a>
+        @if(\Illuminate\Support\Facades\Auth::guard('vendors')->check())
+            <a class="" href="{{ route('dashboard.products.create') }}">
+                <button type="button" class="btn btn-primary p-2"><i class="fab fa-plus me-2"> </i> Add New Product</button>
+            </a>
+        @endif
     </div>
 @endsection
 @push('style')
@@ -31,11 +33,21 @@
                     {{$notify}}
                 </div>
             @endif
-            <table class="table table-hover table-responsive" id="table_id">
+                <div id="asd" style="display: none">
+                    <div class="row justify-content-end">
+                        <div style="width: fit-content">
+                            <input type="text" class="form-control dt-input" placeholder="Balky">
+                        </div>
+                        <div style="width: fit-content">
+                            <x-dashboard.form.select class="select2" id="category" name="category_id" :options="$categories" :old_option="0" />
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-hover table-responsive" id="table_id">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th></th>
                     <th>Name</th>
                     <th>Category</th>
                     <th>Price</th>
@@ -61,7 +73,7 @@
                     ajax: "{{ Route('dashboard.products.datatable') }}",
                     columns: [
                         {data: 'id', name: 'id'},
-                        {data: 'image', name: 'image', orderable:false},
+                        // {data: 'image', name: 'image', orderable:false},
                         {data: 'name', name: 'name'},
                         {data: 'category.name', name: 'category.name', orderable:false},
                         {data: 'price', name: 'price'},
@@ -69,20 +81,16 @@
                         {data: 'rating', name: 'rating'},
                         {data: 'status', name: 'status'},
                         {data: 'created_at', name: 'created_at'},
-                        {data: 'action', name: 'action', orderable:false, searchable:false}
-                    ]
+                        {data: 'action', name: 'action', orderable:false, searchable:false, width:20 }
+                    ],
+                    order: [[7, 'desc']],
                 });
 
+            // $('#table_id_filter').html($('#asd').html())
             });
 
 
         </script>
-        <!-- Include Scripts -->
-{{--        <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>--}}
-{{--        <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>--}}
-
         <script src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-{{--        <script src="{{ asset('assets/js/tables-datatables-advanced.js') }}"></script>--}}
-
     @endpush
 @endsection

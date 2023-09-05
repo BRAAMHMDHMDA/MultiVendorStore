@@ -4,6 +4,7 @@
 <script type="text/javascript" src="{{ asset('website/assets/js/bootstrap-select.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('website/assets/js/owl.carousel.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('website/assets/js/ion.rangeSlider.js') }}"></script>
+
 <script type="text/javascript" src="{{ asset('website/assets/js/modalEffects.js') }}"></script>
 <script type="text/javascript" src="{{ asset('website/assets/js/classie.js') }}"></script>
 <script type="text/javascript" src="{{ asset('website/assets/js/nivo-lightbox.js') }}"></script>
@@ -17,3 +18,4 @@
 <script src="{{ asset('js/cart.js') }}"></script>
 
 @stack('scripts')
+

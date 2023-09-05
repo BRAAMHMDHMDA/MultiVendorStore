@@ -13,9 +13,13 @@ class StoreController extends Controller
     public function index(Request $request)
     {
 
-        $stores = Store::active()->when($request -> search, function ($q) use ($request) {
-            return $q -> where('name', 'like', '%' . $request -> search . '%');
-        }) -> with('owner') -> withCount('products') -> paginate(4);
+        $stores = Store::active()
+            ->when($request -> search, function ($q) use ($request) {
+                return $q -> where('name', 'like', '%' . $request -> search . '%');
+            })
+            ->with('owner')
+            ->withCount('products')
+            ->paginate(4);
 
         return view('website.content.stores', ['stores' => $stores]);
     }

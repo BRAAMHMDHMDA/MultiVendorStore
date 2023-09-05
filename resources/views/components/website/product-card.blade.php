@@ -20,6 +20,12 @@
     </div>
     <div class="product-info">
         <h4 class="product-title"><a href="{{ route('product-details', $product->slug) }}">{{$product->name}}</a></h4>
+        <div class="meta">
+            <span class="meta-part" style="font-size: smaller">
+                <i class="icon-tag"></i>
+                {{$product->category->name}}
+            </span>
+        </div>
         <div class="align-items">
             <div class="pull-left">
                 <span class="price">{{$product->format_price}}
