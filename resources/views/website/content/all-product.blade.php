@@ -24,13 +24,13 @@
                             </div>
                             <ul id="accordion-category" class="product-cat">
                                 <li>
-                                    <input type="radio" id="vehicle1" name="category" value="" @checked(request()->category=='')>
-                                    <p style="display: inline-block;">All</p>
+                                    <input type="radio" id="all" name="category" value="" @checked(request()->category=='')>
+                                    <label for="all" style="display: inline-block;font-weight: normal">All</label>
                                 </li>
                                 @foreach($categories as $category)
                                     <li>
-                                        <input type="radio" id="vehicle1" name="category" value="{{$category->name}}" @checked(request()->category==$category->name)>
-                                        <p style="display: inline-block; font-size: small">{{$category->name}} ({{$category->products_count}})</p>
+                                        <input type="radio" id="{{$category->name}}" name="category" value="{{$category->name}}" @checked(request()->category==$category->name)>
+                                        <label for="{{$category->name}}" style="display: inline-block; font-size: small;font-weight: normal">{{$category->name}} ({{$category->products_count}})</label>
                                     </li>
                                 @endforeach
                             </ul>

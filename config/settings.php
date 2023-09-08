@@ -143,4 +143,55 @@ return [
 
         ]
     ],
+    'about-us' => [
+        'title' => 'About Us',
+        'name_menu' => 'About Us',
+        'icon' => 'ti ti-thumb-up me-2',
+        'settings' => [
+            'about.massage1' => [
+                'label' => 'Massage 1',
+                'type' => 'textarea',
+                'validate' => 'string|max:255',
+            ],
+            'about.massage2' => [
+                'label' => 'Massage 2',
+                'type' => 'textarea',
+                'validate' => 'string|max:255',
+            ],
+            'about.image' => [
+                'label' => 'About Us Image',
+                'type' => 'image',
+                'src' => '',
+                'validate' => 'image',
+            ],
+
+        ]
+    ],
+    'home' => [
+        'title' => 'Home',
+        'name_menu' => 'Home Page',
+        'icon' => 'ti ti-home me-2',
+        'settings' => [
+            'home.slider1' => [
+                'label' => 'Slider Image 1',
+                'type' => 'image',
+                'src' => '',
+                'validate' => 'image',
+            ],
+            'home.slider2' => [
+                'label' => 'Slider Image 2',
+                'type' => 'image',
+                'src' => '',
+                'validate' => 'image',
+            ],
+            'home.slider3' => [
+                'label' => 'Slider Image 3',
+                'type' => 'image',
+                'src' => '',
+                'validate' => 'image',
+            ],
+
+
+        ]
+    ],
 ];

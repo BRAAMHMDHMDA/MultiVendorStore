@@ -39,8 +39,8 @@
     <link rel="stylesheet" href="{{ asset('website/assets/css/responsive.css') }}" type="text/css">
 
     <!-- Range Slider -->
-    <link rel="stylesheet" href="{{ asset('website/assets/extras/ion.rangeSlider.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('website/assets/extras/ion.rangeSlider.skinFlat.css') }}" type="text/css">
+{{--    <link rel="stylesheet" href="{{ asset('website/assets/extras/ion.rangeSlider.css') }}" type="text/css">--}}
+{{--    <link rel="stylesheet" href="{{ asset('website/assets/extras/ion.rangeSlider.skinFlat.css') }}" type="text/css">--}}
 
 
 </head>

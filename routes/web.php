@@ -10,6 +10,7 @@ use App\Http\Controllers\Website\{
     CheckoutController,
     ContactUsController,
     AboutUsController,
+    WishlistController,
 };
 
 // Website Public Routes
@@ -29,6 +30,9 @@ Route::post('currency', CurrencyConverterController::class)->name('currency');
 
 Route::get('/contactUs', [ContactUsController::class, 'index'])->name('contact-us');
 Route::get('/aboutUs', AboutUsController::class)->name('about-us');
+
+Route::get('/search', [ProductController::class, 'search'])->name('search-page');
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
 
 
 // Website Protected Routes

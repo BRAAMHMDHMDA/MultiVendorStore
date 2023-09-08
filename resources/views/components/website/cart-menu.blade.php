@@ -1,7 +1,7 @@
 <div  id="cart-menu-container">
         <div class="shop-cart">
             <ul>
-                <li><a class="cart-icon cart-btn" href="wishlist.html"><span class="icon-heart"></span></a></li>
+                <li><a class="cart-icon cart-btn" href="{{ route('wishlist') }}"><span class="icon-heart"></span></a></li>
                 <li>
                     <a href="#" class="cart-icon cart-btn"><i class="icon-basket"></i><span class="cart-label">{{$items->count()}}</span></a>
                     <div class="cart-box">

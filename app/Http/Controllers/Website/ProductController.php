@@ -45,4 +45,17 @@ class ProductController extends Controller
         return view('website.content.product-details', ['product' => $product]);
     }
 
+
+    public function search(Request $request)
+    {
+        $products = Product::active()
+            ->when($request->search, function ($q) use ($request) {
+                return $q->where('name', 'like', '%' . $request -> search . '%');
+            })
+            ->paginate(12);
+        return view('website.content.search-page', [
+            'products' => $products,
+        ]);
+    }
+
 }

@@ -24,7 +24,10 @@
             <span class="meta-part" style="font-size: smaller">
                 <i class="icon-tag"></i>
                 {{$product->category->name}}
+                <br>
+
             </span>
+
         </div>
         <div class="align-items">
             <div class="pull-left">
@@ -35,13 +38,19 @@
                 </span>
             </div>
             <div class="pull-right">
-                <div class="reviews-icon">
-                    <i class="i-color fa fa-star"></i>
-                    <i class="i-color fa fa-star"></i>
-                    <i class="i-color fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                    <i class="fa fa-~star-o"></i>
-                </div>
+                            <span class="meta-part" style="font-size: smaller">
+
+                <i class="icon-home"></i>
+                {{$product->store->name}}
+                            </span>
+{{--                <div class="reviews-icon">--}}
+{{--                    <i class="i-color fa fa-star"></i>--}}
+{{--                    <i class="i-color fa fa-star"></i>--}}
+{{--                    <i class="i-color fa fa-star"></i>--}}
+{{--                    <i class="fa fa-star-o"></i>--}}
+{{--                    <i class="fa fa-~star-o"></i>--}}
+{{--                </div>--}}
+
             </div>
         </div>
     </div>
@@ -75,7 +84,13 @@
             </div>
             <div class="col-md-8 col-sm-6 col-xs-12">
                 <div class="info-panel">
-                    <h1 class="product-title">{{ $product->name }}</h1>
+                    <div style="display: flex; justify-content: space-between;">
+                        <h1 class="product-title">{{ $product->name }}</h1>
+                        <p style="font-size: small; margin-right: 45px;padding-top: 10px">
+                            <i class="icon-home"></i>
+                            {{$product->store->name}}
+                        </p>
+                    </div>
                     <!-- Rattion Price -->
                     <div class="price-ratting">
                         <div class="price float-left">
@@ -92,7 +107,14 @@
                         @foreach($product->tags as $tag)
                             <span>{{ $tag->name }}</span>
                         @endforeach
+                        <br>
+
                     </div>
+{{--                    <div class="short-desc">--}}
+{{--                        <h6 class="sub-title">Store Name</h6>--}}
+
+{{--                        --}}
+{{--                    </div>--}}
                     <!-- Product Size -->
 {{--                    <div class="product-size">--}}
 {{--                        <h5 class="sub-title">Select Size</h5>--}}
@@ -102,7 +124,7 @@
 {{--                        <span>XL</span>--}}
 {{--                    </div>--}}
                     <!-- Quantity Cart -->
-                    <div class="quantity-cart" style="margin-top: 50px">
+                    <div class="quantity-cart" style="margin-top: 30px">
                         @if($product->quantity != 0)
                             <span style="color: #00b300;font-size: large;">In Stock </span>
                             <span style="font-size: small">{{ $product->quantity }}</span>

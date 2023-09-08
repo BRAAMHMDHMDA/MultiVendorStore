@@ -6,15 +6,23 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="single-image">
-                        <a href="#"><img src="{{ asset('website/assets/img/about/shop.jpg') }}"  alt=""></a>
+                        <a href="#"><img src="{{config('about.image')}}"  alt=""></a>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="about-content">
                         <h3>Welcome to eMart</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. U enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol in reprehenderit in </p>
+                        <p>
+                            {{ config('about.massage1') }}
+                        </p>
                         <br>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. U enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol in reprehenderit in ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol in reprehenderit in </p>
+                        <p>
+                            {{ config('about.massage2') }}
+                        </p>
+
+                        {{--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. U enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol in reprehenderit in </p>--}}
+{{--                        <br>--}}
+{{--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. U enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol in reprehenderit in ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol in reprehenderit in </p>--}}
 {{--                        <a href="#" class="btn btn-common btn-more">Read More</a>--}}
                     </div>
                 </div>

@@ -75,7 +75,7 @@
                           @elseif($setting['type'] == 'textarea')
                               <div>
                                   <label for="{{$name}}" class="form-label">{{ $setting['label'] }}</label>
-                                  <textarea class="form-control" id="{{$name}}" rows="2">{{config($name)}}</textarea>
+                                  <textarea class="form-control" id="{{$name}}" rows="4" name="{{$name}}">{{config($name)}}</textarea>
                               </div>
                           @elseif($setting['type'] == 'image')
                               <div class="mb-3">

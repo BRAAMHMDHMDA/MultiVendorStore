@@ -71,8 +71,8 @@
 
 /* Feel free to change duration  */ 
 .animated  {
-  -webkit-animation-duration : 1000 ms  ;
-  animation-duration : 1000 ms  ;
+  -webkit-animation-duration : 500ms  ;
+  animation-duration : 500ms  ;
   -webkit-animation-fill-mode : both  ;
   animation-fill-mode : both  ;
 }  
@@ -187,7 +187,7 @@
   margin-right: 15px;
 }
 
-// If PaginationNumbers is true 
+/*// If PaginationNumbers is true */
 
 .owl-theme .owl-controls .owl-page span.owl-numbers{
   height: auto;
@@ -201,7 +201,7 @@
   border-radius: 30px;
 }
 
-// Project Style
+/*// Project Style*/
 .touch-carousel .owl-controls .owl-buttons {
   position: absolute;
   top: -50px;

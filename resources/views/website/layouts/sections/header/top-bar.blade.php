@@ -37,24 +37,27 @@
             <div class="col-md-9 col-sm-10">
                 <!-- shopping cart end -->
                 <div class="search-area">
-                    <form>
+                    <form action="{{ route('search-page') }}">
                         <div class="control-group">
-                            <ul class="categories-filter animate-dropdown">
-                                <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="category.html">Categories <span class="caret"></span></a>
-                                    <ul class="dropdown-menu animated fadeIn">
-                                        <li><a href="#">- Men</a></li>
-                                        <li><a href="#">- Women</a></li>
-                                        <li><a href="#">- Boys</a></li>
-                                        <li><a href="#">- Girls</a></li>
-                                        <li><a href="#">- Laptops</a></li>
-                                        <li><a href="#">- Desktops</a></li>
-                                        <li><a href="#">- Cameras</a></li>
-                                        <li><a href="#">- Mobile Phones</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <input class="search-field" placeholder="Search here...">
-                            <a class="search-button" href="#"><i class="icon-magnifier"></i></a>
+{{--                            <ul class="categories-filter animate-dropdown">--}}
+{{--                                <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="category.html">Categories <span class="caret"></span></a>--}}
+{{--                                    <ul class="dropdown-menu animated fadeIn">--}}
+{{--                                        <li><a href="#">- Men</a></li>--}}
+{{--                                        <li><a href="#">- Women</a></li>--}}
+{{--                                        <li><a href="#">- Boys</a></li>--}}
+{{--                                        <li><a href="#">- Girls</a></li>--}}
+{{--                                        <li><a href="#">- Laptops</a></li>--}}
+{{--                                        <li><a href="#">- Desktops</a></li>--}}
+{{--                                        <li><a href="#">- Cameras</a></li>--}}
+{{--                                        <li><a href="#">- Mobile Phones</a></li>--}}
+{{--                                    </ul>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+                            <input class="search-field" placeholder="   Search for the product you want..." type="text" name="search" value="{{ request('search') }}">
+{{--                            <button type="submit">--}}
+{{--                                <i class="fa fa-search"></i>--}}
+{{--                            </button>--}}
+                            <button class="search-button" type="submit"><i class="icon-magnifier"></i></button>
                         </div>
                     </form>
                 </div>
