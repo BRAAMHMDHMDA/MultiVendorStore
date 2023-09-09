@@ -7,6 +7,7 @@
                 <div class="header text-center">
                     <h3 class="small-title">Wishlist</h3>
                 </div>
+                <div id="alert"></div>
                 <div class="col-md-12">
                     <div class="wishlist">
                         <div class="col-md-4 col-sm-4 text-center">
@@ -25,34 +26,46 @@
                             <p>Close</p>
                         </div>
                     </div>
-                    <div class="wishlist-entry clearfix">
-                        <div class="col-md-4 col-sm-4">
-                            <div class="cart-entry">
-                                <a class="image" href="#"><img src="{{ asset('website/assets/img/wishlist/img-1.jpg') }}"  alt=""></a>
-                                <div class="cart-content">
-                                    <h4 class="title">Little Barrel in White</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing Commodo...</p>
+                    @forelse($wishlist as $row)
+                        <div class="wishlist-entry clearfix"  id="{{ $row->id }}">
+                            <div class="col-md-4 col-sm-4">
+                                <div class="cart-entry">
+                                    <a class="image" href="#"><img src="{{ $row->product->image_url }}"  alt=""></a>
+                                    <div class="cart-content">
+                                        <h4 class="title">{{ $row->product->name }}</h4>
+                                        <p>{{ $row->product->description }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2 col-sm-2 entry">
-                            <div class="price">
-                                $ 190.00 <del>$280.00</del>
+                            <div class="col-md-2 col-sm-2 entry">
+                                <div class="price">
+                                    {{ Currency::format($row->product->price) }}
+                                    @if($row->product->compare_price)
+                                        <del>{{ Currency::format($row->product->compare_price) }}</del>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2 entry">
+                                @if($row->product->quantity > 0)
+                                    <a class="instock" href="#">In stock</a>
+                                @else
+                                    <a class="stock" href="#">Out stock</a>
+                                @endif
+                            </div>
+                            <div class="col-md-2 col-sm-2 entry">
+                                <a class="btn btn-common add-to-cart" data-id="{{$row->product_id}}" data-quantity="1" href="#">
+                                    <i class="icon-basket"></i> add to Cart
+                                </a>
+                            </div>
+                            <div class="col-md-2 col-sm-2 entry">
+                                <a class="btn-close remove-wishlist" data-id="{{ $row->id }}" href="#"><i class="icon-close"></i></a>
                             </div>
                         </div>
-                        <div class="col-md-2 col-sm-2 entry">
-                            <a class="instock" href="#">In stock</a>
+                        @empty
+                        <div class="wishlist-entry clearfix">
+                            <p style="text-align: center">No Product in the Wishlist.</p>
                         </div>
-                        <div class="col-md-2 col-sm-2 entry">
-                            <a class="btn btn-common " href="#">
-                                <i class="icon-basket"></i> add to Cart
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-sm-2 entry">
-                            <a class="btn-close" href="#"><i class="icon-close"></i></a>
-                        </div>
-                    </div>
-
+                    @endforelse
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@
         <div class="actions">
             <div class="add-to-links">
                 <a href="#" class="btn-cart add-to-cart" data-id="{{ $product->id }}" data-quantity="1"><i class="icon-basket"></i></a>
-                <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
+                <a href="#" class="btn-wish add-to-wishlist" data-id="{{ $product->id }}"><i class="icon-heart"></i></a>
                 <a  class="btn-quickview md-trigger" data-modal="{{ $product->slug }}"><i class="icon-eye"></i></a>
             </div>
         </div>

@@ -2,7 +2,7 @@
 <script type="text/javascript" src="{{ asset('website/assets/js/jquery-min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('website/assets/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('website/assets/js/bootstrap-select.min.js') }}"></script>
-{{--<script type="text/javascript" src="{{ asset('website/assets/js/ion.rangeSlider.js') }}"></script>--}}
+<script type="text/javascript" src="{{ asset('website/assets/js/ion.rangeSlider.js') }}"></script>
 
 <script type="text/javascript" src="{{ asset('website/assets/js/modalEffects.js') }}"></script>
 <script type="text/javascript" src="{{ asset('website/assets/js/classie.js') }}"></script>

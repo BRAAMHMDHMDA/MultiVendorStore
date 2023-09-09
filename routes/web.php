@@ -34,7 +34,10 @@ Route::post('/contactUs', [ContactUsController::class, 'store']);
 Route::get('/aboutUs', AboutUsController::class)->name('about-us');
 
 Route::get('/search', [ProductController::class, 'search'])->name('search-page');
+
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+Route::post('/wishlist', [WishlistController::class, 'store']);
+Route::delete('/wishlist/{wishlist}', [WishlistController::class, 'destroy']);
 
 
 // Website Protected Routes
