@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\{
     AdminController,
     OrderController,
     SettingsController,
+    ContactController,
 };
 
 Route::redirect('/dashboard', '/dashboard/home');
@@ -21,11 +22,12 @@ Route::group([
   'as' => 'dashboard.',
   'prefix' => 'dashboard',
 ], function (){
+
+    // Route Home Page
     Route::get('/home', function (){
         return view('dashboard.content.pages.pages-home');
     })->name('home');
 
-    // Routes Categories
     Route::get('categories/dt', [CategoryController::class, 'dt'])->name('category.dt');
     Route::resource('categories', CategoryController::class)->except('show');
 
@@ -43,18 +45,18 @@ Route::group([
     Route::delete('products/trash/{id?}',[ProductController::class, 'forceDelete'])->name('products.force-delete');
     Route::resource('products',ProductController::class);
 
-    // Routes Stores
+    // Routes Manage Stores
     Route::resource('stores', StoreController::class);
     Route::patch('store/{store}/status', [StoreController::class, 'setStatus'])->name('store.status');
 
-    // Routes Users
+    // Routes Manage Users
     Route::get('users', [UserController::class, 'index'])->name('users.index');
 
-    // Routes vendors
+    // Routes Manage vendors
     Route::resource('vendors', VendorController::class);
     Route::patch('vendor/{vendor}/status', [VendorController::class, 'setStatus'])->name('vendor.status');
 
-    // Routes admins
+    // Routes Manage Admins
     Route::resource('admins', AdminController::class);
     Route::patch('admin/{admin}/status', [AdminController::class, 'setStatus'])->name('admin.status');
 
@@ -62,8 +64,11 @@ Route::group([
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 
+    // Routes Settings
     Route::get('settings/{group?}', [SettingsController::class, 'index'])->name('settings.index');
     Route::put('settings/{group}', [SettingsController::class, 'update'])->name('settings.update');
 
+    // Routes Contacts
+    Route::resource('contacts', ContactController::class)->only('index', 'update', 'destroy');
 
 });

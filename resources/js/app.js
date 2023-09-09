@@ -44,7 +44,20 @@ window.confirmStatus = function(formId)
     }
 }
 
+$('.viewedContact').on('click', function(e) {
+    var rowId = $(this).data('id');
 
+    $.ajax({
+        url: "/dashboard/contacts/" + rowId, //data-id
+        method: 'put',
+        success: function success(response) {
+            $(`#contactStatus${rowId}`).html("<span class='badge bg-label-secondary me-1'>read</span>") ;
+        },
+        error: function error(response) {{
+            console.log($(this).data('id')+ response)
+        }}
+    });
+});
 //
 // window.confirmDeleteProduct = function(formId)
 // {

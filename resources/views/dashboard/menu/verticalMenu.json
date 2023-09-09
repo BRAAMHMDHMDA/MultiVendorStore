@@ -82,6 +82,14 @@
       "guard": "admins"
     },
     {
+      "url": "dashboard/contacts",
+      "name": "Contacts",
+      "icon": "menu-icon tf-icons ti ti-mail",
+      "slug": "dashboard-contacts",
+      "target": "",
+      "guard": "admins"
+    },
+    {
       "url": "dashboard/settings",
       "name": "Settings",
       "icon": "menu-icon tf-icons ti ti-settings",

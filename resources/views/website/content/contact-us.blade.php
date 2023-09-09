@@ -41,8 +41,10 @@
                 </div>
                 <div class="col-md-12">
                     <div class="header-wrap text-center">
-                        <h3>Send us a messages</h3>
-                        <p class="description">Aenean a turpis finibus euismod augue et facilisis elit. In sed quam et dui.</p>
+                        <h3>Send Us a Message</h3>
+                        <p class="description" style="font-size: medium">
+                            Send us what you think of, a recommendation, advice or whatever you want..
+                        </p>
                     </div>
                 </div>
             </div>
@@ -50,29 +52,26 @@
 
         <div class="contact-form-wrapper">
             <div class="container">
+                @if(session('success'))
+                    <x-website.alert type='success' :massage="session('success')"/>
+                @endif
                 <div class="row">
                     <div class="col-md-12">
-                        <form id="contactForm" class="contact-form" data-toggle="validator">
+                        <form id="contactForm" class="contact-form" data-toggle="validator" method="post" action="{{ route('contact-us') }}">
+                            @csrf
+                            <input type="text" name="user_id" value="{{Auth::user()?->id}}" hidden />
+
                             <div class="row">
                                 <div class="col-md-6 col-xs-12">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" required data-error="Please enter your name">
-                                                <div class="help-block with-errors"></div>
-                                            </div>
+                                            <x-website.form.input type="text" class="form-control" id="name" name="name" placeholder="Full Name" required/>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" id="email" placeholder="mail@sitename.com" required data-error="Please enter your email">
-                                                <div class="help-block with-errors"></div>
-                                            </div>
+                                            <x-website.form.input type="email" class="form-control" id="email" name="email" placeholder="mail@sitename.com" required/>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="msg_subject" name="subject" placeholder="Subject" required data-error="Please enter your subject">
-                                                <div class="help-block with-errors"></div>
-                                            </div>
+                                            <x-website.form.input type="text" class="form-control" id="msg_subject" name="subject" placeholder="Subject" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -80,8 +79,12 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <textarea class="form-control" id="message" placeholder="Massage" rows="9" data-error="Write your message" required></textarea>
-                                                <div class="help-block with-errors"></div>
+                                                <textarea class="form-control is-invalid" id="message" name="message" placeholder="Massage" rows="9" required>{{old('message')}}</textarea>
+                                                @error('message')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>

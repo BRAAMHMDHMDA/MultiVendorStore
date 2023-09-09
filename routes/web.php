@@ -28,7 +28,9 @@ Route::get('/reRender-cart-menu', [CartController::class, 'reRenderCartMenu']);
 
 Route::post('currency', CurrencyConverterController::class)->name('currency');
 
-Route::get('/contactUs', [ContactUsController::class, 'index'])->name('contact-us');
+Route::get('/contactUs', [ContactUsController::class, 'create'])->name('contact-us');
+Route::post('/contactUs', [ContactUsController::class, 'store']);
+
 Route::get('/aboutUs', AboutUsController::class)->name('about-us');
 
 Route::get('/search', [ProductController::class, 'search'])->name('search-page');
@@ -43,6 +45,6 @@ Route::group([
     Route::post('/checkout', [CheckoutController::class, 'store']);
 });
 
-// Dashboard Routes
-require __DIR__.'/dashboard.php';
+//// Dashboard Routes
+//require __DIR__.'/dashboard.php';
 

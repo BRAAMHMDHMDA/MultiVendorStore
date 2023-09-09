@@ -1,10 +1,12 @@
 @props([
-    'type' => 'text', 'name', 'value' => '', 'label'
+    'type' => 'text', 'name', 'value' => '', 'label'=> ''
 ])
 
 <div class="form-group">
-    <label for="{{ $name }}">{!! $label !!}</label>
-    <input class="form-control"
+    @if($label != '')
+        <label for="{{ $name }}">{!! $label !!}</label>
+    @endif
+    <input
            type="{{ $type }}"
            id="{{ $name }}"
            name="{{ $name }}"
@@ -16,9 +18,9 @@
             }}
     >
     @error($name)
-    <div class="invalid-feedback">
-        {{ $message }}
-    </div>
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
     @enderror
 </div>
 
