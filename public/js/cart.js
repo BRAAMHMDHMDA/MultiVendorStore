@@ -92,7 +92,13 @@ var __webpack_exports__ = {};
       success: function success(response) {
         // re-render the CartMenu component
         reRenderCartMenu();
-        alert('Successfully Product Added');
+        // $('#alert').css('display', 'block');
+        $('#alert').append("<div style=\"width: 32%;display: inline-block;margin-right: 15px\" class=\"alert alert-success \" role=\"alert\">\n" +
+            "  <strong>Added Successfully!</strong> Product Added To Cart.\n" +
+            "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+            "    <span aria-hidden=\"true\">&times;</span>\n" +
+            "  </button>\n" +
+            "</div>");
       }
     });
   });

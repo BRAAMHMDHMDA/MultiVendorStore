@@ -7,8 +7,8 @@
     <!-- Product Categories Section Start -->
     <div id="content" class="product-area">
         <div class="container">
+            <div id="alert" ></div>
             <div class="row">
-
                 {{-- start Sidebar--}}
                 <div class="col-md-3 col-sm-3 col-xs-12">
                     <form action="#">
