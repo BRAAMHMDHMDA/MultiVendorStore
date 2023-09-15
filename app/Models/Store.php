@@ -45,6 +45,11 @@ class Store extends Model
         return $this->hasOne(Vendor::class)->orderBy('created_at', 'asc');
     }
 
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public function scopeActive(Builder $builder): void
     {
         $builder->where('status', '=', 'active');

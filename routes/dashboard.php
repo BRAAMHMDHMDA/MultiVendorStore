@@ -13,6 +13,7 @@ use App\Http\Controllers\Dashboard\{
     OrderController,
     SettingsController,
     ContactController,
+    HomeController,
 };
 
 Route::redirect('/dashboard', '/dashboard/home');
@@ -24,9 +25,7 @@ Route::group([
 ], function (){
 
     // Route Home Page
-    Route::get('/home', function (){
-        return view('dashboard.content.pages.pages-home');
-    })->name('home');
+    Route::get('/home', [HomeController::class, 'show'])->name('home');
 
     Route::get('categories/dt', [CategoryController::class, 'dt'])->name('category.dt');
     Route::resource('categories', CategoryController::class)->except('show');
