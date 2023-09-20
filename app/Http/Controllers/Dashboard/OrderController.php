@@ -23,4 +23,10 @@ class OrderController extends Controller
             'order' => $order,
         ]);
     }
+
+    public function update(Request $request, Order $order)
+    {
+        $order->update($request->all());
+        return redirect()->route('dashboard.orders.index')->with('success', 'Order Status Updated');
+    }
 }

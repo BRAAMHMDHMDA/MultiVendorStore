@@ -11,9 +11,11 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
 
-    public function register()
+    public function register(): void
     {
-    //
+        $this->app->bind('stripe.client', function() {
+            return new \Stripe\StripeClient(config('services.stripe.secret_key'));
+        });
     }
 
     public function boot(): void

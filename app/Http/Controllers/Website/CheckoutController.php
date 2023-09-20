@@ -66,7 +66,10 @@ class CheckoutController extends Controller
             DB::rollBack();
             throw $e;
         }
-
-        return redirect()->route('home');
+        if ($request->post('payment') === 'stripe'){
+            return redirect()->route('orders.payments.create', $order->id);
+        }else{
+            return redirect()->route('account');
+        }
     }
 }

@@ -72,8 +72,9 @@ $configData = Helper::appClasses();
         </div>
     </div>
     <!--/ Statistics -->
+
     <div class="row">
-        <!-- Earning Reports -->
+        <!-- Top Stores -->
         <div class="col-xl-4 col-md-6 mb-4">
             <div class="card h-100">
                 <div class="card-header d-flex justify-content-between">
@@ -107,7 +108,7 @@ $configData = Helper::appClasses();
                 </div>
             </div>
         </div>
-        <!--/ Earning Reports -->
+        <!--/ Top Stores -->
 
         <!-- Featured Product -->
         <div class="col-md-6 col-xl-4 mb-4">
@@ -144,7 +145,7 @@ $configData = Helper::appClasses();
         </div>
         <!--/ Featured Product -->
 
-        <!-- Sales by Countries tabs-->
+        <!-- Special Customers-->
         <div class="col-md-6 col-xl-4 col-xl-4 mb-4">
             <div class="card h-100">
                 <div class="card-header d-flex justify-content-between pb-2 mb-1">
@@ -179,7 +180,7 @@ $configData = Helper::appClasses();
 
             </div>
         </div>
-        <!--/ Sales by Countries tabs -->
+        <!--/ Special Customers -->
     </div>
 
 @endsection

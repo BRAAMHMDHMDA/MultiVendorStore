@@ -15,7 +15,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title m-0">Order details</h5>
                 </div>
-                <div class="card-datatable table-responsive">
+                <div class="card-datatable table">
                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                         <table class="datatables-order-details table border-top dataTable no-footer dtr-column" style="width: 822px;">
                             <thead>
@@ -28,23 +28,23 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($order->products as $key => $product)
+                            @foreach($order->items as $key => $item)
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>
                                         <div class="d-flex justify-content-start align-items-center text-nowrap">
                                             <div class="avatar-wrapper">
-                                                <div class="avatar me-2"><img class="rounded-2" src="{{ $product->image_url }}" /></div>
+                                                <div class="avatar me-2"><img class="rounded-2" src="{{ $item->product->image_url }}"  alt=""/></div>
                                             </div>
                                             <div class="d-flex flex-column">
-                                                <h6 class="text-body mb-0">{{ $product->name }}</h6>
-                                                <small class="text-muted">{{ substr($product->description, 0, 50) }}</small>
+                                                <h6 class="text-body mb-0">{{ $item->name }}</h6>
+                                                <small class="text-muted">{{ substr($item->product->description,0,50)}}</small>
                                             </div>
                                         </div>
                                     </td>
-                                    <td><span>{{ Currency::format($product->price) }}</span></td>
-                                    <td><span class="text-body">{{$product->quantity}}</span></td>
-                                    <td><h6 class="mb-0">{{ Currency::format($product->price * $product->quantity) }}</h6></td>
+                                    <td><span>{{ Currency::format($item->price) }}</span></td>
+                                    <td><span class="text-body">{{$item->quantity}}</span></td>
+                                    <td><h6 class="mb-0">{{ Currency::format($item->quantity*$item->price) }}</h6></td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -52,15 +52,15 @@
                     </div>
                     <div class="d-flex justify-content-end align-items-center m-3 mb-2 p-1">
                         <div class="order-calculations">
-                            <div class="d-flex justify-content-between mb-2">
+                            <div class="d-flex justify-content-between">
                                 <span class="w-px-100 text-heading">Subtotal:</span>
                                 <h6 class="mb-0">{{ Currency::format($order->total) }}</h6>
                             </div>
-                            <div class="d-flex justify-content-between mb-2">
+                            <div class="d-flex justify-content-between">
                                 <span class="w-px-100 text-heading">Discount:</span>
                                 <h6 class="mb-0">{{ Currency::format($order->discount) }}</h6>
                             </div>
-                            <div class="d-flex justify-content-between mb-2">
+                            <div class="d-flex justify-content-between">
                                 <span class="w-px-100 text-heading">Tax:</span>
                                 <h6 class="mb-0">{{ Currency::format($order->tax) }}</h6>
                             </div>

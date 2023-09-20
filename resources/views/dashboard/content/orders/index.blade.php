@@ -35,9 +35,29 @@
                             @admin
                             <td>{{ $order->store->name }}</td>
                             @endadmin
-                            <td>{{ $order->status }}</td>
+                            <td>
+                                @if($order->status === 'pending')
+                                    <span class="badge bg-label-warning bg-glow rounded-pill">{{ ($order->status) }}</span>
+                                @elseif($order->status === 'processing')
+                                    <span class="badge bg-label-dark rounded-pill">{{ ($order->status) }}</span>
+                                @elseif($order->status === 'delivering')
+                                    <span class="badge bg-label-info rounded-pill">{{ ($order->status) }}</span>
+                                @elseif($order->status === 'completed')
+                                    <span class="badge bg-label-success rounded-pill">{{ ($order->status) }}</span>
+                                @elseif($order->status === 'cancelled')
+                                    <span class="badge bg-label-danger rounded-pill">{{ ($order->status) }}</span>
+                                @endif
+                            </td>
                             <td>{{ $order->payment_method }}</td>
-                            <td>{{ $order->payment_status }}</td>
+                            <td>
+                                @if($order->payment_status === 'paid')
+                                    <span class="badge bg-success bg-glow rounded-pill">{{ strtoupper($order->payment_status) }}</span>
+                                @elseif($order->payment_status === 'pending')
+                                    <span class="badge bg-label-warning rounded-pill">{{ strtoupper($order->payment_status) }}</span>
+                                @elseif($order->payment_status === 'failed')
+                                    <span class="badge bg-label-danger rounded-pill">{{ strtoupper($order->payment_status) }}</span>
+                                @endif
+                            </td>
                             <td>{{ Currency::format($order->total) }}</td>
                             <td>{{ $order->created_at->DiffForHumans() }}</td>
                             <td>
@@ -47,21 +67,108 @@
                                     </a>
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical"></i></button>
                                     <div class="dropdown-menu">
-{{--                                        <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit{{$brand->id}}">--}}
-{{--                                            <i class="ti ti-pencil me-1"></i>--}}
-{{--                                            Edit--}}
-{{--                                        </button>--}}
-{{--                                        <form action="{{ route('dashboard.brands.destroy', $brand->id) }}" method="post">--}}
-{{--                                            @csrf--}}
-{{--                                            <!-- Form Method Spoofing -->--}}
-{{--                                            <input type="hidden" name="_method" value="delete">--}}
-{{--                                            @method('delete')--}}
-{{--                                            <button type="submit" class="dropdown-item"><i class="ti ti-trash me-1"></i> Delete</button>--}}
-{{--                                        </form>--}}
+                                        @if($order->status !== 'completed')
+                                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit{{$order->id}}">
+                                                <i class="ti ti-pencil me-1"></i>
+                                                Edit Order Status
+                                            </button>
+                                        @endif
+                                        @if($order->payment_status !== 'paid')
+                                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-pay{{$order->id}}">
+                                                <i class="ti ti-pencil me-1"></i>
+                                                Edit Payment Status
+                                            </button>
+                                        @endif
                                     </div>
                                 </div>
                             </td>
                         </tr>
+                        <form action="{{ route('dashboard.orders.update', $order->id) }}" method="post">
+                            @csrf
+                            @method('patch')
+                            <div class="modal fade" id="edit{{$order->id}}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="">Edit Order Status</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        @php
+                                            $options = ['pending','processing','delivering','completed','cancelled'];
+                                        @endphp
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col mb-3">
+                                                    <label for="nameBasic" class="form-label">Status</label>
+                                                    <select id="nameBasic"
+                                                            name="status"
+                                                            data-allow-clear="false"
+                                                            class="select2 form-select"
+                                                    >
+                                                        <option value="pending" selected>Pending</option>
+                                                        <option value="processing">Processing</option>
+                                                        <option value="delivering">Delivering</option>
+                                                        <option value="completed">Completed</option>
+                                                        <option value="cancelled">Cancelled</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary"><i class="fa-regular fa-floppy-disk me-1"></i> Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form action="{{ route('dashboard.orders.update', $order->id) }}" method="post">
+                            @csrf
+                            @method('patch')
+                            <div class="modal fade" id="edit-pay{{$order->id}}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="">Edit Payment Status</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col mb-3">
+                                                    <label for="payment_status" class="form-label">Payment Status</label>
+                                                    <select id="payment_status"
+                                                            name="payment_status"
+                                                            data-allow-clear="false"
+                                                            class="select2 form-select"
+                                                    >
+                                                        <option value="pending" selected>Pending</option>
+                                                        <option value="paid">Paid</option>
+                                                        <option value="failed">Failed</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col mb-3">
+                                                    <label for="payment_method" class="form-label">Payment Method</label>
+                                                    <select id="payment_method"
+                                                            name="payment_method"
+                                                            data-allow-clear="false"
+                                                            class="select2 form-select"
+                                                    >
+                                                        <option value="COD" selected>COD</option>
+                                                        <option value="stripe">Stripe</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary"><i class="fa-regular fa-floppy-disk me-1"></i> Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     @endforeach
                 </tbody>
             </table>

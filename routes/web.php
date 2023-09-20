@@ -11,6 +11,7 @@ use App\Http\Controllers\Website\{
     ContactUsController,
     AboutUsController,
     WishlistController,
+    PaymentsController,
 };
 
 // Website Public Routes
@@ -46,6 +47,21 @@ Route::group([
 ], function () {
     Route::get('/checkout', [CheckoutController::class, 'create'])->name('checkout');
     Route::post('/checkout', [CheckoutController::class, 'store']);
+
+//    Route::get('/orders/{order}/pay', [PaymentsController::class, 'create'])->name('orders.payments.create');
+//    Route::post('/orders/{order}/stripe/payment-intent', [PaymentsController::class, 'createStripePaymentIntent'])->name('stripe.paymentIntent.create');
+//    Route::get('/orders/{order}/pay/stripe/callback', [PaymentsController::class, 'confirm'])->name('stripe.return');
+    Route::get('orders/{order}/pay', [PaymentsController::class, 'create'])
+        ->name('orders.payments.create');
+
+    Route::post('orders/{order}/stripe/payment-intent', [PaymentsController::class, 'createStripePaymentIntent'])
+        ->name('stripe.paymentIntent.create');
+
+    Route::get('orders/{order}/pay/stripe/callback', [PaymentsController::class, 'confirm'])
+        ->name('stripe.return');
+
+    Route::get('account', [\App\Http\Controllers\Website\AccountController::class, 'index'])
+        ->name('account');
 });
 
 //// Dashboard Routes

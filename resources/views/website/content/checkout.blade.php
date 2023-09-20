@@ -137,10 +137,10 @@
                             <!-- /Payment Method -->
                             <div class="form-group form-group-top clearfix">
                                 <div class="radio">
-                                    <label><input name="payment" type="radio" checked><span>Cash On Delivery</span></label>
+                                    <label><input type="radio" name="payment" value="COD" checked><span>Cash On Delivery</span></label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="payment"> <span>PayPal</span></label>
+                                    <label><input type="radio" name="payment" value="Stripe"><span>Stripe</span></label>
                                 </div>
                             </div>
 

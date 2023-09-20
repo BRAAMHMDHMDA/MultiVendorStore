@@ -32,4 +32,8 @@ return [
     'currency_converter' => [
         'api_key' => env('CURRENCY_CONVERTER_API_KEY','15482fff497580a66541'),
     ],
+    'stripe' => [
+        'publishable_key' => env('STRIPE_PUBLISHABLE_KEY'),
+        'secret_key' => env('STRIPE_SECRET_KEY'),
+    ],
 ];

@@ -73,7 +73,7 @@
                             @csrf
                         </form>
                     </div>
-                    <div href="#" style="padding: 15px"><i class="icon-user" ></i> Hi, {{ Auth::user()->name }}</div>
+                    <div href="#" style="padding: 15px"><i class="icon-user" ></i> <a href="{{route('account')}}"> Hi, {{ Auth::user()->name }}</a></div>
                 @else
                     <div class="account link-inline">
                         <a href="{{ route('login') }}"><i class="icon-login"></i><span class="hidden-mobile">login/register</span></a>

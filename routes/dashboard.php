@@ -61,6 +61,7 @@ Route::group([
 
     // Routes Orders
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::patch('orders/{order}', [OrderController::class, 'update'])->name('orders.update');
     Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 
     // Routes Settings

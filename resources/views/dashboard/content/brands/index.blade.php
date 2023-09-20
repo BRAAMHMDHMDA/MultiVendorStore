@@ -72,8 +72,6 @@
               @endadmin
             </tr>
             <!-- Modal -->
-
-
             <form action="{{ route('dashboard.brands.update', $brand->id) }}" method="post">
               @csrf
               @method('put')
