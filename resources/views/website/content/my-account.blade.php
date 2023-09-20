@@ -87,6 +87,7 @@
                                         <th scope="col">Status</th>
                                         <th scope="col">Pay Status</th>
                                         <th scope="col">Total</th>
+                                        <th scope="col">Date</th>
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
@@ -98,6 +99,7 @@
                                            <td>{{$order->status}}</td>
                                            <td>{{$order->payment_status}}</td>
                                            <td>{{ Currency::format($order->total)}}</td>
+                                           <td>{{ $order->created_at->diffForHumans() }}</td>
                                            <td>
                                                @if($order->payment_status!= 'paid')
                                                    <a class="btn btn-sm btn-info" href="{{route('orders.payments.create', $order->id)}}">

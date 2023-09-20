@@ -43,7 +43,11 @@ $navbarDetached = ($navbarDetached ?? '');
         </div>
         <!--/ Style Switcher -->
 
-        <ul class="navbar-nav flex-row align-items-center ms-auto">
+        <ul class="navbar-nav flex-row align-items-center ms-auto gap-1">
+
+          <!-- Notification -->
+          <x-dashboard.notifications-menu />
+          <!--/ Notification -->
 
           <!-- User -->
           <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -104,6 +108,9 @@ $navbarDetached = ($navbarDetached ?? '');
             </ul>
           </li>
           <!--/ User -->
+
+
+
         </ul>
       </div>
 

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\{
     CategoryController,
@@ -15,6 +17,7 @@ use App\Http\Controllers\Dashboard\{
     ContactController,
     HomeController,
 };
+use Illuminate\Support\Facades\View;
 
 Route::redirect('/dashboard', '/dashboard/home');
 
@@ -70,5 +73,23 @@ Route::group([
 
     // Routes Contacts
     Route::resource('contacts', ContactController::class)->only('index', 'update', 'destroy');
+
+
+    // Routes Notifications
+    Route::get('notifications/read-all', function (){
+        Auth::user()->unreadNotifications->markAsRead();
+        return redirect()->back()->with('success', 'All notifications have been marked as read.');
+    })->name('notifications.markAsRead');
+    Route::get('/reRender-notification-menu', function (){
+        $user = Auth::user();
+        $notifications = $user->notifications()->take(10)->get();
+        $newCount = $user->unreadNotifications()->count();
+
+        // re Render the CartMenu component's view and return it as HTML
+        $updatedNotificationHtml = View::make('components.dashboard.notifications-menu', compact('notifications', 'newCount'))->render();
+
+        return $updatedNotificationHtml;
+    });
+
 
 });

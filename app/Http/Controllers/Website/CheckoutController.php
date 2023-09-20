@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Website;
 
 use App\Events\OrderCreated;
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Vendor;
+use App\Notifications\OrderCreatedNotification;
 use App\Repositories\Cart\CartInterfaceRepo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Symfony\Component\Intl\Countries;
 
 class CheckoutController extends Controller
@@ -57,6 +61,11 @@ class CheckoutController extends Controller
                         $order->addresses()->create($address);
                     }
                 }
+                //Begin::Send Notification To Admins && Vendors who have This Order
+                $vendors = Vendor::where('store_id', $order->store_id)->get();
+                Notification::send(Admin::all(), new OrderCreatedNotification($order));
+                Notification::send($vendors, new OrderCreatedNotification($order));
+                //End::Send Notification To Admins && Vendors who have This Order
             }
 
             DB::commit();

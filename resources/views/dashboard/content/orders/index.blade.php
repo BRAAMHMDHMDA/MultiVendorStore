@@ -173,7 +173,9 @@
                 </tbody>
             </table>
             <div class="card-footer pb-2 ms-5">
+                {{ $orders->withQueryString()->links() }}
             </div>
+
         </div>
     </div>
 

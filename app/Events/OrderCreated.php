@@ -24,6 +24,6 @@ class OrderCreated
 
     public function broadcastOn(): PrivateChannel
     {
-        return new PrivateChannel('channel-name');
+            return new PrivateChannel('channel-name');
     }
 }

@@ -3,14 +3,20 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\MarkNotificationAsRead;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(MarkNotificationAsRead::class)->only('show');
+    }
+
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::latest()->paginate();
         return view('dashboard.content.orders.index', [
             'orders' => $orders,
         ]);

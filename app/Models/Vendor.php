@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Vendor extends Authenticatable
 {
-    use HasFactory, Notifiable , HasImage, GetImageUrl;
+    use Notifiable , HasImage, GetImageUrl;
 
     public static string $imageDisk = 'media';
     public static string $imageFolder = '/vendors';

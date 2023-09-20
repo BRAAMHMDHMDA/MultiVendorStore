@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Admin extends Authenticatable
 {
-    use HasFactory, Notifiable, HasImage, GetImageUrl;
+    use Notifiable, HasImage, GetImageUrl;
 
     protected $fillable = [
         'name',

@@ -10,9 +10,16 @@
 <script src="{{ asset(mix('assets/vendor/js/menu.js')) }}"></script>
 @yield('vendor-script')
 <!-- END: Page Vendor JS-->
+
+<script>
+    const id = "{{Auth::id()}}";
+    const guard = "{{ Auth::guard('admins')->check()=='true'?'Admin': 'Vendor'}}";
+</script>
 <!-- BEGIN: Theme JS-->
 <script src="{{ asset(mix('assets/js/main.js')) }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/pusher.js') }}"></script>
+
 
 
 <!-- END: Theme JS-->

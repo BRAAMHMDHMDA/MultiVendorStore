@@ -140,7 +140,7 @@
                                     <label><input type="radio" name="payment" value="COD" checked><span>Cash On Delivery</span></label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="payment" value="Stripe"><span>Stripe</span></label>
+                                    <label><input type="radio" name="payment" value="stripe"><span>Stripe</span></label>
                                 </div>
                             </div>
 
@@ -150,7 +150,7 @@
                                     <tbody>
                                     <tr>
                                         <th>GRAND TOTAL:</th>
-                                        <td>$197.00</td>
+                                        <td>{{ Currency::format($cart->total()) }}</td>
                                     </tr>
                                     </tbody>
                                 </table>

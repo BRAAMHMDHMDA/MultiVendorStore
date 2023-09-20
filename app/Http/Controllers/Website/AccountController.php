@@ -11,7 +11,7 @@ class AccountController extends Controller
     public function index()
     {
         return view('website.content.my-account',[
-            'orders' => Auth::user()->orders,
+            'orders' => Auth::user()->orders()->latest()->get(),
         ]);
     }
 }

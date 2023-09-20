@@ -14,9 +14,11 @@ class PaymentsController extends Controller
 {
     public function create(Order $order)
     {
- //        if (Auth::user()->id !== $order->user_id){
-//            abort(404);
-//        }
+         if (Auth::user()->id !== $order->user_id){
+            abort(404);
+        }elseif ($order->payment_status === 'paid') {
+             abort("this Order Paid");
+         }
         return view('website.content.payments.create', [
             'order' => $order
         ]);
