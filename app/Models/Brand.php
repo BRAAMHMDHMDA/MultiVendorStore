@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 /**
@@ -16,7 +17,7 @@ class Brand extends Model
     use HasFactory;
     protected $fillable = ['name', 'slug'];
 
-    public function setNameAttribute($value)
+    public function setNameAttribute($value): void
     {
         $this->attributes['slug'] = Str::slug($value);
         $this->attributes['name'] = Str::title($value);
@@ -27,7 +28,7 @@ class Brand extends Model
         $builder->where('status', '=', 'active');
     }
 
-    public function products()
+    public function products(): HasMany
     {
         return $this->hasMany(Product::class);
     }

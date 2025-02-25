@@ -1,16 +1,15 @@
 @extends('dashboard/layouts/layoutMaster')
 
-@section('title', 'Categories')
+@section('title', 'ADs')
 
 @section('breadcrumb_left')
     <span class="text-muted fw-light ">ADs/</span> Edit AD
 @endsection
 
-
 @section('content')
     <div class="card mb-4">
         <div class="card-body">
-            <form action="{{ route('dashboard.ADs.update', $ad->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('dashboard.ADs.update', $AD->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('put')
 

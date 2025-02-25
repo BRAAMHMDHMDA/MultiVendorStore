@@ -28,7 +28,7 @@ trait HasImage
         return $oldImage;
     }
 
-    public static function deleteImage($image_path)
+    public static function deleteImage($image_path): bool
     {
         if (!$image_path) return true;
         return Storage::disk(static::$imageDisk)->delete($image_path);

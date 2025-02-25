@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Models\AD;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -17,11 +18,13 @@ class HomeController extends Controller
                         ->withCount('products')
                         ->orderBy('products_count', 'desc')
                         ->with('children')->take(8)->get();
+        $ADs = AD::active()->inRandomOrder()->take(3)->get();
 
         return view('website.content.home',[
             'newArrivalsProducts' => $newArrivalsProducts,
             'featuredProducts' => $featuredProducts,
-            'topCategories' => $topCategories
+            'topCategories' => $topCategories,
+            'ADs' => $ADs
         ]);
     }
 }

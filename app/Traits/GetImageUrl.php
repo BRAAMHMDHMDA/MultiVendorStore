@@ -17,7 +17,7 @@ trait GetImageUrl
     public function getImageUrlAttribute(): string
     {
         if (!$this->image_path){
-            return asset('storage/media/no-image.jpg');
+            return asset('storage/media/no-image.png');
         }elseif (Str::startsWith($this->image_path, ['http://', 'https://'])) {
             return $this->image_path;
         }else {

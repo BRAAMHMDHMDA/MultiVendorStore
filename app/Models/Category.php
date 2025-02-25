@@ -21,7 +21,7 @@ class Category extends Model
 
   protected $fillable = ['name','slug','description','parent_id','status','image_path'];
   protected $guarded = ['id'];
-protected $withCount = ['products'];
+  protected $withCount = ['products'];
     public static string $imageDisk = 'media';
     public static string $imageFolder = '/categories';
 
@@ -42,7 +42,7 @@ protected $withCount = ['products'];
         });
     }
 
-    public function setNameAttribute($value)
+    public function setNameAttribute($value): void
     {
         $this->attributes['slug'] = Str::slug($value);
         $this->attributes['name'] = Str::title($value);

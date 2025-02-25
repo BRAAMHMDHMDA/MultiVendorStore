@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\{
@@ -16,6 +15,7 @@ use App\Http\Controllers\Dashboard\{
     SettingsController,
     ContactController,
     HomeController,
+    ADsController,
 };
 use Illuminate\Support\Facades\View;
 
@@ -35,6 +35,9 @@ Route::group([
 
     // Routes Brands
     Route::resource('brands', BrandController::class)->except('show');
+
+    // Routes ADs
+    Route::resource('ADs', ADsController::class)->except('show');
 
     // Routes Tags
     Route::resource('tags', TagController::class)->except('show');
