@@ -2,42 +2,39 @@
 
     <div class="shop-product">
         <div class="product-box">
-            <a href="#"><img src="{{ $product->image_url }}" alt="{{ $product->slug }}" height="250px"></a>
+            <a href="#"><img src="{{ $product->image_url }}"  alt="{{ $product->slug }}" height="250px"></a>
             <div class="cart-overlay"></div>
             @if($product->new)
                 <span class="sticker new"><strong>NEW</strong></span>
             @endif
             @if($product->sale_percentage && $product->sale_percentage>=20)
-                <span class="sticker discount"><strong>-{{$product->sale_percentage}}%</strong></span>
+                <span class="sticker discount"><strong>{{$product->sale_percentage}}%</strong></span>
             @endif
             <div class="actions">
                 <div class="add-to-links">
-                    {{--                <a--}}
-                    {{--                    class="btn-cart"--}}
-                    {{--                    x-data="{ loading: false }"--}}
-                    {{--                    @click="loading = true; $wire.emit('addToCart', {{ $product->id }})"--}}
-                    {{--                    @added-cart.window="loading = false"--}}
-                    {{--                    :disabled="loading"--}}
-                    {{--                >--}}
-                    {{--                    <i class="icon-basket" x-show="!loading"></i>--}}
-                    {{--                    <i class="icon-check" x-show="loading"></i>--}}
-                    {{--                </a>--}}
                     <a
-                        class="btn-cart"
-                        wire:click="addToCart({{ $product->id }})"
-                        wire:loading.attr="disabled"
+                            class="btn-cart"
+                            x-data="{ loading: false }"
+                            @click="loading = true; $wire.emit('addToCart', {{ $product->id }})"
+                            @added-cart.window="loading = false"
+                            :disabled="loading"
                     >
-                        <i class="icon-basket" wire:loading.remove></i>
-                        <i class="icon-check" wire:loading></i>
+                        <i class="icon-basket" x-show="!loading"></i>
+                        <i class="icon-check" x-show="loading"></i>
                     </a>
-                    <a href="#" class="btn-wish add-to-wishlist" data-id="{{ $product->id }}"><i class="icon-heart"></i></a>
-                    <a class="btn-quickview md-trigger" data-modal="{{ $product->slug }}"><i class="icon-eye"></i></a>
+                    <a class="btn-wish" wire:click="toggleFav({{ $product->id }})" wire:loading.attr="disabled">
+                        @if($isFav)
+                            <i class="glyphicon glyphicon-heart" style="color: red; font-size: 16px"></i>
+                        @else
+                            <i class="icon-heart"></i>
+                        @endif
+                    </a>
+                    <a  class="btn-quickview md-trigger" data-modal="{{ $product->slug }}"><i class="icon-eye"></i></a>
                 </div>
             </div>
         </div>
         <div class="product-info">
-            <h4 class="product-title"><a href="{{ route('product-details', $product->slug) }}">{{$product->name}}</a>
-            </h4>
+            <h4 class="product-title"><a href="{{ route('product-details', $product->slug) }}">{{$product->name}}</a></h4>
             <div class="meta">
             <span class="meta-part" style="font-size: smaller">
                 <i class="icon-tag"></i>
@@ -73,8 +70,6 @@
             </div>
         </div>
     </div>
-
-
     <!-- All modals added here for the demo -->
     <div class="md-modal md-effect-3" id="{{$product->slug}}">
         <div class="md-content">
@@ -149,40 +144,26 @@
                                     <span style="font-size: small">{{ $product->quantity }}</span>
                                 </div>
                                 <button class="btn btn-common position-relative"
-                                        wire:click="addToCart({{ $product->id }})"
-                                        wire:loading.attr="disabled"
+                                        x-data="{ loading: false }"
+                                        @click="loading = true; $wire.emit('addToCart', {{ $product->id }})"
+                                        x-on:added-cart.window="loading = false"
+                                        :disabled="loading"
                                         style="margin-top: 15px"
                                 >
-                                <span wire:loading.remove>
-                                    <i class="icon-basket"></i> Add to Cart
-                                </span>
-                                    <span wire:loading>
-                                     <i class="icon-basket-loaded fa-spin"></i> Adding...
-                                </span>
+                                    <span x-show="!loading">
+                                        <i class="icon-basket"></i> Add to Cart
+                                    </span>
+                                        <span x-show="loading">
+                                         <i class="icon-basket-loaded fa-spin" ></i> Adding...
+                                    </span>
                                 </button>
-                                {{--                            <button class="btn btn-common position-relative"--}}
-                                {{--                                    x-data="{ loading: false }"--}}
-                                {{--                                    @click="loading = true; $wire.emit('addToCart', {{ $product->id }})"--}}
-                                {{--                                    x-on:added-cart.window="loading = false"--}}
-                                {{--                                    :disabled="loading"--}}
-                                {{--                                    style="margin-top: 15px"--}}
-                                {{--                            >--}}
-                                {{--                                <span x-show="!loading">--}}
-                                {{--                                    <i class="icon-basket"></i> Add to Cart--}}
-                                {{--                                </span>--}}
-                                {{--                                <span x-show="loading">--}}
-                                {{--                                     <i class="icon-basket-loaded fa-spin" ></i> Adding...--}}
-                                {{--                                </span>--}}
-                                {{--                            </button>--}}
 
                             @else
                                 <span style="color: #5b0101;font-size: large">Out Stock </span>
-                                <button class="add-to-cart btn btn-common disabled" style="margin-top: 15px"
-                                        data-id="{{ $product->id }}" data-quantity="1"><i class="icon-basket"></i> add
-                                    to cart
-                                </button>
+                                <button class="add-to-cart btn btn-common disabled" style="margin-top: 15px" data-id="{{ $product->id }}" data-quantity="1"><i class="icon-basket"></i> add to cart</button>
                             @endif
                         </div>
+
                         <!-- Share -->
                         <div class="share-icons pull-right">
                             <span>share :</span>
@@ -200,6 +181,5 @@
     </div>
     <div class="md-overlay"></div>
     <!-- the overlay element -->
-
 
 </div>

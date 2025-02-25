@@ -1,31 +1,39 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Website\{
-    HomeController,
-    ProductController,
-    StoreController,
+use App\Http\Controllers\Website\{AboutUsController,
     CartController,
-    CurrencyConverterController,
     CheckoutController,
     ContactUsController,
-    AboutUsController,
-    WishlistController,
+    CurrencyConverterController,
+    HomeController,
     PaymentsController,
+    ProductController,
+    StoreController,
+    WishlistController,
 };
+use App\Http\Livewire\Website\{
+    Products\ProductsPage,
+    Cart\CartPage,
+    Wishlist,
+    Products\ProductPage,
+};
+
 
 // Website Public Routes
 Route::get('/home', HomeController::class)->name('home');
 Route::redirect('/', '/home');
 
-Route ::get('/products', [ProductController::class, 'index']) -> name('all-products');
-Route ::get('/product/{product:slug}', [ProductController::class, 'show']) -> name('product-details');
+//Route ::get('/products', [ProductController::class, 'index']) -> name('all-products');
+Route::get('/products', ProductsPage::class) -> name('all-products');
+Route ::get('/product/{product:slug}', ProductPage::class) -> name('product-details');
 
 Route ::get('/stores', [StoreController::class, 'index']) -> name('all-stores');
 Route ::get('/store/{store:slug}', [StoreController::class, 'show']) -> name('store-details');
 
 Route::resource('cart', CartController::class)->except(['create', 'edit']);
-Route::get('/reRender-cart-menu', [CartController::class, 'reRenderCartMenu']);
+Route::get('cart', CartPage::class)->name('cart.index');
+//Route::get('/reRender-cart-menu', [CartController::class, 'reRenderCartMenu']);
 
 Route::post('currency', CurrencyConverterController::class)->name('currency');
 
@@ -36,7 +44,7 @@ Route::get('/aboutUs', AboutUsController::class)->name('about-us');
 
 Route::get('/search', [ProductController::class, 'search'])->name('search-page');
 
-Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+Route::get('/wishlist', Wishlist::class)->name('wishlist');
 Route::post('/wishlist', [WishlistController::class, 'store']);
 Route::delete('/wishlist/{wishlist}', [WishlistController::class, 'destroy']);
 

@@ -9,7 +9,7 @@ interface CartInterfaceRepo
 {
     public function get() : Collection;
 
-    public function add(Product $product, $quantity = 1);
+    public function add($product_id, $quantity = 1);
 
     public function update($id, $quantity);
 

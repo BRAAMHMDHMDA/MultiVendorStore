@@ -57,5 +57,11 @@ class ProductController extends Controller
             'products' => $products,
         ]);
     }
-
+//    public function index()
+//    {
+//        if (request()->ajax()){
+//            return Movie::published()->where('name', 'LIKE', '%'. request()->search .'%')->get();
+//        }
+//        abort(404);
+//    }
 }

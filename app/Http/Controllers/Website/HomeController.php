@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         $newArrivalsProducts = Product::active()->latest()->take(8)->get();
         $featuredProducts = Product::active()->featured()->latest()->take(8)->get();
-        $categories = Category::active()->whereNull('parent_id')
+        $topCategories = Category::active()->whereNull('parent_id')
                         ->withCount('products')
                         ->orderBy('products_count', 'desc')
                         ->with('children')->take(8)->get();
@@ -21,7 +21,7 @@ class HomeController extends Controller
         return view('website.content.home',[
             'newArrivalsProducts' => $newArrivalsProducts,
             'featuredProducts' => $featuredProducts,
-            'categories' => $categories
+            'topCategories' => $topCategories
         ]);
     }
 }

@@ -28,7 +28,10 @@
                     </li>
                     <li>
                         @php
-                            $categories = \App\Models\Category::pluck('name', 'id');
+                            $categories = \Cache::rememberForever('categories_list', function () {
+                                return \App\Models\Category::get();
+                            });
+
                             $halfCount = $categories->count() / 2;
 
                             $menu1 = $categories->take($halfCount);
@@ -47,15 +50,15 @@
                                         {{--                                        <li class="maga-menu-title">--}}
                                         {{--                                            <a href="#">Men</a>--}}
                                         {{--                                        </li>--}}
-                                        @foreach($menu1 as $category_name)
-                                            <li><a href="{{ url('/products?category='.$category_name)  }}">{{ $category_name }}</a></li>
+                                        @foreach($menu1 as $category)
+                                            <li><a href="{{ url('/products?category_selected='.$category->slug)  }}">{{ $category->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
                                 <div class="col-sm-3 col-xs-12">
                                     <ul class="menulinks">
-                                        @foreach($menu2 as $category_name)
-                                            <li><a href="{{ url('/products?category='.$category_name)  }}">{{ $category_name }}</a></li>
+                                        @foreach($menu2 as $category)
+                                            <li><a href="{{ url('/products?category_selected='.$category->slug)  }}">{{ $category->name }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>

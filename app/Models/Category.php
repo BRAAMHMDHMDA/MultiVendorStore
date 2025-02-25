@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 /**
@@ -20,9 +21,26 @@ class Category extends Model
 
   protected $fillable = ['name','slug','description','parent_id','status','image_path'];
   protected $guarded = ['id'];
-
+protected $withCount = ['products'];
     public static string $imageDisk = 'media';
     public static string $imageFolder = '/categories';
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(function () {
+            Cache::forget('categories_list');
+        });
+
+        static::updating(function () {
+            Cache::forget('categories_list');
+        });
+
+        static::deleting(function () {
+            Cache::forget('categories_list');
+        });
+    }
 
     public function setNameAttribute($value)
     {

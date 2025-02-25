@@ -32,9 +32,22 @@ class CheckoutController extends Controller
 //        $request->dd();
         $items = $cart->get()->groupBy('product.store_id')->all();
 
-
         DB::beginTransaction();
         try {
+            $request->validate([
+                'addr.billing.*' => 'required',
+                'addr.shipping.*' => [
+                    function ($attribute, $value, $fail) use ($request) {
+                        // Check if any input in addr.shipping.* is filled
+                        $shippingFields = collect($request->input('addr.shipping', []));
+
+                        if ($shippingFields->filter()->isNotEmpty() && empty($value)) {
+                            $fail('Please fill out all shipping address inputs.');
+                        }
+                    }
+                ],            ],[
+                'addr.billing.*' => 'Please Fill out all Inputs',
+            ]);
 
             foreach ($items as $store_id => $cart_items) {
                 $total = $cart_items->sum(function($item) {
@@ -63,18 +76,22 @@ class CheckoutController extends Controller
                 }
                 //Begin::Send Notification To Admins && Vendors who have This Order
                 $vendors = Vendor::where('store_id', $order->store_id)->get();
-                Notification::send(Admin::all(), new OrderCreatedNotification($order));
-                Notification::send($vendors, new OrderCreatedNotification($order));
+//                Notification::send(Admin::all(), new OrderCreatedNotification($order));
+//                Notification::send($vendors, new OrderCreatedNotification($order));
                 //End::Send Notification To Admins && Vendors who have This Order
             }
 
             DB::commit();
             event(new OrderCreated($order));
 
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $e->getMessage());
         } catch (\Throwable $e) {
             DB::rollBack();
             throw $e;
         }
+
         if ($request->post('payment') === 'stripe'){
             return redirect()->route('orders.payments.create', $order->id);
         }else{

@@ -22,29 +22,32 @@ class CartModelRepo implements CartInterfaceRepo
     public function get() : Collection
     {
         if (!$this->items->count()) {
-            $this->items = Cart::with('product')->get();
+//            $this->items = Cart::with('product')->get();
+            $this->items = Cart::with(['product' => function ($query) {
+                $query->without('category', 'brand', 'store'); // Exclude unwanted relations
+            }])->get();
         }
 
         return $this->items;
     }
 
-    public function add(Product $product, $quantity=1)
+    public function add($product_id, $quantity=1): Collection
     {
-        $item =  Cart::where('product_id', '=', $product->id)->first();
+        $item =  Cart::where('product_id', '=', $product_id)->first();
 
         if (!$item) {
             $cart = Cart::create([
-                'product_id' => $product->id,
+                'product_id' => $product_id,
                 'quantity' => $quantity,
             ]);
-            $this->get()->push($cart);
-            return $cart;
+            return $this->get();
         }
 
-        return $item->increment('quantity', $quantity);
+        $item->increment('quantity', $quantity);
+        return $this->get();
     }
 
-    public function update($id, $quantity)
+    public function update($id, $quantity): void
     {
         Cart::where('id', '=', $id)
             ->update([
@@ -52,12 +55,12 @@ class CartModelRepo implements CartInterfaceRepo
             ]);
     }
 
-    public function delete($id)
+    public function delete($id): void
     {
         Cart::where('id', '=', $id)->delete();
     }
 
-    public function empty()
+    public function empty(): void
     {
         Cart::query()->delete();
     }

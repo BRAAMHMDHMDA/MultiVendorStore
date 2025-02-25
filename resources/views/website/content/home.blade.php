@@ -7,21 +7,21 @@
                     <div class="categories-wrapper white-bg">
                         <h3 class="block-title">Top Categories</h3>
                         <ul class="vertical-menu">
-                            @foreach($categories as $category)
+                            @foreach($topCategories as $category)
                                 @if($category->children->count() > 0)
                                     <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url('/products?category='.$category->name)  }}" role="button">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="{{ url('/products?category_selected='.$category->name)  }}" role="button">
                                             {{ $category->name }} <i class="caret-right fa fa-angle-right"></i>
                                         </a>
                                         <ul class="dropdown-menu">
                                             @foreach($category->children as $child)
-                                                <li><a href="{{ url('/products?category='.$child->name)}}">{{ $child->name }}</a></li>
+                                                <li><a href="{{ url('/products?category_selected='.$child->name)}}">{{ $child->name }}</a></li>
                                             @endforeach
                                         </ul>
                                     </li>
                                 @else
                                     <li>
-                                        <a href="{{ url('/products?category='.$category->name)  }}">{{ $category->name }}</a>
+                                        <a href="{{ url('/products?category_selected='.$category->name)  }}">{{ $category->name }}</a>
                                     </li>
                                 @endif
                             @endforeach
@@ -108,9 +108,10 @@
             <hr class="lines">
             <div class="row">
                @foreach($newArrivalsProducts as $product)
-                <x-website.product-card :product="$product" class="col-md-3 col-sm-6 col-xs-12"/>
-               @endforeach
+{{--                    <x-website.product-card :product="$product" wire:key="{{$product->id}}" class="col-md-3 col-sm-6 col-xs-12"/>--}}
+                    <livewire:website.products.product-card :product="$product" wire:key="{{$product->id}}" class="col-md-3 col-sm-6 col-xs-12"/>
 
+                @endforeach
             </div>
         </div>
     </section>
@@ -124,7 +125,8 @@
                 <div class="col-md-12">
                     <div id="new-products" class="owl-carousel">
                         @foreach($featuredProducts as $product)
-                            <x-website.product-card :product="$product" class="item"/>
+                            <livewire:website.products.product-card :product="$product" wire:key="{{$product->id}}" class="item"/>
+{{--                            <x-website.product-card :product="$product" class="item"/>--}}
                         @endforeach
                     </div>
                 </div>

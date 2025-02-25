@@ -12,8 +12,6 @@ use Illuminate\Support\Str;
 
 class Cart extends Model
 {
-    use HasFactory;
-
     public $incrementing = false;
 
     protected $fillable = [

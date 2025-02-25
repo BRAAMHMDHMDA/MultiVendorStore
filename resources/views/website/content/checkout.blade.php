@@ -101,25 +101,25 @@
                                         @endforeach
                                     </tbody>
                                     <tfoot>
-                                    <tr>
-                                        <th>Subtotal</th>
-                                        <td colspan="2">
-                                            <p class="price">{{ Currency::format($cart->total()) }}</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Shipping</th>
-                                        <td colspan="2">
-                                            <form action="#" class="shipping">
-                                                <div class="radio">
-                                                    <label><input checked="" type="radio" name="ship"> <span>Free Shipping</span></label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label><input type="radio" name="ship"> <span>Flat Rate:</span> </label><span class="price"> $10.00</span>
-                                                </div>
-                                            </form>
-                                        </td>
-                                    </tr>
+{{--                                    <tr>--}}
+{{--                                        <th>Subtotal</th>--}}
+{{--                                        <td colspan="2">--}}
+{{--                                            <p class="price">{{ Currency::format($cart->total()) }}</p>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                    <tr>--}}
+{{--                                        <th>Shipping</th>--}}
+{{--                                        <td colspan="2">--}}
+{{--                                            <form action="#" class="shipping">--}}
+{{--                                                <div class="radio">--}}
+{{--                                                    <label><input checked="" type="radio" name="ship"> <span>Free Shipping</span></label>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="radio">--}}
+{{--                                                    <label><input type="radio" name="ship"> <span>Flat Rate:</span> </label><span class="price"> $10.00</span>--}}
+{{--                                                </div>--}}
+{{--                                            </form>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
                                     <tr>
                                         <th>Total</th>
                                         <td colspan="2"><p class="price">{{ Currency::format($cart->total()) }}</p></td>

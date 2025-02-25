@@ -28,7 +28,7 @@
                     <!-- Product Item Start -->
                     <div class="category-product-grid row">
                         @foreach($products as $product)
-                            <x-website.product-card :product="$product" class="col-md-3 col-sm-6 col-xs-12"/>
+                            <livewire:website.products.product-card :product="$product" class="col-md-3 col-sm-6 col-xs-12"/>
                         @endforeach
                     </div>
                     <!-- Product Item End -->

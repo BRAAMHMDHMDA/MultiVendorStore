@@ -53,5 +53,8 @@ var ModalEffects = (function() {
 	}
 
 	init();
-
+	document.addEventListener('reinitializeModal', function () {
+		init(); // Reinitialize the modal functionality
+	});
 })();
+

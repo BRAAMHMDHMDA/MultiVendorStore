@@ -36,7 +36,7 @@
             </div>
             <div class="col-md-9 col-sm-10">
                 <!-- shopping cart end -->
-                <div class="search-area">
+                <div class="search-area" style="width: 60%">
                     <form action="{{ route('search-page') }}">
                         <div class="control-group">
 {{--                            <ul class="categories-filter animate-dropdown">--}}
@@ -53,7 +53,7 @@
 {{--                                    </ul>--}}
 {{--                                </li>--}}
 {{--                            </ul>--}}
-                            <input class="search-field" placeholder="   Search for the product you want..." type="text" name="search" value="{{ request('search') }}">
+                            <input class="search-field" style="padding-left: 15px" placeholder="Search for the product you want..." type="text" name="search" value="{{ request('search') }}">
 {{--                            <button type="submit">--}}
 {{--                                <i class="fa fa-search"></i>--}}
 {{--                            </button>--}}
@@ -63,20 +63,33 @@
                 </div>
 
                 {{--Cart Menu--}}
-                <x-website.cart-menu />
+{{--                <x-website.cart-menu />--}}
+                <div  id="cart-menu-container">
+                    <div class="shop-cart">
+                        <ul>
+                            <li><a class="cart-icon cart-btn" href="{{ route('wishlist') }}"><span class="icon-heart"></span></a></li>
+                            <livewire:website.cart.cart-menu />
+                        </ul>
+                    </div>
+                </div>
                 {{--End Cart Menu--}}
 
                 @auth('web')
-                    <div class="account link-inline">
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout').submit();"><i class="icon-logout"></i><span class="hidden-mobile">logout</span></a>
-                        <form id="logout" method="post" action="{{ route('logout')}}" hidden>
-                            @csrf
-                        </form>
+                    <div>
+                        <div class="account link-inline">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout').submit();"><i class="icon-logout"></i><span class="hidden-mobile">logout</span></a>
+                            <form id="logout" method="post" action="{{ route('logout')}}" hidden>
+                                @csrf
+                            </form>
+                        </div>
+                        <div style="padding-top: 17px;">
+                            <i class="icon-user"></i>
+                            <a href="{{route('account')}}"> Hi, {{ Auth::user()->name }}</a>
+                        </div>
                     </div>
-                    <div href="#" style="padding: 15px"><i class="icon-user" ></i> <a href="{{route('account')}}"> Hi, {{ Auth::user()->name }}</a></div>
                 @else
                     <div class="account link-inline">
-                        <a href="{{ route('login') }}"><i class="icon-login"></i><span class="hidden-mobile">login/register</span></a>
+                        <a href="{{ route('login') }}"><i class="icon-login"></i><span class="hidden-mobile">Login/Register</span></a>
                     </div>
                 @endauth
 

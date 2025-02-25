@@ -27,7 +27,6 @@ class Product extends Model
     const STATUS_ACTIVE = 'active';
     const STATUS_DRAFT = 'draft';
     const STATUS_ARCHIVED = 'archived';
-
     public static string $imageDisk = 'media';
     public static string $imageFolder = '/products/main';
 
@@ -38,28 +37,29 @@ class Product extends Model
     ];
     protected $guarded = ['id'];
     protected $appends = ['format_price', 'format_compare_price'];
-    protected $with = ['category', 'brand'];
-    public function setNameAttribute($value)
+    protected $with = ['category', 'brand', 'store'];
+    public function setNameAttribute($value): void
     {
         $this->attributes['slug'] = Str::slug($value);
         $this->attributes['name'] = Str::title($value);
     }
-    public function getFormatPriceAttribute()
+    public function getFormatPriceAttribute(): bool|string
     {
         return Currency::format($this->price);
     }
-    public function getFormatComparePriceAttribute()
+    public function getFormatComparePriceAttribute(): bool|string
     {
         return Currency::format($this->compare_price);
     }
-    public function  getSalePercentageAttribute(){
+    public function  getSalePercentageAttribute(): int|string
+    {
         if (!$this->compare_price){
             return 0;
         }
         return number_format(100-( 100 * $this->price/$this->compare_price ), 1);
     }
 
-    public function getNewAttribute()
+    public function getNewAttribute(): bool
     {
         $createdAt = Carbon::parse($this->attributes['created_at']);
         $now = Carbon::now();
@@ -67,7 +67,7 @@ class Product extends Model
         // Check if the difference is less than or equal to 3 days
         return $createdAt->diffInDays($now) <= 3;
     }
-    protected static function booted()
+    protected static function booted(): void
     {
 
         static::creating(function ($product) {
@@ -82,13 +82,13 @@ class Product extends Model
             }
         });
     }
-    public function scopeActive(Builder $builder)
+    public function scopeActive(Builder $builder): void
     {
         $builder->where('status', '=', 'active')->whereHas('store', function ($query) {
             $query->where('status', '=', 'active');
         });
     }
-    public function scopeFeatured(Builder $builder)
+    public function scopeFeatured(Builder $builder): void
     {
         $builder->where('featured', '=', '1');
     }
@@ -97,6 +97,52 @@ class Product extends Model
         return $this->belongsTo(Category::class)->withDefault([
             'name' => '-'
         ]);
+    }
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'wishlists');
+    }
+    // Add the isFav attribute as an accessor
+//    public function getIsFavAttribute(): bool
+//    {
+//        $wishlistQuery = wishlist::query();
+//
+//        if (Auth::guard('web')->check()) {
+//            return $wishlistQuery->where('product_id', $this->id)
+//                ->where('user_id', Auth::id())
+//                ->orWhere('cookie_id', wishlist::getCookieId())
+//                ->exists();
+//        } else {
+//            return $wishlistQuery->where('product_id', $this->id)
+//                ->where('cookie_id', wishlist::getCookieId())
+//                ->exists();
+//        }
+//    }
+//    public function getIsFavAttribute(): bool
+//    {
+//        $query = $this->users();
+//
+//        if (Auth::check()) {
+//            // Check if the authenticated user's ID exists in the wishlist
+//            return $query->where('user_id', Auth::id())->orWhere('cookie_id', $cookieId)->exists();
+//        } else {
+//            // Check if the product is in the wishlist based on the cookie_id
+//            $cookieId = wishlist::getCookieId();
+//            return $cookieId && $query->where('cookie_id', $cookieId)->exists();
+//        }
+//    }
+    public function getIsFavAttribute(): bool
+    {
+        $userId = Auth::id();
+        $cookieId = wishlist::getCookieId();
+
+        return \DB::table('wishlists')
+            ->where('product_id', $this->id)
+            ->where(function ($query) use ($userId, $cookieId) {
+                $query->when($userId, fn($q) => $q->where('user_id', $userId))
+                    ->when($cookieId, fn($q) => $q->orWhere('cookie_id', $cookieId));
+            })
+            ->exists();
     }
 
     public function brand(): BelongsTo

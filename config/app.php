@@ -193,6 +193,7 @@ return [
         App\Providers\AdminCheckDirectiveServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         App\Providers\CartServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
 
     ],
