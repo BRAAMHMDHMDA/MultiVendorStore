@@ -16,6 +16,7 @@ use App\Http\Controllers\Dashboard\{
     ContactController,
     HomeController,
     ADsController,
+    TestimonialController,
 };
 use Illuminate\Support\Facades\View;
 
@@ -38,6 +39,9 @@ Route::group([
 
     // Routes ADs
     Route::resource('ADs', ADsController::class)->except('show');
+
+    // Routes Testimonial
+    Route::resource('testimonials', TestimonialController::class)->except('show');
 
     // Routes Tags
     Route::resource('tags', TagController::class)->except('show');

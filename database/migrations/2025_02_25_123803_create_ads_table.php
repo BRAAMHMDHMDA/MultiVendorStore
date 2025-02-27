@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('sub_title');
             $table->string('button_text');
             $table->string('button_link');
-            $table->string('image_path');
+            $table->string('image_path')->nullable();
             $table->enum('status', ['draft', 'active'])->default('draft');
             $table->timestamps();
         });

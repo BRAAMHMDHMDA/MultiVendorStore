@@ -59,7 +59,7 @@
                                     <h4>{{ $AD->main_title }}</h4>
                                     <p>{{ $AD->sub_title }}</p>
                                 </div>
-                                <a href="{{ $AD->button_link }}" class="btn btn-common">{{ $AD->button_text }}</a>
+                                <a href="{{ $AD->button_link }}" target="_blank" class="btn btn-common">{{ $AD->button_text }}</a>
                             </div>
                         </div>
                     </div>
@@ -302,42 +302,21 @@
             <div class="row">
                 <!-- Testimonial section  -->
                 <div class="testimonials-carousel owl-carousel">
-                    <div class="item">
-                        <div class="testimonial-item">
-                            <div class="img">
-                                <a href="#"><img src="{{ asset('website/assets/img/testimonial/img1.jpg') }}"  alt=""></a>
-                            </div>
-                            <div class="datils">
-                                <p>“ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe porro neque a nam nulla quos atque reprehenderit eius corrupti amet! <br> hic et quidem. Dignissimos ad maxime velit unde inventore quasi vero dolorem. “</p>
-                                <h5>Jared Erondu</h5>
-                                <span>- CEO & art director</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimonial-item">
-                            <div class="img">
-                                <a href="#"><img src="{{ asset('website/assets/img/testimonial/img2.jpg') }}"  alt=""></a>
-                            </div>
-                            <div class="datils">
-                                <p>“ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe porro neque a nam nulla quos atque reprehenderit eius corrupti amet! <br> hic et quidem. Dignissimos ad maxime velit unde inventore quasi vero dolorem. “</p>
-                                <h5>Cadic Vegeta</h5>
-                                <span>- Graphic Design</span>
+                    @foreach($testimonials as $testimonial)
+                        <div class="item">
+                            <div class="testimonial-item">
+                                <div class="img">
+                                    <a href="#"><img src="{{ $testimonial->image_url }}"  alt=""></a>
+                                </div>
+                                <div class="datils">
+                                    <p class="">“ {!! $testimonial->content !!}  “</p>
+                                    <h5>{{ $testimonial->name }}</h5>
+                                    <span>- {{ $testimonial->job_title }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimonial-item">
-                            <div class="img">
-                                <a href="#"><img src="{{ asset('website/assets/img/testimonial/img3.jpg') }}"  alt=""></a>
-                            </div>
-                            <div class="datils">
-                                <p>“ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe porro neque a nam nulla quos atque reprehenderit eius corrupti amet! <br> hic et quidem. Dignissimos ad maxime velit unde inventore quasi vero dolorem. “</p>
-                                <h5>Jonathan Beri</h5>
-                                <span>- Web Developer</span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>
