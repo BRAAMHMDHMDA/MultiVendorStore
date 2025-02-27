@@ -17,9 +17,9 @@
 @endadmin
 
 @endsection
-<form action="{{ route('dashboard.brands.store') }}" method="post" class="">
+<form action="{{ route('dashboard.brands.store') }}" method="post" class="" enctype="multipart/form-data">
   @csrf
-  <x-dashboard.form.modalBrand id="addBrand"/>
+  <x-dashboard.form.modalBrand id="addBrand" />
 </form>
 @section('content')
 
@@ -43,9 +43,15 @@
               <td>{{ $brand->id }}</td>
               <td>
                 <div class="d-flex justify-content-start align-items-center gap-3">
+                  <img src="{{ $brand->image_url }} " height="40px" width="40px" alt=""/>
                   <strong> {{ $brand->name }}</strong>
                 </div>
               </td>
+{{--              <td>--}}
+{{--                <div class="d-flex justify-content-start align-items-center gap-3">--}}
+{{--                  <strong> {{ $brand->name }}</strong>--}}
+{{--                </div>--}}
+{{--              </td>--}}
               <td>{{ $brand->slug }}</td>
               <td>
                 {{ $brand->created_at->diffForHumans() }}
@@ -72,11 +78,11 @@
               @endadmin
             </tr>
             <!-- Modal -->
-            <form action="{{ route('dashboard.brands.update', $brand->id) }}" method="post">
+            <form action="{{ route('dashboard.brands.update', $brand->id) }}" method="post" enctype="multipart/form-data">
               @csrf
               @method('put')
 
-              <x-dashboard.form.modalBrand id="edit{{$brand->id}}" value="{{$brand->name}}"/>
+              <x-dashboard.form.modalBrand id="edit{{$brand->id}}" :brand="$brand"/>
             </form>
             <!-- End Modal -->
 

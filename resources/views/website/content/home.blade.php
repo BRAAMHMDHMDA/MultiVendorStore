@@ -476,46 +476,14 @@
         <div class="container">
             <div class="row">
                 <div id="client-logo" class="owl-carousel">
-                    <div class="client-logo item">
-                        <a href="#">
-                            <img src="{{ asset('website/assets/img/clients/logo-01.png') }}" alt="" />
-                        </a>
-                    </div>
-                    <div class="client-logo item">
-                        <a href="#">
-                            <img src="{{ asset('website/assets/img/clients/logo-02.png') }}" alt="" />
-                        </a>
-                    </div>
-                    <div class="client-logo item">
-                        <a href="#">
-                            <img src="{{ asset('website/assets/img/clients/logo-03.png') }}" alt="" />
-                        </a>
-                    </div>
-                    <div class="client-logo item">
-                        <a href="#">
-                            <img src="{{ asset('website/assets/img/clients/logo-04.png') }}" alt="" />
-                        </a>
-                    </div>
-                    <div class="client-logo item">
-                        <a href="#">
-                            <img src="{{ asset('website/assets/img/clients/logo-05.png') }}" alt="" />
-                        </a>
-                    </div>
-                    <div class="client-logo item">
-                        <a href="#">
-                            <img src="{{ asset('website/assets/img/clients/logo-06.png') }}" alt="" />
-                        </a>
-                    </div>
-                    <div class="client-logo item">
-                        <a href="#">
-                            <img src="{{ asset('website/assets/img/clients/logo-07.png') }}" alt="" />
-                        </a>
-                    </div>
-                    <div class="client-logo item">
-                        <a href="#">
-                            <img src="{{ asset('website/assets/img/clients/logo-08.png') }}" alt="" />
-                        </a>
-                    </div>
+                    @foreach($brands as $brand)
+                        <div class="client-logo item">
+                            <a href="#">
+                                <img src="{{$brand->image_url}}" alt="" />
+                            </a>
+                        </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>

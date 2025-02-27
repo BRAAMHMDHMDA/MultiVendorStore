@@ -4,8 +4,13 @@
 
 
 <div class="row">
-    <label class="col-sm-2 col-form-label" for="{{ $name }}">{{ $label }}</label>
-    <div class="col-sm-9">
+    @isset($label)
+        <label class="col-sm-2 col-form-label" for="{{ $name }}">{{ $label }}</label>
+        <div class="col-sm-9">
+            @else
+                <div class="col-sm-12">
+
+                    @endisset
         <input type="{{ $type }}"
                name="{{ $name }}"
                id="{{ $name }}"

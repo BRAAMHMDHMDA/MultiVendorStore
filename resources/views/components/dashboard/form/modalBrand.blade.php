@@ -1,5 +1,5 @@
 @props([
-    'id', 'value' => ''
+    'id', 'brand' => null
 ])
 
 <div class="modal fade" id={{$id}} tabindex="-1" aria-hidden="true">
@@ -13,7 +13,17 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label for="nameBasic" class="form-label">Name</label>
-                        <x-dashboard.form.input_simple name="name" placeholder="Enter Name of Brand" value="{{$value}}"/>
+                        <x-dashboard.form.input_simple name="name" placeholder="Enter Name of Brand" :value="$brand?->name"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="nameBasic" class="form-label">Image</label>
+                        <x-dashboard.form.input class="" type="file" name="image" :value="$brand?->image" >
+                            @if($brand?->image_path)
+                                <img class="mt-3" src="{{ $brand->image_url }} " height="120px" alt="" />
+                            @endif
+                        </x-dashboard.form.input>
                     </div>
                 </div>
             </div>

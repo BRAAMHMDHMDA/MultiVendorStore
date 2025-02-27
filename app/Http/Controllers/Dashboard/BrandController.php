@@ -24,6 +24,7 @@ class BrandController extends Controller
     {
         $request->validate(['name' => 'required|unique:brands|min:2|max:20']);
 
+        Brand::storeImage($request);
         Brand::create($request->all());
 
         return redirect()->route('dashboard.brands.index')->with([
@@ -34,6 +35,8 @@ class BrandController extends Controller
     public function update(Request $request, brand $brand)
     {
         $request->validate(['name' => 'required',Rule::unique('brands','name')->ignore($brand->id)]);
+        Brand::updateImage($request, $brand->image_path);
+
         $brand->update($request->all());
 
         return redirect()->route('dashboard.brands.index')->with([
@@ -49,8 +52,9 @@ class BrandController extends Controller
                 'warning' => "($brand->name) brand Linked with Products, First Must Delete Linked Products"
             ]);
         }
-        $brand->delete();
 
+        Brand::deleteImage($brand->image_path);
+        $brand->delete();
         return redirect()->route('dashboard.brands.index')->with([
             'success' => "($brand->name) brand Deleted Sucessfully"
         ]);

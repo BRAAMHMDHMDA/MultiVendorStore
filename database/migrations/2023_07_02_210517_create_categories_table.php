@@ -19,7 +19,7 @@ return new class extends Migration
           $table->string('slug')->unique();
           $table->foreignId('parent_id')->nullable()->constrained('categories', 'id')->nullOnDelete();
           $table->text('description')->nullable();
-          $table->string('image_path');
+          $table->string('image_path')->nullable();
           $table->enum('status', ['draft', 'active'])->default('draft');
           $table->timestamps();
         });
