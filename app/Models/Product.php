@@ -196,4 +196,7 @@ class Product extends Model
 
     }// end of scopeWhenGenreId
 
+
+
+
 }

@@ -35,6 +35,25 @@
                 @endforeach
               </ul>
             </div>
+            <div class="widget-ct widget-tags mb-30">
+              <div class="widget-s-title">
+                <h4>Tags</h4>
+              </div>
+              <ul id="accordion-category" class="product-cat">
+                <li>
+                  <input type="radio" id="all" name="tag" wire:click="$set('tags_selected', [])"  @checked(empty($tags_selected))>
+                  <label for="all" style="display: inline-block;font-weight: normal">All</label>
+                </li>
+                @foreach($tags as $tag)
+                  <li>
+                    <input type="checkbox" id="tag_{{$tag->slug}}" name="tag" wire:model="tags_selected" value="{{$tag->slug}}">
+                    <label for="tag_{{$tag->slug}}" style="display: inline-block; font-size: small; font-weight: normal">
+                      {{$tag->name}}
+                    </label>
+                  </li>
+                @endforeach
+              </ul>
+            </div>
             <div class="widget-ct widget-filter mb-30">
               <div class="widget-s-title">
                 <h4>Filter By Price</h4>

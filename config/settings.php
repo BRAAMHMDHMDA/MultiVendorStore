@@ -113,6 +113,11 @@ return [
                 'type' => 'text',
                 'validate' => 'string|max:255',
             ],
+            'contact.map' => [
+                'label' => 'Map Embed Code',
+                'type' => 'text',
+                'validate' => 'string',
+            ],
         ]
     ],
     'social-media' => [
@@ -190,7 +195,6 @@ return [
                 'src' => '',
                 'validate' => 'image',
             ],
-
 
         ]
     ],

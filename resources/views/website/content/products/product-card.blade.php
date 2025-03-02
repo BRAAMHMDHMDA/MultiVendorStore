@@ -53,19 +53,10 @@
                 </span>
                 </div>
                 <div class="pull-right">
-                            <span class="meta-part" style="font-size: smaller">
-
-                <i class="icon-home"></i>
-                {{$product->store->name}}
-                            </span>
-                    {{--                <div class="reviews-icon">--}}
-                    {{--                    <i class="i-color fa fa-star"></i>--}}
-                    {{--                    <i class="i-color fa fa-star"></i>--}}
-                    {{--                    <i class="i-color fa fa-star"></i>--}}
-                    {{--                    <i class="fa fa-star-o"></i>--}}
-                    {{--                    <i class="fa fa-~star-o"></i>--}}
-                    {{--                </div>--}}
-
+                    <a class="meta-part" href="{{route('store-details', $product->store->slug)}}" target="_blank" style="font-size: smaller; cursor: pointer">
+                        <i class="icon-home"></i>
+                        {{$product->store->name}}
+                    </a>
                 </div>
             </div>
         </div>

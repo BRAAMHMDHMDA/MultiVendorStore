@@ -15,28 +15,35 @@
             <div class="col-md-3 col-sm-6">
                 <h3 class="widget-title">Useful Links</h3>
                 <ul>
-                    <li><a href="login.html">My Account</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="checkout.html">Checkout</a></li>
-                    <li><a href="404.html">404 Page</a></li>
-                    <li><a href="wishlist.html">Wishlist</a></li>
-                    <li><a href="compare.html">Compare</a></li>
+                    <li><a href="{{route('account')}}">My Account</a></li>
+                    <li><a href="{{route('contact-us')}}">Contact</a></li>
+                    <li><a href="{{route('cart.index')}}">My Cart</a></li>
+                    <li><a href="{{route('wishlist')}}">Wishlist</a></li>
+                    <li><a href="{{route('checkout')}}">Checkout</a></li>
+                    <li><a href="{{route('all-products')}}">Products</a></li>
+                    <li><a href="{{route('all-stores')}}">Stores</a></li>
                 </ul>
             </div>
+            @php
+                $tags = \App\Models\Tag::latest()->limit(10)->get();
+            @endphp
             <div class="col-md-3 col-sm-6">
                 <h3 class="widget-title">Product Tags</h3>
                 <div class="tagcloud">
-                    <a href="#" class="tag-link">Accessories</a>
-                    <a href="#" class="tag-link">Bags</a>
-                    <a href="#" class="tag-link">Bestseller</a>
-                    <a href="#" class="tag-link">Handpicked</a>
-                    <a href="#" class="tag-link">Dresses</a>
-                    <a href="#" class="tag-link">Men Fashion</a>
-                    <a href="#" class="tag-link">Sell Off</a>
-                    <a href="#" class="tag-link">Shoes</a>
-                    <a href="#" class="tag-link">Specials</a>
-                    <a href="#" class="tag-link">Tops</a>
-                    <a href="#" class="tag-link">Women Fashion</a>
+                    @foreach($tags as $tag)
+                        <a href="{{route('all-products')}}?tags_selected[0]={{$tag->slug}}" class="tag-link">{{$tag->name}}</a>
+                    @endforeach
+{{--                    <a href="#" class="tag-link">Accessories</a>--}}
+{{--                    <a href="#" class="tag-link">Bags</a>--}}
+{{--                    <a href="#" class="tag-link">Bestseller</a>--}}
+{{--                    <a href="#" class="tag-link">Handpicked</a>--}}
+{{--                    <a href="#" class="tag-link">Dresses</a>--}}
+{{--                    <a href="#" class="tag-link">Men Fashion</a>--}}
+{{--                    <a href="#" class="tag-link">Sell Off</a>--}}
+{{--                    <a href="#" class="tag-link">Shoes</a>--}}
+{{--                    <a href="#" class="tag-link">Specials</a>--}}
+{{--                    <a href="#" class="tag-link">Tops</a>--}}
+{{--                    <a href="#" class="tag-link">Women Fashion</a>--}}
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">

@@ -4,22 +4,15 @@
       "url": "/dashboard/home",
       "name": "Home",
       "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "pages-home",
+      "slug": "dashboard.home",
       "guard": "all"
     },
-    {
-      "url": "dashboard/admins",
-      "name": "Admins",
-      "icon": "menu-icon tf-icons fa-solid fa-users-gear",
-      "slug": "dashboard-admins",
-      "target": "",
-      "guard": "admins"
-    },
+
     {
       "url": "dashboard/categories",
       "name": "Categories",
       "icon": "menu-icon tf-icons ti ti-category",
-      "slug": "dashboard-categories",
+      "slug": "dashboard.categories",
       "target": "",
       "guard": "all"
     },
@@ -27,7 +20,7 @@
       "url": "dashboard/brands",
       "name": "Brands",
       "icon": "menu-icon tf-icons ti ti-award",
-      "slug": "dashboard-brands",
+      "slug": "dashboard.brands",
       "target": "",
       "guard": "all"
 
@@ -36,7 +29,7 @@
       "url": "dashboard/tags",
       "name": "Tags",
       "icon": "menu-icon tf-icons ti ti-tags",
-      "slug": "dashboard-tags",
+      "slug": "dashboard.tags",
       "target": "",
       "guard": "all"
     },
@@ -44,7 +37,7 @@
       "url": "dashboard/products",
       "name": "Products",
       "icon": "menu-icon tf-icons ti ti-shopping-cart",
-      "slug": "dashboard-products",
+      "slug": "dashboard.products",
       "target": "",
       "guard": "all"
     },
@@ -52,7 +45,7 @@
       "url": "dashboard/orders",
       "name": "Orders",
       "icon": "menu-icon tf-icons ti ti-file-dollar",
-      "slug": "dashboard-orders",
+      "slug": "dashboard.orders",
       "target": "",
       "guard": "all"
     },
@@ -60,7 +53,7 @@
       "url": "dashboard/stores",
       "name": "Stores",
       "icon": "menu-icon tf-icons ti ti-building-store",
-      "slug": "dashboard-stores",
+      "slug": "dashboard.stores",
       "target": "",
       "guard": "admins"
 
@@ -68,8 +61,16 @@
     {
       "url": "dashboard/vendors",
       "name": "Vendors",
-      "icon": "menu-icon tf-icons fa-solid fa-house-chimney-user",
-      "slug": "dashboard-vendors",
+      "icon": "menu-icon tf-icons fa-solid fa-house-chimney-user fs-5",
+      "slug": "dashboard.vendors",
+      "target": "",
+      "guard": "admins"
+    },
+    {
+      "url": "dashboard/admins",
+      "name": "Admins",
+      "icon": "menu-icon tf-icons fa-solid fa-users-gear fs-5",
+      "slug": "dashboard.admins",
       "target": "",
       "guard": "admins"
     },
@@ -77,7 +78,7 @@
       "url": "dashboard/users",
       "name": "Users",
       "icon": "menu-icon tf-icons ti ti-users",
-      "slug": "dashboard-customers",
+      "slug": "dashboard.customers",
       "target": "",
       "guard": "admins"
     },
@@ -85,15 +86,44 @@
       "url": "dashboard/contacts",
       "name": "Contacts",
       "icon": "menu-icon tf-icons ti ti-mail",
-      "slug": "dashboard-contacts",
+      "slug": "dashboard.contacts",
       "target": "",
       "guard": "admins"
     },
     {
+      "name": "Manage Sections",
+      "icon": "menu-icon tf-icons ti ti-layout-sidebar",
+      "slug": [
+        "dashboard.ADs",
+        "dashboard.testimonials",
+        "dashboard.sliders"
+      ],
+      "guard": "admins",
+
+      "submenu": [
+        {
+          "url": "dashboard/settings/home",
+          "name": "Sliders",
+          "slug": "dashboard.sliders"
+        },
+        {
+          "url": "dashboard/ADs",
+          "name": "ADs",
+          "slug": "dashboard.ADs"
+        },
+        {
+          "url": "dashboard/testimonials",
+          "name": "Testimonials",
+          "slug": "dashboard.testimonials"
+        }
+
+      ]
+    } ,
+    {
       "url": "dashboard/settings",
       "name": "Settings",
       "icon": "menu-icon tf-icons ti ti-settings",
-      "slug": "dashboard-settings",
+      "slug": "dashboard.settings",
       "target": "",
       "guard": "admins"
     }

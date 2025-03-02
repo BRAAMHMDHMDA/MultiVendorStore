@@ -7,8 +7,9 @@
         $activeClass = null;
         $active = $configData["layout"] === 'vertical' ? 'active open':'active';
         $currentRouteName =  Route::currentRouteName();
+        $head_link= Illuminate\Support\Str::contains($currentRouteName, $submenu->slug) && !isset($submenu->submenu);
 
-        if ($currentRouteName === $submenu->slug) {
+        if ($head_link) {
             $activeClass = 'active';
         }
         elseif (isset($submenu->submenu)) {

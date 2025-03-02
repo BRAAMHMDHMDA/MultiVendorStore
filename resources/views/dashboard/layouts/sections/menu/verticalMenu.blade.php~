@@ -62,6 +62,7 @@
 
                         if (gettype($menu->slug) === 'array') {
                             foreach($menu->slug as $slug){
+                                dd($currentRouteName,$slug);
                                 if (str_contains($currentRouteName,$slug) and strpos($currentRouteName,$slug) === 0) {
                                     $activeClass = 'active open';
                                 }
