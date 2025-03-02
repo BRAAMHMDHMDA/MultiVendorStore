@@ -29,7 +29,7 @@
                 </li>
                 @foreach($categories as $category)
                   <li>
-                    <input type="radio" id="{{$category->name}}" name="category" wire:model="category_selected" value="{{$category->name}}" @checked(request()->category==$category->name)>
+                    <input type="radio" id="{{$category->name}}" name="category" wire:model="category_selected" value="{{$category->slug}}" @checked(request()->category==$category->name)>
                     <label for="{{$category->name}}" style="display: inline-block; font-size: small;font-weight: normal">{{$category->name}} ({{$category->products_count}})</label>
                   </li>
                 @endforeach

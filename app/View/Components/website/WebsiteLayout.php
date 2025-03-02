@@ -7,7 +7,7 @@ use Illuminate\View\Component;
 class WebsiteLayout extends Component
 {
 
-    public $title;
+    public mixed $title;
 
     /**
      * Create a new component instance.

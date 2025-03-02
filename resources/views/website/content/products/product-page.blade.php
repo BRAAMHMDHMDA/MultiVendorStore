@@ -50,6 +50,8 @@
                         <div class="short-desc">
                             <h5 class="sub-title">Quick Overview</h5>
                             <p>{{ $product->description }}</p>
+                            <p style="padding-top: 10px" ><i class="fa fa-tag"></i> {{ $product->brand->name }}, {{ $product->category->name }} Category</p>
+                            <a href="{{ route('store-details', $product->store->slug) }}   " style="cursor: pointer" ><i class="fa fa-home"></i> {{ $product->store->name }}</a>
                         </div>
                         <form action="{{ route('cart.store') }}" method="post">
                             @csrf
@@ -170,7 +172,7 @@
                         <ul class="">
                             <li class="active"><a href="#description" data-toggle="tab">Description</a></li>
                             <li><a href="#reviews" data-toggle="tab">Reviews</a></li>
-                            <li><a href="#information" data-toggle="tab">Information</a></li>
+{{--                            <li><a href="#information" data-toggle="tab">Information</a></li>--}}
                             <li><a href="#tags" data-toggle="tab">Tags</a></li>
                         </ul>
                     </div>
@@ -235,38 +237,38 @@
                                     </ul>
                                 </div>
                                 <div class="leave-review">
-                                    <h3 class="small-title">Leave your reviw</h3>
+                                    <h3 class="small-title">Leave your review</h3>
                                     <div class="your-rating mb-30">
                                         <p class="mb-10"><strong>Your Rating</strong></p>
                                         <span>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                      </span>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                        </span>
                                         <span class="separator">|</span>
                                         <span>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                      </span>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                        </span>
                                         <span class="separator">|</span>
                                         <span>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                      </span>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                        </span>
                                         <span class="separator">|</span>
                                         <span>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                      </span>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                        </span>
                                         <span class="separator">|</span>
                                         <span>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                      </span>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                        </span>
                                     </div>
                                     <div class="reply-box">
                                         <form class="form-horizontal">
@@ -296,25 +298,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="information">
-                            <div class="pro-tab-info pro-information">
-                                <h3 class="small-title">Product information</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas
-                                    elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et
-                                    messages in con sectetur posuere dolor non.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas
-                                    elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et
-                                    messages in con sectetur posuere dolor non.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas
-                                    elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et
-                                    messages in con sectetur posuere dolor non.</p>
-                            </div>
-                        </div>
+{{--                        <div class="tab-pane" id="information">--}}
+{{--                            <div class="pro-tab-info pro-information">--}}
+{{--                                <h3 class="small-title">Product information</h3>--}}
+{{--                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas--}}
+{{--                                    elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et--}}
+{{--                                    messages in con sectetur posuere dolor non.</p>--}}
+{{--                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas--}}
+{{--                                    elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et--}}
+{{--                                    messages in con sectetur posuere dolor non.</p>--}}
+{{--                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas--}}
+{{--                                    elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et--}}
+{{--                                    messages in con sectetur posuere dolor non.</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="tab-pane" id="tags">
                             <div class="pro-tab-info pro-information">
                                 <h3 class="small-title">tags</h3>
                                 @foreach($product->tags as $tag)
                                     {{ $tag->name }}
+                                    <br>
                                 @endforeach
                             </div>
                         </div>

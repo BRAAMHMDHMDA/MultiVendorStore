@@ -11,6 +11,7 @@ use App\Http\Controllers\Website\{AboutUsController,
     ProductController,
     StoreController,
     WishlistController,
+    AccountController
 };
 use App\Http\Livewire\Website\{
     Products\ProductsPage,
@@ -68,8 +69,12 @@ Route::group([
     Route::get('orders/{order}/pay/stripe/callback', [PaymentsController::class, 'confirm'])
         ->name('stripe.return');
 
-    Route::get('account', [\App\Http\Controllers\Website\AccountController::class, 'index'])
+    Route::get('account', [AccountController::class, 'index'])
         ->name('account');
+    Route::put('account', [AccountController::class, 'update'])
+        ->name('account.update');
+    Route::patch('account/change-password', [AccountController::class, 'changePassword'])
+        ->name('account.change-password');
 });
 
 //// Dashboard Routes

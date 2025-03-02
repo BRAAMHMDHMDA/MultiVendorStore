@@ -45,7 +45,7 @@ class ProductsPage extends Component
             ->when($this->min_price, fn($q) => $q->where('price', '>=', $this->min_price))
             ->when($this->max_price, fn($q) => $q->where('price', '<=', $this->max_price))
             ->when($this->category_selected, fn($q) => $q->whereHas('category', fn($query) =>
-                $query->where('name', 'like', '%' . $this->category_selected . '%')
+                $query->where('slug', 'like', '%' . $this->category_selected . '%')
             ))
             ->when(!empty($this->tags_selected), function ($q) {
                 $q->whereHas('tags', fn($query) => $query->whereIn('slug', $this->tags_selected));
