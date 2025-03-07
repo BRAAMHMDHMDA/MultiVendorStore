@@ -17,6 +17,7 @@ use App\Http\Controllers\Dashboard\{
     HomeController,
     ADsController,
     TestimonialController,
+    ProfileController,
 };
 use Illuminate\Support\Facades\View;
 
@@ -97,6 +98,13 @@ Route::group([
 
         return $updatedNotificationHtml;
     });
+
+    Route::get('profile', [ProfileController::class, 'index'])
+        ->name('profile');
+    Route::put('profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+    Route::patch('profile/change-password', [ProfileController::class, 'changePassword'])
+        ->name('profile.change-password');
 
 
 });

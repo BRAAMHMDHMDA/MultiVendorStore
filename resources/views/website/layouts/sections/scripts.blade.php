@@ -90,3 +90,4 @@
 
 @stack('scripts')
 
+<script src="{{ asset('assets/js/pages-account-settings-account.js') }}"></script>

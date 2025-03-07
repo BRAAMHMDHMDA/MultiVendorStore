@@ -18,3 +18,6 @@ $customizerHidden = ($customizerHidden ?? '');
 <!--/ Content -->
 
 @endsection
+
+@stack('script')
+

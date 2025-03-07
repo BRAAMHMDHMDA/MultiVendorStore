@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Laravel\Fortify\Contracts\PasswordUpdateResponse;
 use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\Config;
@@ -55,6 +56,7 @@ class FortifyServiceProvider extends ServiceProvider
                 return redirect()->intended(route('home'));
             }
         });
+
     }
 
     /**
@@ -84,5 +86,6 @@ class FortifyServiceProvider extends ServiceProvider
             Fortify::registerView('website.content.auth.register');
 
         }
+
     }
 }

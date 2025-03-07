@@ -81,21 +81,21 @@ $navbarDetached = ($navbarDetached ?? '');
               <li>
                 <div class="dropdown-divider"></div>
               </li>
-              <li>
-                <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : 'javascript:void(0);' }}">
+              <li class="">
+                <a class="dropdown-item @if(Route::is('dashboard.profile')) active @endif" href="{{ Route::has('dashboard.profile') ? route('dashboard.profile') : 'javascript:void(0);' }}">
                   <i class="ti ti-user-check me-2 ti-sm"></i>
                   <span class="align-middle">My Profile</span>
                 </a>
               </li>
-              <li>
-                <a class="dropdown-item" href="">
-                  <i class='ti ti-settings me-2'></i>
-                  <span class="align-middle">Settings</span>
-                </a>
-              </li>
-              <li>
-                <div class="dropdown-divider"></div>
-              </li>
+{{--              <li>--}}
+{{--                <a class="dropdown-item" href="">--}}
+{{--                  <i class='ti ti-settings me-2'></i>--}}
+{{--                  <span class="align-middle">Settings</span>--}}
+{{--                </a>--}}
+{{--              </li>--}}
+{{--              <li>--}}
+{{--                <div class="dropdown-divider"></div>--}}
+{{--              </li>--}}
               <li>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   <i class='ti ti-logout me-2'></i>

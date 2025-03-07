@@ -30,7 +30,7 @@ trait HasImage
 
     public static function deleteImage($image_path): bool
     {
-        if (!$image_path) return true;
+        if (!$image_path || $image_path == 'default.jpg') return true;
         return Storage::disk(static::$imageDisk)->delete($image_path);
     }
 }

@@ -63,11 +63,6 @@ $container = ($container ?? 'container-xxl');
             </div>
             @yield('content')
 
-            <!-- pricingModal -->
-            @if ($pricingModal)
-            @include('Dashboard/_partials/_modals/modal-pricing')
-            @endif
-            <!--/ pricingModal -->
 
           </div>
           <!-- / Content -->
@@ -93,3 +88,5 @@ $container = ($container ?? 'container-xxl');
   </div>
   <!-- / Layout wrapper -->
   @endsection
+
+@stack('scripts')

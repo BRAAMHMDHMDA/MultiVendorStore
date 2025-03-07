@@ -34,6 +34,8 @@
 @yield('page-script')
 
 
+
+
 <!-- END: Page JS-->
 @stack('script')
 

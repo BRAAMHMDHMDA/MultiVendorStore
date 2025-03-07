@@ -92,14 +92,14 @@
                   <p class="hidden-xs">Showing {{$products->firstItem()}}-{{$products->lastItem()}} of {{$products->total()}} Results</p>
                 </div>
               </div>
-              <div class="col-12" wire:loading wire:target="*, !addToCart">
+              <div class="col-12" wire:loading>
                 <div class="d-flex justify-content-center">
                   <span class="loader"></span>
                 </div>
               </div>
             </div>
 
-            <div class="tab-content" wire:loading.remove wire:target="*, !addToCart">
+            <div class="tab-content" wire:loading.remove>
               <div id="grid-view" class="tab-pane active">
                 @foreach($products as $product)
                   <livewire:website.products.product-card :product="$product" wire:key="{{$product->id}}" class="col-md-4 col-sm-6 col-xs-12"/>
