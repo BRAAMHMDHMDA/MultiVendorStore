@@ -41,10 +41,18 @@
                             <h4>Shop Details</h4>
                         </div>
                         <div class="info">
-                            <a href="#"><img src="{{$store->cover_image}}" alt=""></a>
+                            <a href="#"><img src="{{$store->cover_image_url}}" alt=""></a>
                             <h4 class="name">{{$store->name}}</h4>
                             <ul class="contacts-list">
-                                <li><i class="icon-user"></i> {{$store->owner->name}}</li>
+                                <li><i class="icon-user"></i>
+                                    @foreach($store->owners as $owner)
+                                        @if($loop->last)
+                                            {{ $owner->name }}
+                                        @else
+                                            {{ $owner->name }},
+                                        @endif
+                                    @endforeach
+                                </li>
                                 <li><i class="icon-phone"></i> {{$store->phone_number}}</li>
                                 <li><i class="icon-envelope"></i> {{$store->email}}</li>
                             </ul>

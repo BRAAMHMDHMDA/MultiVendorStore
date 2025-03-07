@@ -18,6 +18,7 @@ use App\Http\Controllers\Dashboard\{
     ADsController,
     TestimonialController,
     ProfileController,
+    MyStoreController,
 };
 use Illuminate\Support\Facades\View;
 
@@ -105,6 +106,11 @@ Route::group([
         ->name('profile.update');
     Route::patch('profile/change-password', [ProfileController::class, 'changePassword'])
         ->name('profile.change-password');
+
+    Route::get('my-store', [MyStoreController::class, 'edit'])
+        ->name('my-store');
+    Route::put('my-store', [MyStoreController::class, 'update'])
+        ->name('my-store.update');
 
 
 });

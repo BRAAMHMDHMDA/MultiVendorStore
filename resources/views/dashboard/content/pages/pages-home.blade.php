@@ -93,7 +93,15 @@ $configData = Helper::appClasses();
                                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                     <div class="me-2">
                                         <h6 class="mb-0">{{$store->name}}</h6>
-                                        <small class="text-muted d-block">{{$store->owner->name}}</small>
+                                        <small class="text-muted d-block">
+                                            @foreach($store->owners as $owner)
+                                                @if($loop->last)
+                                                    {{ $owner->name }}
+                                                @else
+                                                    {{ $owner->name }},
+                                                @endif
+                                            @endforeach
+                                        </small>
                                     </div>
                                     <div class="user-progress d-flex align-items-center gap-1">
                                         <p class="mb-0 fw-medium">{{ $store->orders_count }} Order</p>

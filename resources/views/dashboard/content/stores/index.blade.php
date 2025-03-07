@@ -44,7 +44,17 @@
                         </td>
                         <td>{{ $store->phone_number }}</td>
                         <td>{{ $store->email }}</td>
-                        <td>{{$store->owner->name ?? ''}}</td>
+                        <td>
+                            @foreach($store->owners as $owner)
+                                @if($loop->last)
+                                   <small> - {{ $owner->name }}</small>
+                                @else
+                                    <small> - {{ $owner->name }}</small>
+                                    <br />
+                                @endif
+                            @endforeach
+{{--                            {{$store->owner->name ?? ''}}--}}
+                        </td>
                         <td>{{$store->vendors_count}}</td>
                         <td>
                             @if ($store->status == 'active')

@@ -21,7 +21,7 @@ class StoreController extends Controller
     public function index()
     {
         // vendors count
-        $stores = Store::with('owner:store_id,name')->withCount('vendors')->latest()->paginate();
+        $stores = Store::with('owners:store_id,name')->withCount('vendors')->latest()->paginate();
         return view('dashboard.content.stores.index', [
             'stores' => $stores
         ]);
@@ -60,6 +60,7 @@ class StoreController extends Controller
             'image_path'=> $request->post('image_path'),
             'status'=> 'active',
             'store_id'=> $store->id,
+            'is_owner'=> 1,
         ]);
 
         DB::commit();

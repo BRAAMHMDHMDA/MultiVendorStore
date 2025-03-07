@@ -1,7 +1,7 @@
 <div class="{{ $class ?? 'col-md-12' }}">
     <div class="shop-product clearfix">
         <div class="product-box">
-            <a href="{{ route('store-details', $store->slug) }}"><img src="{{ $store->cover_image }}"  alt="{{ $store->slug }}" height="200px"></a>
+            <a href="{{ route('store-details', $store->slug) }}"><img src="{{ $store->cover_image_url }}"  alt="{{ $store->slug }}" height="200px"></a>
 {{--            <div class="actions">--}}
 {{--                <div class="add-to-links">--}}
 {{--                    <a href="#" class="btn-wish"><i class="icon-heart"></i></a>--}}
@@ -24,7 +24,17 @@
             </div>
             <div class="fix mb-10" style="margin-top: 10px; margin-bottom: 20px">
                 <div class="meta">
-                    <span class="meta-part"><a href="#"><i class="icon-user"></i> {{ $store->owner->name }}</a></span>
+                    <span class="meta-part">
+                        <a href="#"><i class="icon-user"></i>
+                            @foreach($store->owners as $owner)
+                                @if($loop->last)
+                                    {{ $owner->name }}
+                                @else
+                                    {{ $owner->name }},
+                                @endif
+                            @endforeach
+                        </a>
+                    </span>
                     <span class="meta-part"><a href="{{ route('store-details', $store->slug) }}"><i class="icon-basket-loaded"></i> {{ $store->products_count }} Product</a></span>
                     <span class="meta-part"><a href="#"><i class="icon-calendar"></i> {{ $store->created_at->diffForHumans() }}</a></span>
                 </div>

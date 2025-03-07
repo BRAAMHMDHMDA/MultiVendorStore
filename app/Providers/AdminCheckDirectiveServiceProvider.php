@@ -13,12 +13,21 @@ class AdminCheckDirectiveServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
+        // Admin
         Blade::directive('admin', function () {
             return "<?php if(Auth::guard('admins')->check()): ?>";
         });
         Blade::directive('endadmin', function () {
+            return "<?php endif; ?>";
+        });
+
+        // Vendor
+        Blade::directive('storeOwner', function () {
+            return "<?php if(Auth::guard('vendors')->user()?->is_owner === 1): ?>";
+        });
+        Blade::directive('endStoreOwner', function () {
             return "<?php endif; ?>";
         });
     }

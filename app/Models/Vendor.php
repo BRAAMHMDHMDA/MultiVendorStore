@@ -37,7 +37,7 @@ class Vendor extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function store()
+    public function store(): BelongsTo
     {
         return $this->belongsTo(Store::class);
     }

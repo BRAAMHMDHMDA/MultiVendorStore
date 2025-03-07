@@ -69,11 +69,15 @@ $navbarDetached = ($navbarDetached ?? '');
                       <span class="fw-semibold d-block">
                         {{ Auth::user()->name }}
                       </span>
-                      @if (Auth::guard('admins')->check())
+                      @admin
                         <small class="text-muted">Admin</small>
                       @else
-                        <small class="text-muted">Vendor {{Auth::user()->store->name}}</small>
-                      @endif
+                        @storeOwner
+                          <small class="text-muted">Owner {{Auth::user()->store->name}}</small>
+                        @else
+                          <small class="text-muted">Vendor {{Auth::user()->store->name}}</small>
+                        @endStoreOwner
+                      @endadmin
                     </div>
                   </div>
                 </a>
@@ -81,13 +85,22 @@ $navbarDetached = ($navbarDetached ?? '');
               <li>
                 <div class="dropdown-divider"></div>
               </li>
-              <li class="">
+              <li>
                 <a class="dropdown-item @if(Route::is('dashboard.profile')) active @endif" href="{{ Route::has('dashboard.profile') ? route('dashboard.profile') : 'javascript:void(0);' }}">
                   <i class="ti ti-user-check me-2 ti-sm"></i>
                   <span class="align-middle">My Profile</span>
                 </a>
               </li>
-{{--              <li>--}}
+              @storeOwner
+                <li>
+                  <a class="dropdown-item @if(Route::is('dashboard.my-store')) active @endif" href="{{route('dashboard.my-store')}}">
+                    <i class="ti ti-building-store me-2 ti-sm"></i>
+                    <span class="align-middle">Manage My Store</span>
+                  </a>
+                </li>
+              @endStoreOwner
+
+              {{--              <li>--}}
 {{--                <a class="dropdown-item" href="">--}}
 {{--                  <i class='ti ti-settings me-2'></i>--}}
 {{--                  <span class="align-middle">Settings</span>--}}

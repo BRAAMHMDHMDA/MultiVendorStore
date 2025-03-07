@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
 
 class StoreRequest extends FormRequest
@@ -22,9 +24,13 @@ class StoreRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
-        $id = $this->route('store');
+        if (Route::is('dashboard.my-store.update')) {
+            $id = Auth::user()->store_id;
+        }else{
+            $id = $this->route('store');
+        }
 
         $rules = [
             'name' => [

@@ -17,7 +17,7 @@ class StoreController extends Controller
             ->when($request -> search, function ($q) use ($request) {
                 return $q -> where('name', 'like', '%' . $request -> search . '%');
             })
-            ->with('owner')
+            ->with('owners')
             ->withCount('products')
             ->paginate(4);
 
