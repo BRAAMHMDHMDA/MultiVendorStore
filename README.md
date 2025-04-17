@@ -1,64 +1,117 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<h1 align="center" style="font-size: 4rem; letter-spacing: 0.1em; margin-bottom: 0;">
+    <a href="http://emart-store.byethost6.com/home" style="text-decoration: none; color: white;">
+        EMART<span style="color: #00a8ff;">STORE</span> App
+    </a>
+</h1>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Hosting Note
 
-## About Laravel
+> **Free Hosting Notice**: This app is hosted on a free service, which may cause some issues and slowdowns due to its limitations.
+> **Live Preview**: [http://emart-store.byethost6.com/home](http://emart-store.byethost6.com/home)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Table of Contents
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [The Application](#the-application)
+- [The Control Panel](#the-control-panel)
+- [Tools and Technologies](#tools-and-technologies)
+- [Future Features](#future-features)
+- [Contact Us](#contact-us)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+# Emart Store App
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The multi-vendor e-commerce application enables users to seamlessly explore a wide range of products and vendors, perform real-time searches, add items to their cart, complete secure payments through Stripe, and monitor their orders — all within a highly responsive and user-friendly interface.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## The Application
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Emart Store delivers a premium shopping experience with the following features:
 
-### Premium Partners
+- **Multi-Store Browsing**  
+  Customers can explore multiple stores, view store profiles with branding and contact details, and browse products specific to each store.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- **Categorized Product Catalog**  
+  Browse a well‑structured collection of items by category and subcategory.
 
-## Contributing
+- **Instant Search & Filters**  
+  Live search with filters (name, cagegories, price range, tags) ensures customers find products quickly.
+  
+- **Currency Conversion**  
+  Product prices can be dynamically converted from USD to EUR or ILS using real-time exchange rates fetched from an external API.
+  
+- **Dynamic Shopping Cart**  
+  Add, update, or remove items in real time; view running totals before checkout.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Secure Checkout**  
+  Complete orders with integrated payment gateways (Stripe, PayPal) and review order summary before confirmation.
 
-## Code of Conduct
+- **Wishlist (Favorites)**  
+  Save products for later and view your wishlist on any device.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **Order History & Tracking**  
+  Registered users can review past orders.
+  
+- **User Accounts**.
+  Manage personal info, and change password.
 
-## Security Vulnerabilities
+- **Responsive Design**  
+  Optimized for desktop, tablet, and mobile with a clean, intuitive UI.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **User Authentication**  
+  Simple Sign up and login with email/password.
 
-## License
+- **Contact Page**  
+  A user-friendly contact form allows customers to reach out for support or inquiries. Store contact details and store location on map are also provided.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **About Us Page**  
+  Introduces your platform’s mission, values, and story to build trust and transparency with customers.
+
+- **Homepage Advertisements**  
+  Highlight banners or featured promotions directly on the homepage to engage users with the latest deals, new arrivals, or sponsored content.
+
+---
+
+## The Control Panel
+
+The Emart Store Control Panel empowers administrators with robust tools for efficient store management:
+
+- **Secure Access**  
+  Multi-authentication system with separate, restricted logins for both **vendors** and **administrators**. Each user type accesses only their designated dashboard and permissions.
+- **Dashboard**: Monitor sales, orders, and customer activity at a glance.
+- **Product Management**: Add, edit, delete, and categorize products.
+- **Order Management**: View, process, and track customer orders.
+- **Customer Management**: Manage user accounts and access purchase histories.
+- **Inventory Control**: Track stock levels and receive low inventory alerts.
+- **Analytics**: Gain insights with detailed sales and performance reports.
+
+---
+
+## Tools and Technologies
+
+Emart Store is built using cutting-edge tools for top-tier performance:
+
+- **Front-End**: HTML, CSS, Bootstrap, and Livewire.
+- **Back-End**: Php Laravel.
+- **Database**: MySQL.
+- **Payment Integration**: Stripe.
+- **Currency Conversion**: exchange rates fetched from an external API => https://free.currencyconverterapi.com/.
+
+---
+
+## Future Features
+
+We’re dedicated to evolving Emart Store with:
+
+- **Mobile Apps**: Native applications for iOS and Android.
+- **AI Recommendations**: Personalized product suggestions based on user behavior.
+- **Multi-Language Support**: Expand accessibility with additional languages.
+- **Advanced Analytics**: Deeper insights for administrators to optimize sales strategies.
+
+---
+
+## Contact Us
+
+For inquiries or feedback, reach out at: [support@emart-store.com](mailto:support@emart-store.com)  
+*Note*: This is a placeholder email; please replace it with your actual contact email.
