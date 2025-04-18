@@ -7,7 +7,7 @@
 ## Hosting Note
 
 > **Free Hosting Notice**: This app is hosted on a free service, which may cause some issues and slowdowns due to its limitations.
-> **Website Live Preview**: [http://emart-store.byethost6.com/home](http://emart-store.byethost6.com/home)>
+> **Website Live Preview**: [http://emart-store.byethost6.com/home](http://emart-store.byethost6.com/home)
 > **Dashboard Live Preview**: [http://emart-store.byethost6.com/home](http://emart-store.byethost6.com/dashboard)
 
 ## Table of Contents
