@@ -1,6 +1,6 @@
 <h1 align="center" style="font-size: 4rem; letter-spacing: 0.1em; margin-bottom: 0;">
     <a href="http://emart-store.byethost6.com/home" style="text-decoration: none; color: white;">
-        EMART<span style="color: #00a8ff;">STORE</span> App
+        EMART <span style="color: #00a8ff;">STORE</span> App
     </a>
 </h1>
 
