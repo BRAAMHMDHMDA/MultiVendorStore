@@ -10,7 +10,7 @@
 > 
 > **Website Live Preview**: [http://emart-store.byethost6.com/home](http://emart-store.byethost6.com/home)
 > 
-> **Dashboard Live Preview**: [http://emart-store.byethost6.com/home](http://emart-store.byethost6.com/dashboard)
+> **Dashboard Live Preview**: [http://emart-store.byethost6.com/dashboard](http://emart-store.byethost6.com/dashboard)
 
 ## Table of Contents
 
