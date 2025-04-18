@@ -20,7 +20,7 @@
 
 ---
 
-### Emart Store App
+# Emart Store App
 The multi-vendor e-commerce application enables users to seamlessly explore a wide range of products and vendors, perform real-time searches, add items to their cart, complete secure payments through Stripe, and monitor their orders — all within a highly responsive and user-friendly interface.
 
 ---
@@ -49,7 +49,7 @@ Emart Store delivers a premium shopping experience with the following features:
 ## The Control Panel
 The Emart Store Control Panel empowers administrators with robust tools for efficient store management:
 
-# Common Features for Both Administrators and Vendors
+### Common Features for Both Administrators and Vendors
 - **Secure Access**: Multi-authentication system (**vendors** and **administrators**) providing secure and restricted login based on user type.
 - **Dashboard Home**: Monitor overall store statistics, top stores, special customers, and featured products.
 
