@@ -20,8 +20,7 @@
 
 ---
 
-# Emart Store App
-
+### Emart Store App
 The multi-vendor e-commerce application enables users to seamlessly explore a wide range of products and vendors, perform real-time searches, add items to their cart, complete secure payments through Stripe, and monitor their orders — all within a highly responsive and user-friendly interface.
 
 ---
